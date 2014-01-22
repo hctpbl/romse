@@ -106,17 +106,33 @@ class SiteController extends Controller
 	/**
 	 * Muestra la lista de cambios del usuario
 	 */
-	public function actionShowListChanges()
+	public function actionShowUserListChanges()
 	{
-			$this->render('showListChanges');
+			$this->render('showUserListChanges');
 	}
 	
 	/**
 	 * Muestra la lista de proyectos del usuario
 	 */
-	public function actionShowListProjects()
+	public function actionShowUserListProjects()
 	{
-		$this->render('showListProjects');
+		$this->render('showUserListProjects');
+	}
+	
+	/**
+	 * Muestra la lista de solicitudes de cambio pendientes al ccc
+	 */
+	public function actionShowCccListChangesPending()
+	{
+		$this->render('showCccListChangesPending');
+	}
+	
+	/**
+	 * Muestra la lista de solicitudes de cambio cerradas al ccc
+	 */
+	public function actionShowCccListChangesClosed()
+	{
+		$this->render('showCccListChangesClosed');
 	}
 	
 	/**

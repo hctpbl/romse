@@ -29,24 +29,28 @@
 	<div id="mainmenu">
 		<?php
 			//$admin = (isset(Yii::app()->user->name) and Yii::app()->user->name == 'Administrador') ? true : false ;
-			$admin = (!Yii::app()->user->isGuest and Yii::app()->user->name == 'admin') ? true : false;
-			$userCanCreateChange = (!Yii::app()->user->isGuest and Yii::app()->user->name != 'admin' and Yii::app()->user->name != 'ccc') ? true : false;
-			$ccc = (!Yii::app()->user->isGuest and Yii::app()->user->name == 'ccc') ? true : false;
+			$admin = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == '1') ? true : false;
+			$developer = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == '2') ? true : false;
+			$ccc = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == '2') ? true : false;
+			$finalUser = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == '4') ? true : false;
+			
 			$this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				//array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'Inicio', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Mi perfil', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
 				// Opciones para administrador
-				array('label'=>'Usuario', 'url'=>array('/usuario'), 'visible'=>$admin),
+				array('label'=>'Usuarios', 'url'=>array('/usuario'), 'visible'=>$admin),
+				array('label'=>'Artefactos', 'url'=>array('/artefacto'), 'visible'=>$admin),
 				array('label'=>'Proyectos', 'url'=>array('/proyecto'), 'visible'=>$admin),
-				// Opciones para usuarios que pueden crear solicitudes
-				array('label'=>'Mis solicitudes de cambio', 'url'=>array('/site/showListChanges'), 'visible'=>$userCanCreateChange),
-				array('label'=>'Mis proyectos', 'url'=>array('/site/showListProjects'), 'visible'=>$userCanCreateChange),
+				// Opciones para usuarios desarrolladores
+				array('label'=>'Mis solicitudes de cambio', 'url'=>array('/site/showUserListChanges'), 'visible'=>$developer),
+				array('label'=>'Mis proyectos', 'url'=>array('/site/showUserListProjects'), 'visible'=>$developer),
+				// Opciones para usuarios finales
+				array('label'=>'Mis solicitudes de cambio', 'url'=>array('/site/showUserListChanges'), 'visible'=>$finalUser),
 				// Opciones para ccc
-				array('label'=>'Solicitudes pendientes', 'url'=>array(''), 'visible'=>$ccc),
-				array('label'=>'Solicitudes cerradas', 'url'=>array(''), 'visible'=>$ccc),
-
+				array('label'=>'Solicitudes pendientes', 'url'=>array('/site/showCccListChangesPending'), 'visible'=>$ccc),
+				array('label'=>'Solicitudes cerradas', 'url'=>array('/site/showCccListChangesClosed'), 'visible'=>$ccc),
 				array('label'=>'Sobre nosotros', 'url'=>array('/site/page', 'view'=>'about'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Contacto', 'url'=>array('/site/contact'), 'visible'=>Yii::app()->user->isGuest),
 				//array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
