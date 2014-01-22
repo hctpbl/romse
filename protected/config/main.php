@@ -51,10 +51,10 @@ return array(
 		*/
 		// uncomment the following to use a MySQL database
 		'db'=>array(
-			'connectionString' => 'mysql:host=127.0.0.1:3307;dbname=PGPI_grupo01',
+			'connectionString' => 'mysql:host=localhost;dbname=pgpi_grupo01',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'H3ctor',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(

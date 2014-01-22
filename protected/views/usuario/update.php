@@ -18,4 +18,8 @@ $this->menu=array(
 
 <h1>Update Usuario <?php echo $model->id; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php 
+if (Yii::app()->user->name == 'admin')
+	$this->renderPartial('_form', array('model'=>$model));
+else 
+	$this->renderPartial('_formUser', array('model'=>$model));?>

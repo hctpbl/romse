@@ -157,9 +157,9 @@ class Usuario extends CActiveRecord
 		return true;
 	}
 	
-	/*
+	/**
 	* Se valida el password del Login
-	* @return VerificaciÃ³n del password
+	* @return Verificación del password
 	*/
 	public function validatePassword($password)
     {
