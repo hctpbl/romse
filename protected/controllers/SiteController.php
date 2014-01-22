@@ -102,7 +102,23 @@ class SiteController extends Controller
 		// display the login form
 		$this->render('login',array('model'=>$model));
 	}
-
+	
+	/**
+	 * Muestra la lista de cambios del usuario
+	 */
+	public function actionShowListChanges()
+	{
+			$this->render('showListChanges');
+	}
+	
+	/**
+	 * Muestra la lista de proyectos del usuario
+	 */
+	public function actionShowListProjects()
+	{
+		$this->render('showListProjects');
+	}
+	
 	/**
 	 * Logs out the current user and redirect to homepage.
 	 */
