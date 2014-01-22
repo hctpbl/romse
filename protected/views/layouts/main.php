@@ -41,14 +41,14 @@
 				array('label'=>'Usuario', 'url'=>array('/usuario'), 'visible'=>$admin),
 				array('label'=>'Proyectos', 'url'=>array('/proyecto'), 'visible'=>$admin),
 				// Opciones para usuarios que pueden crear solicitudes
-				array('label'=>'Mis solicitudes de cambio', 'url'=>array('/site/listUserChangesRequest'), 'visible'=>$userCanCreateChange),
-				array('label'=>'Mis proyectos', 'url'=>array(''), 'visible'=>$userCanCreateChange),
+				array('label'=>'Mis solicitudes de cambio', 'url'=>array('/site/showListChanges'), 'visible'=>$userCanCreateChange),
+				array('label'=>'Mis proyectos', 'url'=>array('/site/showListProjects'), 'visible'=>$userCanCreateChange),
 				// Opciones para ccc
 				array('label'=>'Solicitudes pendientes', 'url'=>array(''), 'visible'=>$ccc),
 				array('label'=>'Solicitudes cerradas', 'url'=>array(''), 'visible'=>$ccc),
 
-				array('label'=>'Sobre nosotros', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contacto', 'url'=>array('/site/contact')),
+				array('label'=>'Sobre nosotros', 'url'=>array('/site/page', 'view'=>'about'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Contacto', 'url'=>array('/site/contact'), 'visible'=>Yii::app()->user->isGuest),
 				//array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
