@@ -10,6 +10,7 @@ $this->menu=array(
 	array('label'=>'Create SolicitudDeCambio', 'url'=>array('create')),
 	array('label'=>'Manage SolicitudDeCambio', 'url'=>array('admin')),
 );
+
 ?>
 
 <h1>Solicitud De Cambios</h1>

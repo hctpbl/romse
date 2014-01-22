@@ -7,13 +7,15 @@ $this->breadcrumbs=array(
 	$model->id,
 );
 
-$this->menu=array(
-	array('label'=>'List SolicitudDeCambio', 'url'=>array('index')),
-	array('label'=>'Create SolicitudDeCambio', 'url'=>array('create')),
-	array('label'=>'Update SolicitudDeCambio', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete SolicitudDeCambio', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage SolicitudDeCambio', 'url'=>array('admin')),
-);
+if (Yii::app()->user->rol_id == 'ROL_CCC'){
+	$this->menu=array(
+		array('label'=>'List SolicitudDeCambio', 'url'=>array('index')),
+		array('label'=>'Create SolicitudDeCambio', 'url'=>array('create')),
+		array('label'=>'Update SolicitudDeCambio', 'url'=>array('update', 'id'=>$model->id)),
+		array('label'=>'Delete SolicitudDeCambio', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+		array('label'=>'Manage SolicitudDeCambio', 'url'=>array('admin')),
+	);
+}
 ?>
 
 <h1>View SolicitudDeCambio #<?php echo $model->id; ?></h1>
