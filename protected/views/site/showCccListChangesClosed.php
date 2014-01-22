@@ -14,9 +14,20 @@ $this->breadcrumbs=array(
 
 
 //$solicitudes = SolicitudDeCambio::model()->with(array('cambioDeEstados'=>array('condition'=>'cambioDeEstados.estado_id=10'),))->findAll();
-$solicitudes = SolicitudDeCambio::model()->with(array('cambioDeEstados'=>array('alias'=>'cambioEstados', 'with'=>array('estado'=>array('condition'=>'estado.nombre=\'Cerrado\''))),))->findAll();
-$list = CHtml::listData($solicitudes, 'id', 'descripcion_breve');
-print_r($list);
+$dataProvider = SolicitudDeCambio::model()->with(array('cambioDeEstados'=>array('alias'=>'cambioEstados', 'with'=>array('estado'=>array('condition'=>'estado.nombre=\'Cerrado\''))),))->findAll();
+$this->widget('zii.widgets.grid.CGridView', array(
+        'dataProvider' => new CArrayDataProvider($dataProvider),
+        'columns' => array(
+        'id', 'descripcion_breve', 'descripcion_detallada',
+		'impacto', 'prioridad', 'temporizacion', 'riesgos',
+		'artefacto_id', 'creador', 'probador', 'desarrollador',
+		array
+		(
+			'class'=>'CButtonColumn',
+			'template'=>'{delete}',
+		)
+        ),
+    ));
 
 
 

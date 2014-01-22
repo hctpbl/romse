@@ -11,22 +11,35 @@ $this->breadcrumbs=array(
 <h3>Lista de cambios pendientes</h3>
 
 <?php
-/*$model=SolicitudDeCambio::model()->findAll();
-if ($model)
-	echo $model->descripcion_breve;
-else
-	echo 'No existe el modelo';*/
-//return CHtml::listData(SolicitudDeCambio::model()->findAll(),'id','descripcion_breve');
-/*$solicitudes=SolicitudDeCambio::model()->findAll();
-$list = CHtml::listData($solicitudes, 'id', 'descripcion_breve');
-print_r($list);*/
+$dataProvider=new CActiveDataProvider('SolicitudDeCambio');
 
-//$solicitudes = SolicitudDeCambio::model()->with(array('cambioDeEstados'=>array('condition'=>'cambioDeEstados.estado_id!=10'),))->findAll();
-//$solicitudes = SolicitudDeCambio::model()->with(array('cambioDeEstados'=>array('alias'=>'cambioEstados', 'with'=>array('estado'=>array('condition'=>'estado.nombre!=\'Cerrado\''))),))->findAll();
-$solicitudes = SolicitudDeCambio::model()->with(array('cambioDeEstados'=>array('alias'=>'cambioDeEstados', 'with'=>array('estado'=>array('condition'=>'estado.nombre!=\'Cerrado\''))),))->findAll();
-$list = CHtml::listData($solicitudes, 'id', 'descripcion_breve');
-print_r($list);
+$dataProvider = SolicitudDeCambio::model()->findAll(array(
+				'select'=>'*',
+				'condition'=>'id NOT IN (SELECT solicitud_de_cambio_id 
+										FROM cambio_de_estado, estado 
+										WHERE estado_id = id
+										AND nombre = \'Cerrado\')'));
 
+$this->widget('zii.widgets.grid.CGridView', array(
+        'dataProvider' => new CArrayDataProvider($dataProvider),
+        'columns' => array(
+        'id', 'descripcion_breve', 'descripcion_detallada',
+		'impacto', 'prioridad', 'temporizacion', 'riesgos',
+		'artefacto_id', 'creador', 'probador', 'desarrollador',
+		array
+		(
+			'class'=>'CButtonColumn',
+			'template'=>'{update}',
+			'buttons'=>array
+			(
+				'update' => array
+				(
+					'url' =>'Yii::app()->createUrl("/solicitudDeCambio/update/".$data->id)',
+				),
 
+			),
+		)
+        ),
+    ));
 
 ?>
