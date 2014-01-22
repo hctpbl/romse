@@ -1,4 +1,9 @@
-<?php /* @var $this Controller */ ?>
+<?php /* @var $this Controller */ 
+define("ROL_ADMINISTRADOR", '1'); 
+define("ROL_CCC", '2');
+define("ROL_DESARROLLADOR", '3'); 
+define("ROL_USUARIO_FINAL", '4');
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -29,10 +34,10 @@
 	<div id="mainmenu">
 		<?php
 			//$admin = (isset(Yii::app()->user->name) and Yii::app()->user->name == 'Administrador') ? true : false ;
-			$admin = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == '1') ? true : false;
-			$developer = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == '2') ? true : false;
-			$ccc = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == '2') ? true : false;
-			$finalUser = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == '4') ? true : false;
+			$admin = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == ROL_ADMINISTRADOR) ? true : false;
+			$developer = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == ROL_DESARROLLADOR) ? true : false;
+			$ccc = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == ROL_CCC) ? true : false;
+			$finalUser = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == ROL_USUARIO_FINAL) ? true : false;
 			
 			$this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
