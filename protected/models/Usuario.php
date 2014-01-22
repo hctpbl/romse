@@ -145,4 +145,22 @@ class Usuario extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	/**
+	 * Se encripta el password antes de almacenarle en la base de datos
+	 * @return true
+	 * 
+	 */
+	public function beforeSave() {
+		if (! empty ( $this->password ))
+			$this->password = CPasswordHelper::hashPassword ( $this->password );
+		return true;
+	}
+	
+	/**
+	 * Se valida el password del Login @return Verificaci�n del password
+	 */
+	public function validatePassword($password) {
+			return CPasswordHelper::verifyPassword ( $password, $this->password );
+		}
 }
