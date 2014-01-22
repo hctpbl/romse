@@ -29,11 +29,20 @@ class UsuarioController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
-				'users'=>array('*'),
+				'users'=>array('admin'),
 			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+			/*array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
 				'users'=>array('@'),
+			),*/
+			array('allow',
+				'actions'=>array('create'),
+				'users'=>array('admin'),
+			),
+			array('allow',
+					'actions'=>array('update'),
+					'users'=>array(Yii::app()->user->name),
+                	'expression' => '(Yii::app()->user->id == ($_GET[\'id\'])) || Yii::app()->user->name==\'admin\''
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),

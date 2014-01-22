@@ -30,7 +30,7 @@ class SiteController extends Controller
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		// $this->render('index');
-		// La pÃ¡gina inicial debe ser el login si no estÃ¡ registrado
+		// La página inicial debe ser el login si no está registrado
 		if (!Yii::app()->user->isGuest)
 			$this->render('index');
 		else

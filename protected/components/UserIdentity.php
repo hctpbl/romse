@@ -45,6 +45,12 @@ class UserIdentity extends CUserIdentity
         {
             $this->_id=$user->id;
             $this->username=$user->username;
+            $this->setState( 'nss', $user->nss);
+            $this->setState( 'dni', $user->dni);
+            $this->setState( 'nombre', $user->nombre);
+            $this->setState( 'apellidos', $user->apellidos);
+            $this->setState( 'fecha_nacimiento', $user->fecha_nacimiento);
+            $this->setState( 'numero_telefono', $user->numero_telefono);
             $this->errorCode=self::ERROR_NONE;
         }
         return $this->errorCode==self::ERROR_NONE;
