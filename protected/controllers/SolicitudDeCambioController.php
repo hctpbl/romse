@@ -74,8 +74,17 @@ class SolicitudDeCambioController extends Controller
 		if(isset($_POST['SolicitudDeCambio']))
 		{
 			$model->attributes=$_POST['SolicitudDeCambio'];
-			if($model->save())
+			if($model->save()) {
+				// Comprobamos si también hay que realizar el envío
+				if($_POST['enviar'] == 1) {
+					$cambio = new CambioDeEstado();
+					$cambio->solicitud_de_cambio_id = $model->id;
+					$cambio->usuario_id = $model->creador;
+					$cambio->estado_id = 1;
+					$cambio->save();
+				}
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
