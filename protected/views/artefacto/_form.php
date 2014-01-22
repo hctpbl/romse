@@ -54,6 +54,7 @@
 		<?php //echo $form->textField($model,'proyecto_id'); ?>
 		<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
 			    'name'=>'proyecto_name',
+				'value'=> $model->isNewRecord ? '' : $model->proyecto->nombre,
 			    'sourceUrl'=>Yii::app()->createUrl('ajax/getProjects'),
 			    'options'=>array(
 			        'minLength'=>'2',
@@ -65,7 +66,9 @@
 			));
 		?>
 		<span> Proyecto seleccionado: </span>
-		<span id="selectedProject">Ninguno</span>
+		<span id="selectedProject">
+			<?php echo $model->isNewRecord ? 'Ninguno' : $model->proyecto->nombre ?>
+		</span>
 		<?php echo $form->hiddenField($model,'proyecto_id'); ?>
 		<?php echo $form->error($model,'proyecto_id'); ?>
 	</div>
@@ -75,6 +78,7 @@
 		<?php //echo $form->textField($model,'depende_de'); ?>
 		<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
 			    'name'=>'artefacto_name',
+				'value'=> $model->isNewRecord ? '' : $model->dependeDe->nombre,
 			    'sourceUrl'=>Yii::app()->createUrl('ajax/getArtifacts'),
 			    'options'=>array(
 			        'minLength'=>'2',
@@ -86,7 +90,9 @@
 			));
 		?>
 		<span> Artefacto seleccionado: </span>
-		<span id="selectedArtifact">Ninguno</span>
+		<span id="selectedArtifact">
+			<?php echo $model->isNewRecord ? 'Ninguno' : $model->dependeDe->nombre ?>
+		</span>
 		<?php echo $form->hiddenField($model,'depende_de'); ?>
 		<?php echo $form->error($model,'depende_de'); ?>
 	</div>
