@@ -18,11 +18,11 @@
  * @property integer $desarrollador
  *
  * The followings are the available model relations:
- * @property Usuario[] $usuarios
+ * @property CambioDeEstado[] $cambioDeEstados
  * @property Artefacto $artefacto
  * @property Usuario $creador0
- * @property Usuario $desarrollador0
  * @property Usuario $probador0
+ * @property Usuario $desarrollador0
  */
 class SolicitudDeCambio extends CActiveRecord
 {
@@ -62,11 +62,11 @@ class SolicitudDeCambio extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'usuarios' => array(self::MANY_MANY, 'Usuario', 'cambio_de_estado(solicitud_de_cambio_id, solicitante_id)'),
+			'cambioDeEstados' => array(self::HAS_MANY, 'CambioDeEstado', 'solicitud_de_cambio_id'),
 			'artefacto' => array(self::BELONGS_TO, 'Artefacto', 'artefacto_id'),
 			'creador0' => array(self::BELONGS_TO, 'Usuario', 'creador'),
-			'desarrollador0' => array(self::BELONGS_TO, 'Usuario', 'desarrollador'),
 			'probador0' => array(self::BELONGS_TO, 'Usuario', 'probador'),
+			'desarrollador0' => array(self::BELONGS_TO, 'Usuario', 'desarrollador'),
 		);
 	}
 
@@ -136,18 +136,5 @@ class SolicitudDeCambio extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
-	}
-	
-	/**
-	 * Antes de guardar, ponemos la id del usuario logueado
-	 */
-	public function beforeSave() {
-
-		if ($this->isNewRecord) {
-			$this->creador = Yii::app()->user->id;
-		}
-		
-		return parent::beforeSave();
-		
 	}
 }

@@ -4,15 +4,15 @@
  * This is the model class for table "cambio_de_estado".
  *
  * The followings are the available columns in table 'cambio_de_estado':
- * @property integer $solicitante_id
  * @property integer $solicitud_de_cambio_id
+ * @property integer $usuario_id
  * @property string $fecha
  * @property integer $estado_id
  *
  * The followings are the available model relations:
  * @property Estado $estado
- * @property Usuario $solicitante
  * @property SolicitudDeCambio $solicitudDeCambio
+ * @property Usuario $usuario
  */
 class CambioDeEstado extends CActiveRecord
 {
@@ -32,11 +32,11 @@ class CambioDeEstado extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('solicitud_de_cambio_id, fecha, estado_id', 'required'),
-			array('solicitud_de_cambio_id, estado_id', 'numerical', 'integerOnly'=>true),
+			array('solicitud_de_cambio_id, usuario_id, fecha, estado_id', 'required'),
+			array('solicitud_de_cambio_id, usuario_id, estado_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('solicitante_id, solicitud_de_cambio_id, fecha, estado_id', 'safe', 'on'=>'search'),
+			array('solicitud_de_cambio_id, usuario_id, fecha, estado_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,8 +49,8 @@ class CambioDeEstado extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'estado' => array(self::BELONGS_TO, 'Estado', 'estado_id'),
-			'solicitante' => array(self::BELONGS_TO, 'Usuario', 'solicitante_id'),
 			'solicitudDeCambio' => array(self::BELONGS_TO, 'SolicitudDeCambio', 'solicitud_de_cambio_id'),
+			'usuario' => array(self::BELONGS_TO, 'Usuario', 'usuario_id'),
 		);
 	}
 
@@ -60,8 +60,8 @@ class CambioDeEstado extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'solicitante_id' => 'Solicitante',
 			'solicitud_de_cambio_id' => 'Solicitud De Cambio',
+			'usuario_id' => 'Usuario',
 			'fecha' => 'Fecha',
 			'estado_id' => 'Estado',
 		);
@@ -85,8 +85,8 @@ class CambioDeEstado extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('solicitante_id',$this->solicitante_id);
 		$criteria->compare('solicitud_de_cambio_id',$this->solicitud_de_cambio_id);
+		$criteria->compare('usuario_id',$this->usuario_id);
 		$criteria->compare('fecha',$this->fecha,true);
 		$criteria->compare('estado_id',$this->estado_id);
 
