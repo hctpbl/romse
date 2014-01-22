@@ -13,7 +13,7 @@
 	<?php echo CHtml::encode($data->descripcion_breve); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('descripcion_detallada')); ?>:</b>
+	<b><?php /*echo CHtml::encode($data->getAttributeLabel('descripcion_detallada')); ?>:</b>
 	<?php echo CHtml::encode($data->descripcion_detallada); ?>
 	<br />
 

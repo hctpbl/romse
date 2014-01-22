@@ -12,4 +12,4 @@ $this->breadcrumbs=array(
 
 <h3>Solicitudes de cambio cerradas</h3>
 
-<p><?php echo CHtml::button('Crear nueva solicitud de cambio'); ?></p>
+<p><?php echo CHtml::button('Crear nueva solicitud de cambio', array('submit' => '?r=solicitudDeCambio/create')); ?></p>
