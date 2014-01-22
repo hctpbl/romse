@@ -14,9 +14,9 @@
  * @property integer $depende_de
  *
  * The followings are the available model relations:
- * @property Proyecto $proyecto
  * @property Artefacto $dependeDe
  * @property Artefacto[] $artefactos
+ * @property Proyecto $proyecto
  * @property SolicitudDeCambio[] $solicitudDeCambios
  */
 class Artefacto extends CActiveRecord
@@ -42,7 +42,7 @@ class Artefacto extends CActiveRecord
 			array('nombre, rol', 'length', 'max'=>45),
 			array('uri', 'length', 'max'=>30),
 			array('descripcion', 'length', 'max'=>200),
-			array('version', 'length', 'max'=>3),
+			array('version', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, nombre, uri, rol, descripcion, version, proyecto_id, depende_de', 'safe', 'on'=>'search'),
@@ -57,9 +57,9 @@ class Artefacto extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'proyecto' => array(self::BELONGS_TO, 'Proyecto', 'proyecto_id'),
 			'dependeDe' => array(self::BELONGS_TO, 'Artefacto', 'depende_de'),
 			'artefactos' => array(self::HAS_MANY, 'Artefacto', 'depende_de'),
+			'proyecto' => array(self::BELONGS_TO, 'Proyecto', 'proyecto_id'),
 			'solicitudDeCambios' => array(self::HAS_MANY, 'SolicitudDeCambio', 'artefacto_id'),
 		);
 	}
@@ -74,8 +74,8 @@ class Artefacto extends CActiveRecord
 			'nombre' => 'Nombre',
 			'uri' => 'Uri',
 			'rol' => 'Rol',
-			'descripcion' => 'Descripcion',
-			'version' => 'Version',
+			'descripcion' => 'Descripción',
+			'version' => 'Versión',
 			'proyecto_id' => 'Proyecto',
 			'depende_de' => 'Depende De',
 		);

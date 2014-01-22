@@ -32,6 +32,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'fecha_creacion'); ?>
+		<?php echo $form->textField($model,'fecha_creacion'); ?>
+		<?php echo $form->error($model,'fecha_creacion'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'impacto'); ?>
 		<?php echo $form->textField($model,'impacto',array('size'=>10,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'impacto'); ?>
@@ -53,12 +59,6 @@
 		<?php echo $form->labelEx($model,'riesgos'); ?>
 		<?php echo $form->textField($model,'riesgos',array('size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'riesgos'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'fecha_creacion'); ?>
-		<?php echo $form->textField($model,'fecha_creacion'); ?>
-		<?php echo $form->error($model,'fecha_creacion'); ?>
 	</div>
 
 	<div class="row">

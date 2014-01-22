@@ -38,7 +38,7 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'version'); ?>
-		<?php echo $form->textField($model,'version',array('size'=>3,'maxlength'=>3)); ?>
+		<?php echo $form->textField($model,'version',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">

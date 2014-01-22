@@ -8,6 +8,11 @@
  * @property integer $solicitud_de_cambio_id
  * @property string $fecha
  * @property integer $estado_id
+ *
+ * The followings are the available model relations:
+ * @property Estado $estado
+ * @property Usuario $solicitante
+ * @property SolicitudDeCambio $solicitudDeCambio
  */
 class CambioDeEstado extends CActiveRecord
 {
@@ -43,6 +48,9 @@ class CambioDeEstado extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'estado' => array(self::BELONGS_TO, 'Estado', 'estado_id'),
+			'solicitante' => array(self::BELONGS_TO, 'Usuario', 'solicitante_id'),
+			'solicitudDeCambio' => array(self::BELONGS_TO, 'SolicitudDeCambio', 'solicitud_de_cambio_id'),
 		);
 	}
 

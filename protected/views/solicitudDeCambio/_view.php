@@ -17,6 +17,10 @@
 	<?php echo CHtml::encode($data->descripcion_detallada); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('fecha_creacion')); ?>:</b>
+	<?php echo CHtml::encode($data->fecha_creacion); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('impacto')); ?>:</b>
 	<?php echo CHtml::encode($data->impacto); ?>
 	<br />
@@ -29,13 +33,9 @@
 	<?php echo CHtml::encode($data->temporizacion); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('riesgos')); ?>:</b>
 	<?php echo CHtml::encode($data->riesgos); ?>
-	<br />
-
-	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('fecha_creacion')); ?>:</b>
-	<?php echo CHtml::encode($data->fecha_creacion); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('artefacto_id')); ?>:</b>
