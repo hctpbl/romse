@@ -137,4 +137,12 @@ class SolicitudDeCambio extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	
+	public function beforeSave() {
+		if ($this->isNewRecord) {
+			$this->creador = Yii::app()->user->id;
+		}
+		return parent::beforeSave();
+	}
 }

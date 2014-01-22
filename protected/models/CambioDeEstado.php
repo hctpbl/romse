@@ -32,7 +32,7 @@ class CambioDeEstado extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('solicitud_de_cambio_id, usuario_id, fecha, estado_id', 'required'),
+			array('solicitud_de_cambio_id, usuario_id, estado_id', 'required'),
 			array('solicitud_de_cambio_id, usuario_id, estado_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
