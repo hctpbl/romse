@@ -7,11 +7,11 @@
  * @property integer $id
  * @property string $descripcion_breve
  * @property string $descripcion_detallada
+ * @property string $fecha_creacion
  * @property string $impacto
  * @property string $prioridad
  * @property string $temporizacion
  * @property string $riesgos
- * @property string $fecha_creacion
  * @property integer $artefacto_id
  * @property integer $creador
  * @property integer $probador
@@ -21,8 +21,8 @@
  * @property Usuario[] $usuarios
  * @property Artefacto $artefacto
  * @property Usuario $creador0
- * @property Usuario $probador0
  * @property Usuario $desarrollador0
+ * @property Usuario $probador0
  */
 class SolicitudDeCambio extends CActiveRecord
 {
@@ -42,16 +42,15 @@ class SolicitudDeCambio extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('descripcion_breve, descripcion_detallada, creador', 'required'),
+			array('descripcion_breve, descripcion_detallada, fecha_creacion, creador', 'required'),
 			array('artefacto_id, creador, probador, desarrollador', 'numerical', 'integerOnly'=>true),
 			array('descripcion_breve', 'length', 'max'=>100),
 			array('descripcion_detallada', 'length', 'max'=>1000),
 			array('impacto, prioridad, temporizacion', 'length', 'max'=>10),
 			array('riesgos', 'length', 'max'=>50),
-			array('fecha_creacion', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, descripcion_breve, descripcion_detallada, impacto, prioridad, temporizacion, riesgos, fecha_creacion, artefacto_id, creador, probador, desarrollador', 'safe', 'on'=>'search'),
+			array('id, descripcion_breve, descripcion_detallada, fecha_creacion, impacto, prioridad, temporizacion, riesgos, artefacto_id, creador, probador, desarrollador', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,8 +65,8 @@ class SolicitudDeCambio extends CActiveRecord
 			'usuarios' => array(self::MANY_MANY, 'Usuario', 'cambio_de_estado(solicitud_de_cambio_id, solicitante_id)'),
 			'artefacto' => array(self::BELONGS_TO, 'Artefacto', 'artefacto_id'),
 			'creador0' => array(self::BELONGS_TO, 'Usuario', 'creador'),
-			'probador0' => array(self::BELONGS_TO, 'Usuario', 'probador'),
 			'desarrollador0' => array(self::BELONGS_TO, 'Usuario', 'desarrollador'),
+			'probador0' => array(self::BELONGS_TO, 'Usuario', 'probador'),
 		);
 	}
 
@@ -80,11 +79,11 @@ class SolicitudDeCambio extends CActiveRecord
 			'id' => 'ID',
 			'descripcion_breve' => 'Descripcion Breve',
 			'descripcion_detallada' => 'Descripcion Detallada',
+			'fecha_creacion' => 'Fecha Creacion',
 			'impacto' => 'Impacto',
 			'prioridad' => 'Prioridad',
 			'temporizacion' => 'Temporizacion',
 			'riesgos' => 'Riesgos',
-			'fecha_creacion' => 'Fecha Creacion',
 			'artefacto_id' => 'Artefacto',
 			'creador' => 'Creador',
 			'probador' => 'Probador',
@@ -113,11 +112,11 @@ class SolicitudDeCambio extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('descripcion_breve',$this->descripcion_breve,true);
 		$criteria->compare('descripcion_detallada',$this->descripcion_detallada,true);
+		$criteria->compare('fecha_creacion',$this->fecha_creacion,true);
 		$criteria->compare('impacto',$this->impacto,true);
 		$criteria->compare('prioridad',$this->prioridad,true);
 		$criteria->compare('temporizacion',$this->temporizacion,true);
 		$criteria->compare('riesgos',$this->riesgos,true);
-		$criteria->compare('fecha_creacion',$this->fecha_creacion,true);
 		$criteria->compare('artefacto_id',$this->artefacto_id);
 		$criteria->compare('creador',$this->creador);
 		$criteria->compare('probador',$this->probador);

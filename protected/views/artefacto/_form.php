@@ -45,19 +45,49 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'version'); ?>
-		<?php echo $form->textField($model,'version',array('size'=>3,'maxlength'=>3)); ?>
+		<?php echo $form->textField($model,'version',array('size'=>10,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'version'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'proyecto_id'); ?>
-		<?php echo $form->textField($model,'proyecto_id'); ?>
+		<?php //echo $form->textField($model,'proyecto_id'); ?>
+		<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
+			    'name'=>'proyecto_name',
+			    'sourceUrl'=>Yii::app()->createUrl('ajax/getProjects'),
+			    'options'=>array(
+			        'minLength'=>'2',
+			        'type'=>'get',
+			        'select'=>'js:function(event, ui) {
+			            $("#selectedProject").text(ui.item.value);
+			            $("#Artefacto_proyecto_id").val(ui.item.id);}'
+				),
+			));
+		?>
+		<span> Proyecto seleccionado: </span>
+		<span id="selectedProject">Ninguno</span>
+		<?php echo $form->hiddenField($model,'proyecto_id'); ?>
 		<?php echo $form->error($model,'proyecto_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'depende_de'); ?>
-		<?php echo $form->textField($model,'depende_de'); ?>
+		<?php //echo $form->textField($model,'depende_de'); ?>
+		<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
+			    'name'=>'artefacto_name',
+			    'sourceUrl'=>Yii::app()->createUrl('ajax/getArtifacts'),
+			    'options'=>array(
+			        'minLength'=>'2',
+			        'type'=>'get',
+			        'select'=>'js:function(event, ui) {
+			            $("#selectedArtifact").text(ui.item.value);
+			            $("#Artefacto_depende_de").val(ui.item.id);}'
+				),
+			));
+		?>
+		<span> Artefacto seleccionado: </span>
+		<span id="selectedArtifact">Ninguno</span>
+		<?php echo $form->hiddenField($model,'depende_de'); ?>
 		<?php echo $form->error($model,'depende_de'); ?>
 	</div>
 

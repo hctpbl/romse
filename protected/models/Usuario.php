@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "Usuario".
+ * This is the model class for table "usuario".
  *
- * The followings are the available columns in table 'Usuario':
+ * The followings are the available columns in table 'usuario':
  * @property integer $id
  * @property string $nss
  * @property string $dni
@@ -32,7 +32,7 @@ class Usuario extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'Usuario';
+		return 'usuario';
 	}
 
 	/**
@@ -70,8 +70,8 @@ class Usuario extends CActiveRecord
 		return array(
 			'solicitudDeCambios' => array(self::MANY_MANY, 'SolicitudDeCambio', 'cambio_de_estado(solicitante_id, solicitud_de_cambio_id)'),
 			'solicitudDeCambios1' => array(self::HAS_MANY, 'SolicitudDeCambio', 'creador'),
-			'solicitudDeCambios2' => array(self::HAS_MANY, 'SolicitudDeCambio', 'probador'),
-			'solicitudDeCambios3' => array(self::HAS_MANY, 'SolicitudDeCambio', 'desarrollador'),
+			'solicitudDeCambios2' => array(self::HAS_MANY, 'SolicitudDeCambio', 'desarrollador'),
+			'solicitudDeCambios3' => array(self::HAS_MANY, 'SolicitudDeCambio', 'probador'),
 			'rol' => array(self::BELONGS_TO, 'Rol', 'rol_id'),
 		);
 	}
@@ -145,29 +145,4 @@ class Usuario extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-	
-	/**
-	* Se encripta el password antes de almacenarle en la base de datos
-	* @return true
-	*/
-	public function beforeSave()
-	{
-		if (!empty($this->password))
-			$this->password=CPasswordHelper::hashPassword($this->password);
-		return true;
-	}
-	
-	/*
-	* Se valida el password del Login
-	* @return Verificación del password
-	*/
-	public function validatePassword($password)
-    {
-        return CPasswordHelper::verifyPassword($password,$this->password);
-    }
- 
-    /*public function hashPassword($password)
-    {
-        return CPasswordHelper::hashPassword($password);
-    }*/
 }

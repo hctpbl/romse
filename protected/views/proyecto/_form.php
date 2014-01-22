@@ -20,14 +20,36 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'nombre'); ?>
+		<?php echo $form->textField($model,'nombre',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->error($model,'nombre'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'fecha_inicio'); ?>
-		<?php echo $form->textField($model,'fecha_inicio'); ?>
+		<?php
+		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+						'attribute'=>'fecha_inicio',
+						'model' => $model,
+						'options'=>array(
+							'dateFormat'=>'yy-mm-dd',
+						)
+		));
+		?>
 		<?php echo $form->error($model,'fecha_inicio'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'fecha_fin'); ?>
-		<?php echo $form->textField($model,'fecha_fin'); ?>
+		<?php
+		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+						'attribute'=>'fecha_fin',
+						'model' => $model,
+						'options'=>array(
+							'dateFormat'=>'yy-mm-dd',
+						)
+		));
+		?>
 		<?php echo $form->error($model,'fecha_fin'); ?>
 	</div>
 

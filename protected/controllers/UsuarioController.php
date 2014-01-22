@@ -69,7 +69,6 @@ class UsuarioController extends Controller
 
 		if(isset($_POST['Usuario']))
 		{
-			$model->beforeSave();
 			$model->attributes=$_POST['Usuario'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -94,7 +93,6 @@ class UsuarioController extends Controller
 
 		if(isset($_POST['Usuario']))
 		{
-			$model->beforeSave();
 			$model->attributes=$_POST['Usuario'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));

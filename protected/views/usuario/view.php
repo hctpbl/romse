@@ -32,7 +32,7 @@ $this->menu=array(
 		'fecha_incorporacion',
 		'fecha_baja',
 		'username',
-		//'password',
+		'password',
 		'rol_id',
 	),
 )); ?>

@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'proyecto':
  * @property integer $id
+ * @property string $nombre
  * @property string $fecha_inicio
  * @property string $fecha_fin
  * @property string $costes
@@ -15,6 +16,15 @@
  */
 class Proyecto extends CActiveRecord
 {
+	public function scopes() {
+		return array(
+			'projectsIDandName' => array(
+				'select' => 'id, nombre AS value',
+				'order' => 'nombre ASC'
+			)
+		);
+	}
+	
 	/**
 	 * @return string the associated database table name
 	 */
@@ -31,13 +41,14 @@ class Proyecto extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fecha_inicio, descripcion', 'required'),
+			array('nombre, fecha_inicio, descripcion', 'required'),
+			array('nombre', 'length', 'max'=>45),
 			array('costes', 'length', 'max'=>10),
 			array('descripcion', 'length', 'max'=>100),
 			array('fecha_fin', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, fecha_inicio, fecha_fin, costes, descripcion', 'safe', 'on'=>'search'),
+			array('id, nombre, fecha_inicio, fecha_fin, costes, descripcion', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,6 +71,7 @@ class Proyecto extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'nombre' => 'Nombre',
 			'fecha_inicio' => 'Fecha Inicio',
 			'fecha_fin' => 'Fecha Fin',
 			'costes' => 'Costes',
@@ -86,6 +98,7 @@ class Proyecto extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('nombre',$this->nombre,true);
 		$criteria->compare('fecha_inicio',$this->fecha_inicio,true);
 		$criteria->compare('fecha_fin',$this->fecha_fin,true);
 		$criteria->compare('costes',$this->costes,true);
