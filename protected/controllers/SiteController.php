@@ -108,7 +108,27 @@ class SiteController extends Controller
 	 */
 	public function actionShowUserListChanges()
 	{
-			$this->render('showUserListChanges');
+		$modelChangesClosed = SolicitudDeCambio::model()->findAll(array(
+				'select'=>'*',
+				'alias'=>'sc',
+				'with'=>'creador0',
+				'condition'=>'sc.id IN (SELECT solicitud_de_cambio_id
+										FROM cambio_de_estado, estado
+										WHERE estado_id = id
+										AND nombre = \'Cerrado\')
+										AND sc.creador='.Yii::app()->user->id));
+		
+		$modelChangesPending = SolicitudDeCambio::model()->findAll(array(
+				'select'=>'*',
+				'alias'=>'sc',
+				'with'=>'creador0',
+				'condition'=>'sc.id NOT IN (SELECT solicitud_de_cambio_id
+										FROM cambio_de_estado, estado
+										WHERE estado_id = id
+										AND nombre = \'Cerrado\')
+										AND sc.creador='.Yii::app()->user->id));
+		
+		$this->render('showUserListChanges', array('modelChangesClosed'=>$modelChangesClosed, 'modelChangesPending'=>$modelChangesPending));
 	}
 	
 	/**
@@ -124,7 +144,13 @@ class SiteController extends Controller
 	 */
 	public function actionShowCccListChangesPending()
 	{
-		$this->render('showCccListChangesPending');
+		$modelChangesPending = SolicitudDeCambio::model()->findAll(array(
+				'select'=>'*',
+				'condition'=>'id NOT IN (SELECT solicitud_de_cambio_id
+										FROM cambio_de_estado, estado
+										WHERE estado_id = id
+										AND nombre = \'Cerrado\')'));
+		$this->render('showCccListChangesPending', array('modelChangesPending'=>$modelChangesPending));
 	}
 	
 	/**
@@ -132,7 +158,8 @@ class SiteController extends Controller
 	 */
 	public function actionShowCccListChangesClosed()
 	{
-		$this->render('showCccListChangesClosed');
+		$modelChangesClosed = SolicitudDeCambio::model()->with(array('cambioDeEstados'=>array('alias'=>'cambioEstados', 'with'=>array('estado'=>array('condition'=>'estado.nombre=\'Cerrado\''))),))->findAll();
+		$this->render('showCccListChangesClosed', array('modelChangesClosed'=>$modelChangesClosed));
 	}
 	
 	/**

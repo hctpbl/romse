@@ -8,12 +8,14 @@ $this->breadcrumbs=array(
 	'Update',
 );
 
-$this->menu=array(
-	array('label'=>'List Usuario', 'url'=>array('index')),
-	array('label'=>'Create Usuario', 'url'=>array('create')),
-	array('label'=>'View Usuario', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Usuario', 'url'=>array('admin')),
-);
+if (Yii::app()->user->rol_id == 'ROL_ADMINISTRADOR'){
+	$this->menu=array(
+		array('label'=>'List Usuario', 'url'=>array('index')),
+		array('label'=>'Create Usuario', 'url'=>array('create')),
+		array('label'=>'View Usuario', 'url'=>array('view', 'id'=>$model->id)),
+		array('label'=>'Manage Usuario', 'url'=>array('admin')),
+	);
+}
 ?>
 
 <h1>Update Usuario <?php echo $model->id; ?></h1>

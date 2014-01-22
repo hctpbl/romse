@@ -9,8 +9,7 @@ $this->breadcrumbs=array(
 );
 
 
-$ccc = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == '2') ? true : false;
-if (!$ccc){
+if (Yii::app()->user->rol_id == 'ROL_CCC'){
 	$this->menu=array(
 		array('label'=>'List SolicitudDeCambio', 'url'=>array('index')),
 		array('label'=>'Create SolicitudDeCambio', 'url'=>array('create')),
