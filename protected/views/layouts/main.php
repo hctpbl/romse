@@ -50,7 +50,7 @@ define("ROL_USUARIO_FINAL", '4');
 				array('label'=>'Proyectos', 'url'=>array('/proyecto'), 'visible'=>$admin),
 				// Opciones para usuarios desarrolladores
 				array('label'=>'Mis solicitudes de cambio', 'url'=>array('/site/showUserListChanges'), 'visible'=>$developer),
-				array('label'=>'Mis proyectos', 'url'=>array('/site/showUserListProjects'), 'visible'=>$developer),
+				array('label'=>'Mis proyectos con cambios', 'url'=>array('/site/showUserListProjects'), 'visible'=>$developer),
 				// Opciones para usuarios finales
 				array('label'=>'Mis solicitudes de cambio', 'url'=>array('/site/showUserListChanges'), 'visible'=>$finalUser),
 				// Opciones para ccc
