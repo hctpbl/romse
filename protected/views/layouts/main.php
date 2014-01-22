@@ -27,11 +27,26 @@
 	</div><!-- header -->
 
 	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
+		<?php
+			//$admin = (isset(Yii::app()->user->name) and Yii::app()->user->name == 'Administrador') ? true : false ;
+			$admin = (!Yii::app()->user->isGuest and Yii::app()->user->name == 'admin') ? true : false;
+			$userCanCreateChange = (!Yii::app()->user->isGuest and Yii::app()->user->name != 'admin' and Yii::app()->user->name != 'ccc') ? true : false;
+			$ccc = (!Yii::app()->user->isGuest and Yii::app()->user->name == 'ccc') ? true : false;
+			$this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				//array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'Inicio', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Mi perfil', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
+				// Opciones para administrador
+				array('label'=>'Usuario', 'url'=>array('/usuario'), 'visible'=>$admin),
+				array('label'=>'Proyectos', 'url'=>array('/proyecto'), 'visible'=>$admin),
+				// Opciones para usuarios que pueden crear solicitudes
+				array('label'=>'Mis solicitudes de cambio', 'url'=>array('/site/listUserChangesRequest'), 'visible'=>$userCanCreateChange),
+				array('label'=>'Mis proyectos', 'url'=>array(''), 'visible'=>$userCanCreateChange),
+				// Opciones para ccc
+				array('label'=>'Solicitudes pendientes', 'url'=>array(''), 'visible'=>$ccc),
+				array('label'=>'Solicitudes cerradas', 'url'=>array(''), 'visible'=>$ccc),
+
 				array('label'=>'Sobre nosotros', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contacto', 'url'=>array('/site/contact')),
 				//array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
