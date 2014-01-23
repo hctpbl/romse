@@ -4,7 +4,7 @@
 /* @var $cambio CambioDeEstado */
 
 $this->breadcrumbs=array(
-	'Lista de cambios'=>array('site/showUserListChanges'),
+	'Lista de cambios'=>array(Yii::app()->user->returnUrl),
 	$model->id,
 );
 ?>
@@ -201,6 +201,8 @@ if ($this->checkUser($estado_act, $model->id)) {
 		</div>
 	
 	</div>
+	
+	<?php if(isset($model->artefacto)) :?>
 
 	<div id="additional_form_10" class="additional_forms" hidden>
 
@@ -214,6 +216,8 @@ if ($this->checkUser($estado_act, $model->id)) {
 		</div>
 	
 	</div>
+	
+	<?php endif; ?>
 	
 	<div class="row buttons" id="btnCambioEstado" hidden>
 		<?php echo CHtml::submitButton('Cambiar estado'); ?>
