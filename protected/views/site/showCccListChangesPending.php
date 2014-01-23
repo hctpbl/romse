@@ -23,22 +23,25 @@ $dataProvider = SolicitudDeCambio::model()->findAll(array(
 $this->widget('zii.widgets.grid.CGridView', array(
         'dataProvider' => new CArrayDataProvider($modelChangesPending),
         'columns' => array(
-        'id', 'descripcion_breve', 'descripcion_detallada',
-		'impacto', 'prioridad', 'temporizacion', 'riesgos',
-		'artefacto_id', 'creador', 'probador', 'desarrollador',
-		array
-		(
-			'class'=>'CButtonColumn',
-			'template'=>'{update}',
-			'buttons'=>array
-			(
-				'update' => array
+        'id', 'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
+				'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
+				'riesgos:text:Riesgos',
+				'artefacto.nombre:text:artefacto', 'creador0.username:text:Creador',
+				'probador0.username:text:Probador',
+				'desarrollador0.username:text:Desarrollador',
+				array
 				(
-					'url' =>'Yii::app()->createUrl("/solicitudDeCambio/update/".$data->id)',
-				),
+						'class'=>'CButtonColumn',
+						'template'=>'{view}',
+						'buttons'=>array
+						(
+								'view' => array
+								(
+										'url' =>'Yii::app()->createUrl("/cambiodeestado/".$data->id)',
+								),
 
-			),
-		)
+						),
+				)
         ),
     ));
 
