@@ -108,25 +108,48 @@ class SiteController extends Controller
 	 */
 	public function actionShowUserListChanges()
 	{
-		$modelChangesClosed = SolicitudDeCambio::model()->findAll(array(
+		/*$modelChangesClosed = SolicitudDeCambio::model()->findAll(array(
 				'select'=>'*',
 				'alias'=>'sc',
 				'with'=>'creador0',
+				'join'=>'LEFT OUTER JOIN `cambio_de_estado` `ce` ON (`sc`.`id` = `ce`.`solicitud_de_cambio_id`) LEFT OUTER JOIN `estado` `e` ON (`ce`.`estado_id` = `e`.`id`)',
 				'condition'=>'sc.id IN (SELECT solicitud_de_cambio_id
 										FROM cambio_de_estado, estado
 										WHERE estado_id = id
 										AND nombre = \'Cerrado\')
-										AND sc.creador='.Yii::app()->user->id));
+										AND sc.creador='.Yii::app()->user->id,
+				'having'=>'MAX(ce.fecha)'));*/
 		
-		$modelChangesPending = SolicitudDeCambio::model()->findAll(array(
+		/*$modelChangesClosed = CambioDeEstado::model()->findAll(array(
+				'select'=>'*',
+				'with'=>'estado',
+				'with'=>'solicitudDeCambio',
+				'with'=>'solicitudDeCambio.creador0',
+				'condition'=>'solicitudDeCambio.id IN (SELECT solicitud_de_cambio_id
+										FROM cambio_de_estado ce, estado e
+										WHERE ce.estado_id = e.id
+										AND nombre = \'Cerrado\')
+										AND solicitudDeCambio.creador='.Yii::app()->user->id,
+				'having'=>'MAX(fecha)'));*/
+		
+		$modelChangesClosed = SolicitudEstado::model()->findAll(array(
+				'condition'=>'nombre_estado = \'Cerrado\''));
+		
+		/*$modelChangesPending = SolicitudDeCambio::model()->findAll(array(
 				'select'=>'*',
 				'alias'=>'sc',
 				'with'=>'creador0',
+				'with'=>'cambioDeEstados',
+				'with'=>'cambioDeEstados.estado',
 				'condition'=>'sc.id NOT IN (SELECT solicitud_de_cambio_id
 										FROM cambio_de_estado, estado
 										WHERE estado_id = id
 										AND nombre = \'Cerrado\')
-										AND sc.creador='.Yii::app()->user->id));
+										AND sc.creador='.Yii::app()->user->id,
+				'having'=>'MAX(cambioDeEstados.fecha)'));*/
+		
+		$modelChangesPending = SolicitudEstado::model()->findAll(array(
+				'condition'=>'nombre_estado != \'Cerrado\''));
 		
 		$this->render('showUserListChanges', array('modelChangesClosed'=>$modelChangesClosed, 'modelChangesPending'=>$modelChangesPending));
 	}
