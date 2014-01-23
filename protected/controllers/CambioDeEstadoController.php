@@ -78,6 +78,31 @@ class CambioDeEstadoController extends Controller
 	}
 	
 	/**
+	 * Devuelve todos los estados hijos dado un padre
+	 * @param unknown $padre
+	 * @return unknown
+	 */
+	public function getChildren($padre) {
+		$crit = new CDbCriteria();
+		$crit->select = 'estado_hijo_id';
+		$crit->condition = 'estado_padre_id=:estId';
+		$crit->params = array(':estId'=>$padre->id,);
+		$estadosHijo = this::model()->findAll($crit);
+		return $estadosHijos;
+		
+	}
+	
+	/**
+	 * Borra todos los cambios de estado que tienen que ver
+	 * con una solicitud de cambio
+	 * @param IdSolicitud $id Identificador de la solicitud de cambio
+	 */
+	public static function actionDeleteAllCambiosFromIdSol($id){
+		
+		CambioDeEstado::model()->deleteAll(array('condition'=>'solicitud_de_cambio_id='.$id));
+	}
+	
+	/**
 	 * Dado un estado, genera el formulario que pide los datos
 	 * adicionales para pasar a él (si es que fueran necesarios)
 	 */
