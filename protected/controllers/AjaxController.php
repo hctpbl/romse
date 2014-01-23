@@ -40,5 +40,18 @@ class AjaxController extends Controller {
 		Yii::app()->end();
 	}
 	
+	public function actionGetDevUsers() {
+		$q = 'SELECT id, CONCAT(nombre, " ", apellidos, " (", username, ")") AS value FROM usuario
+        	WHERE CONCAT(nombre, " ", apellidos, " (", username, ")") LIKE ? AND rol_id = 3';
+		$cmd = Yii::app()->db->createCommand($q);
+		$result = $cmd->query(array('%' . $_GET['term'] . '%'));
+		$data = array();
+		foreach ($result as $row) {
+			$data[] = $row;
+		}
+		echo CJSON::encode($data);
+		Yii::app()->end();
+	}
+	
 }
 ?>
