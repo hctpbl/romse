@@ -1,5 +1,5 @@
 <?php
-/* @var $this SolicitudDeCambioController */
+/* @var $historyChanges SolicitudDeCambioController */
 /* @var $model SolicitudDeCambio */
 
 $this->breadcrumbs=array(
@@ -36,4 +36,34 @@ if (Yii::app()->user->rol_id == 'ROL_CCC'){
 		'probador',
 		'desarrollador',
 	),
-)); ?>
+)); 
+
+if (Yii::app()->user->rol_id == 2){
+?>
+<br/>
+<br/>
+
+<h1>Historial de cambios en la solicitud</h1>
+
+
+<?php
+
+/*$this->widget('zii.widgets.grid.CGridView', array(
+		'dataProvider' => new CArrayDataProvider($historyChanges),
+		'columns' => array(
+				'solicitud_de_cambio_id', 'usuario_id', 'fecha', 'estado_id' 
+						),
+));*/
+//print_r($historyChanges);
+$this->widget('zii.widgets.CDetailView', array(
+		'data'=>$historyChanges,
+		'attributes'=>array(
+				'solicitud_de_cambio_id',
+				'usuario_id',
+				'fecha',
+				'estado_id',
+		),
+));
+
+}
+?>

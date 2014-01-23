@@ -167,6 +167,10 @@ class CambioDeEstadoController extends Controller
 		CambioDeEstado::model()->deleteAll(array('condition'=>'solicitud_de_cambio_id='.$id));
 	}
 	
+	public static function getAllChangesFromIdSol($id){
+		return CambioDeEstado::model()->findAll(array('condition'=>'solicitud_de_cambio_id='.$id));
+	}
+	
 	/**
 	 * Dado un estado, genera el formulario que pide los datos
 	 * adicionales para pasar a él (si es que fueran necesarios)
