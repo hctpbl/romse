@@ -5,9 +5,9 @@
 /* @var $modelChangesTester SolicitudDeCambio */
 /* @var $modelChangesDeveloper SolicitudDeCambio */
 
-$this->pageTitle=Yii::app()->name. ' - Lista de cambios';
+$this->pageTitle=Yii::app()->name. ' - Lista de solicitudes de cambio';
 $this->breadcrumbs=array(
-	'Lista de cambios',
+	'Lista de solicitudes de cambio',
 );
 ?>
 
