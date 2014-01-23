@@ -7,10 +7,12 @@ $this->breadcrumbs=array(
 	'Create',
 );
 
-$this->menu=array(
-	array('label'=>'List SolicitudDeCambio', 'url'=>array('index')),
-	array('label'=>'Manage SolicitudDeCambio', 'url'=>array('admin')),
-);
+if (Yii::app()->user->rol_id == 'ROL_CCC'){
+	$this->menu=array(
+		array('label'=>'List SolicitudDeCambio', 'url'=>array('index')),
+		array('label'=>'Manage SolicitudDeCambio', 'url'=>array('admin')),
+	);
+}
 ?>
 
 <h1>Create SolicitudDeCambio</h1>
