@@ -143,12 +143,8 @@ class SiteController extends Controller
 	 */
 	public function actionShowCccListChangesPending()
 	{
-		$modelChangesPending = SolicitudDeCambio::model()->findAll(array(
-				'select'=>'*',
-				'condition'=>'id NOT IN (SELECT solicitud_de_cambio_id
-										FROM cambio_de_estado, estado
-										WHERE estado_id = id
-										AND nombre = \'Cerrado\')'));
+		$modelChangesPending = SolicitudEstado::model()->findAll(array(
+				'condition'=>'nombre_estado != \'Cerrado\''));
 		$this->render('showCccListChangesPending', array('modelChangesPending'=>$modelChangesPending));
 	}
 	
@@ -157,7 +153,9 @@ class SiteController extends Controller
 	 */
 	public function actionShowCccListChangesClosed()
 	{
-		$modelChangesClosed = SolicitudDeCambio::model()->with(array('cambioDeEstados'=>array('alias'=>'cambioEstados', 'with'=>array('estado'=>array('condition'=>'estado.nombre=\'Cerrado\''))),))->findAll();
+		
+		$modelChangesClosed = SolicitudEstado::model()->findAll(array(
+				'condition'=>'nombre_estado = \'Cerrado\''));
 		$this->render('showCccListChangesClosed', array('modelChangesClosed'=>$modelChangesClosed));
 	}
 	
