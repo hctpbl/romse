@@ -49,6 +49,10 @@ $this->breadcrumbs=array(
 <br />
 <br />
 <br />
+
+<?php 
+
+?>
 <h2>Seleccione nuevo estado:</h2>
 
 <div class="form">
@@ -63,6 +67,7 @@ $this->breadcrumbs=array(
 )); ?>
 
 <?php
+if ($this->checkUser($estado_act, $model->id)){
 	echo CHtml::dropDownList('nuevo_estado', '', CHtml::listData(
     	$this->loadEstadosSiguientes($estado_act),
 		'estado_hijo_id', 'estadoHijo.nombre'),
@@ -77,8 +82,8 @@ $this->breadcrumbs=array(
 					'data'=>array('estado_id'=>'js:this.value'),
 					'update'=>'#formulario',
 	)*/));
+}  
 ?>
-
 	<?php echo $form->errorSummary($model); ?>
 
 	<div id="additional_form_2" class="additional_forms" hidden>

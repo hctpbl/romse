@@ -1,8 +1,10 @@
-<?php /* @var $this Controller */ 
-define("ROL_ADMINISTRADOR", '1'); 
-define("ROL_CCC", '2');
-define("ROL_DESARROLLADOR", '3'); 
-define("ROL_USUARIO_FINAL", '4');
+<?php 
+
+/* @var $this Controller */ 
+define("ROL_ADMINISTRADOR", 1); 
+define("ROL_CCC", 2);
+define("ROL_DESARROLLADOR", 3); 
+define("ROL_USUARIO_FINAL", 4);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
