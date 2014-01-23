@@ -42,7 +42,7 @@ $this->breadcrumbs=array(
 		'fecha',
 	),
 )); ?>
-<?php $estado_act=$cambio->estado-id; ?>
+<?php $estado_act=$cambio->estado->id; ?>
 <?php else: ?>
 <h1>Estado actual: Creado</h1>
 <?php endif; ?>
