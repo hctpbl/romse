@@ -46,8 +46,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
 				'id', 'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
 				'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
 				'riesgos:text:Riesgos',
-				'artefacto.nombre:text:Artefacto', 'creador0.username:text:Creador',
-				'probador0.username:text:Probador', 'desarrollador0.username:text:Desarrollador',
+				'artefacto:text:artefacto', 'creador:text:Creador',
+				'probador:text:Probador', 'desarrollador:text:Desarrollador', 'nombre_estado:text:Estado',
 				array
 				(
 						'class'=>'CButtonColumn',
@@ -73,8 +73,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
 				'id', 'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
 				'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
 				'riesgos:text:Riesgos',
-				'artefacto.nombre:text:Artefacto', 'creador0.username:text:Creador',
-				'probador0.username:text:Probador', 'desarrollador0.username:text:Desarrollador',
+				'artefacto:text:artefacto', 'creador:text:Creador',
+				'probador:text:Probador', 'desarrollador:text:Desarrollador', 'nombre_estado:text:Estado',
 				array
 				(
 						'class'=>'CButtonColumn',
