@@ -27,17 +27,41 @@ class SolicitudDeCambioController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
+			/*array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
+				'users'=>array('*'),
+			),*/
+			/*array('allow',  // allow all users to perform 'index' and 'view' actions
+					'actions'=>array('index'),
+					'users'=>array('ccc'),
+			),*/
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create'),
+				'users'=>array(Yii::app()->user->name),
+               	//'expression' => '(Yii::app()->user->rol_id=\'ROL_DESARROLLADOR\' || Yii::app()->user->rol_id=\'ROL_USUARIO_FINAL\')'
+				'expression' => '(Yii::app()->user->rol_id!=\'ROL_ADMINISTRADOR\' || Yii::app()->user->rol_id!=\'ROL_CCC\')'
+			
+			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('index'),
+				'users'=>array('ccc'),
+			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'actions'=>array('update'),
+				'users'=>array(Yii::app()->user->name),
+				'expression' => '(Yii::app()->user->rol_id!=\'ROL_ADMINISTRADOR\')'
 			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+			/*array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('ccc'),
+			),*/
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('delete'),
+				'users'=>array('ccc'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -118,7 +142,7 @@ class SolicitudDeCambioController extends Controller
 	 * @param integer $id the ID of the model to be deleted
 	 */
 	public function actionDelete($id)
-	{
+	{	
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
