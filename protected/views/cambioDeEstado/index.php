@@ -4,7 +4,7 @@
 /* @var $cambio CambioDeEstado */
 
 $this->breadcrumbs=array(
-	'Lista de cambios'=>array(Yii::app()->user->returnUrl),
+	'Lista de solicituds de cambio'=>Yii::app()->request->urlReferrer,
 	$model->id,
 );
 ?>
