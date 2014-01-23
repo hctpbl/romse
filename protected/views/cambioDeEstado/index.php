@@ -122,7 +122,7 @@ if ($this->checkUser($estado_act, $model->id)){
 			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
 				    'name'=>'probador_name',
 					'value'=> '',
-				    'sourceUrl'=>Yii::app()->createUrl('ajax/getUsers'),
+				    'sourceUrl'=>Yii::app()->createUrl('ajax/getDevUsers'),
 				    'options'=>array(
 				        'minLength'=>'2',
 				        'type'=>'get',
@@ -144,7 +144,7 @@ if ($this->checkUser($estado_act, $model->id)){
 			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
 				    'name'=>'desarrollador_name',
 					'value'=> '',
-				    'sourceUrl'=>Yii::app()->createUrl('ajax/getUsers'),
+				    'sourceUrl'=>Yii::app()->createUrl('ajax/getDevUsers'),
 				    'options'=>array(
 				        'minLength'=>'2',
 				        'type'=>'get',
