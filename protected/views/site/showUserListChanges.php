@@ -34,12 +34,12 @@ $this->widget('zii.widgets.grid.CGridView', array(
 				array
 				(
 						'class'=>'CButtonColumn',
-						'template'=>'{update}',
+						'template'=>'{view}',
 						'buttons'=>array
 						(
-								'update' => array
+								'view' => array
 								(
-										'url' =>'Yii::app()->createUrl("/solicitudDeCambio/update/".$data->id)',
+										'url' =>'Yii::app()->createUrl("/cambiodeestado/".$data->id)',
 								),
 
 						),
@@ -74,12 +74,12 @@ $this->widget('zii.widgets.grid.CGridView', array(
 				array
 				(
 						'class'=>'CButtonColumn',
-						'template'=>'{update}',
+						'template'=>'{view}',
 						'buttons'=>array
 						(
-								'update' => array
+								'view' => array
 								(
-										'url' =>'Yii::app()->createUrl("/solicitudDeCambio/update/".$data->id)',
+										'url' =>'Yii::app()->createUrl("/cambiodeestado/".$data->id)',
 								),
 
 						),
