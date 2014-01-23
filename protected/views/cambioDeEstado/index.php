@@ -53,7 +53,10 @@ $this->breadcrumbs=array(
 <?php 
 
 ?>
+
+<?php if ($this->checkUser($estado_act, $model->id)) :?>
 <h2>Seleccione nuevo estado:</h2>
+<?php endif; ?>
 
 <div class="form">
 
@@ -67,7 +70,7 @@ $this->breadcrumbs=array(
 )); ?>
 
 <?php
-if ($this->checkUser($estado_act, $model->id)){
+if ($this->checkUser($estado_act, $model->id)) {
 	echo CHtml::dropDownList('nuevo_estado', '', CHtml::listData(
     	$this->loadEstadosSiguientes($estado_act),
 		'estado_hijo_id', 'estadoHijo.nombre'),
@@ -82,10 +85,9 @@ if ($this->checkUser($estado_act, $model->id)){
 					'data'=>array('estado_id'=>'js:this.value'),
 					'update'=>'#formulario',
 	)*/));
-}  
+}
 ?>
 	<?php echo $form->errorSummary($model); ?>
-
 	<div id="additional_form_2" class="additional_forms" hidden>
 	
 		<div class="row">
@@ -196,6 +198,19 @@ if ($this->checkUser($estado_act, $model->id)){
 			<?php echo $form->labelEx($model,'descripcion_detallada'); ?>
 			<?php echo $form->textField($model,'descripcion_detallada',array('size'=>60,'maxlength'=>1000)); ?>
 			<?php echo $form->error($model,'descripcion_detallada'); ?>
+		</div>
+	
+	</div>
+
+	<div id="additional_form_10" class="additional_forms" hidden>
+
+		<div class="row">
+			<span>Va cerrar un cambio sobre el artefacto: <?php echo $model->artefacto->nombre?></span>
+			<br/>
+			<span>Cuya versión actual es:  <?php echo $model->artefacto->version?></span>
+			<br />
+￼			<?php echo CHtml::label('Nueva versión del artefacto', 'artefacto_version'); ?>
+			<?php echo CHtml::textField('artefacto_version'); ?>
 		</div>
 	
 	</div>

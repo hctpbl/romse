@@ -26,6 +26,11 @@ class CambioDeEstadoController extends Controller
 				$cambio->usuario_id = Yii::app()->user->id;
 				$cambio->estado_id = $_POST['nuevo_estado'];
 				$cambio->save();
+				if (isset($_POST['artefacto_version'])) {
+					$artefacto = $solicitud->artefacto;
+					$artefacto->version = $_POST['artefacto_version'];
+					$artefacto->save();
+				}
 				$this->redirect(array('view','id'=>$solicitud->id));
 			}
 		}
