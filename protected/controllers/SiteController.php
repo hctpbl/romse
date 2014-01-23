@@ -109,52 +109,22 @@ class SiteController extends Controller
 		
 		
 		$modelChangesClosed = SolicitudEstado::model()->findAll(array(
-				'condition'=>'nombre_estado = \'Cerrado\''));
+				'condition'=>'nombre_estado = \'Cerrado\'
+							AND (id_creador='.Yii::app()->user->id.' 
+							OR id_probador='.Yii::app()->user->id.'
+							OR id_desarrollador='.Yii::app()->user->id.')'));
 		
+		$modelChangesCreator = SolicitudEstado::model()->findAll(array(
+				'condition'=>'nombre_estado != \'Cerrado\'
+							AND id_creador='.Yii::app()->user->id));
 		
+		$modelChangesTester = SolicitudEstado::model()->findAll(array(
+				'condition'=>'nombre_estado != \'Cerrado\'
+							AND id_probador='.Yii::app()->user->id));
 		
-		$modelChangesPending = SolicitudEstado::model()->findAll(array(
-				'condition'=>'nombre_estado != \'Cerrado\''));
-
-		$modelChangesClosed = SolicitudDeCambio::model()->findAll(array(
-				'select'=>'*',
-				'alias'=>'sc',
-				'with'=>'creador0',
-				'condition'=>'sc.id IN (SELECT solicitud_de_cambio_id
-										FROM cambio_de_estado, estado
-										WHERE estado_id = id
-										AND nombre = \'Cerrado\')
-										AND sc.creador='.Yii::app()->user->id.' 
-										OR sc.probador='.Yii::app()->user->id.'
-										OR sc.desarrollador='.Yii::app()->user->id.''));
-		
-		$modelChangesCreator = SolicitudDeCambio::model()->findAll(array(
-				'select'=>'*',
-				'alias'=>'sc',
-				'with'=>'creador0',
-				'condition'=>'sc.id NOT IN (SELECT solicitud_de_cambio_id
-										FROM cambio_de_estado, estado
-										WHERE estado_id = id
-										AND nombre = \'Cerrado\')
-										AND sc.creador='.Yii::app()->user->id));
-		$modelChangesTester = SolicitudDeCambio::model()->findAll(array(
-				'select'=>'*',
-				'alias'=>'sc',
-				'with'=>'creador0',
-				'condition'=>'sc.id NOT IN (SELECT solicitud_de_cambio_id
-										FROM cambio_de_estado, estado
-										WHERE estado_id = id
-										AND nombre = \'Cerrado\')
-										AND sc.probador='.Yii::app()->user->id));
-		$modelChangesDeveloper = SolicitudDeCambio::model()->findAll(array(
-				'select'=>'*',
-				'alias'=>'sc',
-				'with'=>'creador0',
-				'condition'=>'sc.id NOT IN (SELECT solicitud_de_cambio_id
-										FROM cambio_de_estado, estado
-										WHERE estado_id = id
-										AND nombre = \'Cerrado\')
-										AND sc.desarrollador='.Yii::app()->user->id));
+		$modelChangesDeveloper = SolicitudEstado::model()->findAll(array(
+				'condition'=>'nombre_estado != \'Cerrado\'
+							AND id_desarrollador='.Yii::app()->user->id));
 		
 		$this->render('showUserListChanges', array('modelChangesClosed'=>$modelChangesClosed, 
 												   'modelChangesCreator'=>$modelChangesCreator, 
