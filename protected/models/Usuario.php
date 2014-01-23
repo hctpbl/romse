@@ -158,7 +158,7 @@ class Usuario extends CActiveRecord
 	}
 	
 	/**
-	 * Se valida el password del Login @return Verificaci�n del password
+	 * Se valida el password del Login @return Verificación del password
 	 */
 	public function validatePassword($password) {
 			return CPasswordHelper::verifyPassword ( $password, $this->password );

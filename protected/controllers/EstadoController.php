@@ -157,6 +157,16 @@ class EstadoController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
+	
+	public static function getNameFromId($id){
+		$name=Estado::model()->find(array(
+									'select'=>'nombre',
+									'condition'=>'id='.$id)
+									);
+		echo CHtml::encode("cod".$id."-");
+		//$name='2';
+		return $name;
+	}
 
 	/**
 	 * Performs the AJAX validation.

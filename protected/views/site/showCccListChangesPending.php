@@ -11,15 +11,6 @@ $this->breadcrumbs=array(
 <h3>Lista de cambios pendientes</h3>
 
 <?php
-/*$dataProvider=new CActiveDataProvider('SolicitudDeCambio');
-
-$dataProvider = SolicitudDeCambio::model()->findAll(array(
-				'select'=>'*',
-				'condition'=>'id NOT IN (SELECT solicitud_de_cambio_id 
-										FROM cambio_de_estado, estado 
-										WHERE estado_id = id
-										AND nombre = \'Cerrado\')'));*/
-
 $this->widget('zii.widgets.grid.CGridView', array(
         'dataProvider' => new CArrayDataProvider($modelChangesPending),
         'columns' => array(
@@ -36,11 +27,25 @@ $this->widget('zii.widgets.grid.CGridView', array(
 						(
 								'view' => array
 								(
-										'url' =>'Yii::app()->createUrl("/cambiodeestado/".$data->id)',
+										'url' =>'Yii::app()->createUrl("/solicitudDeCambio/".$data->id)',
 								),
 
 						),
-				)
+				),
+        		array
+        		(
+        				'class'=>'CButtonColumn',
+        				'template'=>'{update}',
+        				'buttons'=>array
+        				(
+        						'update' => array
+        						(
+        								'visible'=>'CambioDeEstadoController::checkUser($data->nombre_estado, $data->id)',
+        								'url' =>'Yii::app()->createUrl("/cambiodeestado/".$data->id)',
+        						),
+        		
+        				),
+        		)
         ),
     ));
 

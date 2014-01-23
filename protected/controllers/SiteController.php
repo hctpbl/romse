@@ -32,7 +32,7 @@ class SiteController extends Controller
 		if (!Yii::app()->user->isGuest)
 			$this->render('index');
 		else
-			$this->redirect(array('/site/login'));
+			$this->actionLogin();
 	}
 
 	/**
@@ -164,9 +164,10 @@ class SiteController extends Controller
 	 */
 	public function actionReports(){
 		
-		$modelChanges = SolicitudDeCambio::model()->with(array('cambioDeEstados'=>array('alias'=>'cambioEstados'),))->findAll(array());
+		$modelChanges = SolicitudEstado::model()->findAll();
+		//$modelChanges = SolicitudDeCambio::model()->findAll();
 		
-		$this->render('reports',  array('modelChanges'=>$modelChanges));
+		$this->render('reports', array('modelChanges'=>$modelChanges));
 	}
 	
 	/**

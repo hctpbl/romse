@@ -26,15 +26,28 @@ should you have any questions.</p>-->
 <h1>Bienvenido <?php echo CHtml::encode(Yii::app()->user->name); ?> </h1>
 
 <h3>Datos del perfil</h3>
-<p><?php echo CHtml::encode('ID - '.Yii::app()->user->id); ?></p>
+<p><?php /*echo CHtml::encode('ID - '.Yii::app()->user->id); ?></p>
 <p><?php echo CHtml::encode('DNI - '.Yii::app()->user->dni); ?></p>
 <p><?php echo CHtml::encode('Nombre - '.Yii::app()->user->nombre); ?></p>
-<p><?php echo CHtml::encode('Apellidos - '.Yii::app()->user->apellidos); ?></p>
+<p><?php echo CHtml::encode('Apellidos - '.Yii::app()->user->apellidos); */?></p>
+
+
+<?php 
+
+$this->widget('zii.widgets.CDetailView', array(
+		'data'=>Yii::app()->user,
+		'attributes'=>array(
+				'id',
+				'nss',
+				'dni',
+				'nombre',
+				'apellidos',
+				'fecha_nacimiento',
+				'numero_telefono',
+		),
+));
+?>
 <p><?php
 $url= '/romse/usuario/update/'.Yii::app()->user->id;
 echo "<a href='".$url."' >Modificar datos</a>" ?></p>
-
-
-
-
 

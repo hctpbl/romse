@@ -4,7 +4,7 @@
 /* @var $cambio CambioDeEstado */
 
 $this->breadcrumbs=array(
-	'Lista de solicituds de cambio'=>Yii::app()->request->urlReferrer,
+	'Lista de solicitud de cambio'=>Yii::app()->request->urlReferrer,
 	$model->id,
 );
 ?>
@@ -54,7 +54,7 @@ $this->breadcrumbs=array(
 
 ?>
 
-<?php if ($this->checkUser($estado_act, $model->id)) :?>
+<?php if ($this->checkUser($cambio->estado->nombre, $model->id)) :?>
 <h2>Seleccione nuevo estado:</h2>
 <?php endif; ?>
 
@@ -70,7 +70,26 @@ $this->breadcrumbs=array(
 )); ?>
 
 <?php
-if ($this->checkUser($estado_act, $model->id)) {
+if ($this->checkUser($cambio->estado->nombre, $model->id)) {
+	if ($estado_act == 8) :
+?>
+	 <div id="additional_form_8" class="additional_forms" >
+
+		<div class="row">
+			<?php echo $form->labelEx($model,'descripcion_breve'); ?>
+			<?php echo $form->textField($model,'descripcion_breve',array('size'=>60,'maxlength'=>100)); ?>
+			<?php echo $form->error($model,'descripcion_breve'); ?>
+		</div>
+	
+		<div class="row">
+			<?php echo $form->labelEx($model,'descripcion_detallada'); ?>
+			<?php echo $form->textField($model,'descripcion_detallada',array('size'=>60,'maxlength'=>1000)); ?>
+			<?php echo $form->error($model,'descripcion_detallada'); ?>
+		</div>
+	
+	</div>
+<?php 
+	endif;
 	echo CHtml::dropDownList('nuevo_estado', '', CHtml::listData(
     	$this->loadEstadosSiguientes($estado_act),
 		'estado_hijo_id', 'estadoHijo.nombre'),
@@ -186,10 +205,10 @@ if ($this->checkUser($estado_act, $model->id)) {
 	
 	</div>
 
-	<div id="additional_form_9" class="additional_forms" hidden>
+	<!-- <div id="additional_form_8" class="additional_forms" hidden>
 
 		<div class="row">
-			<?php echo $form->labelEx($model,'descripcion_breve'); ?>
+			<?php /*echo $form->labelEx($model,'descripcion_breve'); ?>
 			<?php echo $form->textField($model,'descripcion_breve',array('size'=>60,'maxlength'=>100)); ?>
 			<?php echo $form->error($model,'descripcion_breve'); ?>
 		</div>
@@ -197,10 +216,10 @@ if ($this->checkUser($estado_act, $model->id)) {
 		<div class="row">
 			<?php echo $form->labelEx($model,'descripcion_detallada'); ?>
 			<?php echo $form->textField($model,'descripcion_detallada',array('size'=>60,'maxlength'=>1000)); ?>
-			<?php echo $form->error($model,'descripcion_detallada'); ?>
+			<?php echo $form->error($model,'descripcion_detallada');*/ ?>
 		</div>
 	
-	</div>
+	</div>-->
 	
 	<?php if(isset($model->artefacto)) :?>
 
@@ -211,7 +230,7 @@ if ($this->checkUser($estado_act, $model->id)) {
 			<br/>
 			<span>Cuya versión actual es:  <?php echo $model->artefacto->version?></span>
 			<br />
-￼			<?php echo CHtml::label('Nueva versión del artefacto', 'artefacto_version'); ?>
+			<?php echo CHtml::label('Nueva versión del artefacto', 'artefacto_version'); ?>
 			<?php echo CHtml::textField('artefacto_version'); ?>
 		</div>
 	

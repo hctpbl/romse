@@ -3,7 +3,7 @@
 /* @var $model SolicitudDeCambio */
 
 $this->breadcrumbs=array(
-	'Solicitud De Cambios'=>array('index'),
+	'Solicitud De Cambios'=>Yii::app()->request->urlReferrer,
 	$model->id,
 );
 
@@ -47,23 +47,24 @@ if (Yii::app()->user->rol_id == 2){
 
 
 <?php
-
-/*$this->widget('zii.widgets.grid.CGridView', array(
-		'dataProvider' => new CArrayDataProvider($historyChanges),
+$dataProvider=new CArrayDataProvider($historyChanges, array('keyField'=>'usuario_id'));
+$this->widget('zii.widgets.grid.CGridView', array(
+		//'dataProvider' => new CArrayDataProvider($historyChanges, array('keyField'=>'usuario_id')),
+		'dataProvider' => $dataProvider,
+		/*'columns' => array(
+				'usuario_id:text:Cambio realizado por', 
+				'fecha:text:Fecha del cambio',
+				'estado_id:text:Estado'
+		),*/
 		'columns' => array(
-				'solicitud_de_cambio_id', 'usuario_id', 'fecha', 'estado_id' 
-						),
-));*/
-//print_r($historyChanges);
-$this->widget('zii.widgets.CDetailView', array(
-		'data'=>$historyChanges,
-		'attributes'=>array(
-				'solicitud_de_cambio_id',
-				'usuario_id',
-				'fecha',
-				'estado_id',
+				'usuario_id:text:Cambio realizado por', 
+				'fecha:text:Fecha del cambio',
+				'estado_id:text:Estado',
+				/*array(
+					'header'=>'prueba',
+					'type'=>'raw',
+					'value'=>EstadoController::getNameFromId('1')),*/
 		),
 ));
-
 }
 ?>
