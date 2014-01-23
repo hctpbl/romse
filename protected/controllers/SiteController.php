@@ -106,8 +106,6 @@ class SiteController extends Controller
 	 */
 	public function actionShowUserListChanges()
 	{
-		
-		
 		$modelChangesClosed = SolicitudEstado::model()->findAll(array(
 				'condition'=>'nombre_estado = \'Cerrado\'
 							AND (id_creador='.Yii::app()->user->id.' 
@@ -161,6 +159,16 @@ class SiteController extends Controller
 	{
 		$modelChangesClosed = SolicitudDeCambio::model()->with(array('cambioDeEstados'=>array('alias'=>'cambioEstados', 'with'=>array('estado'=>array('condition'=>'estado.nombre=\'Cerrado\''))),))->findAll();
 		$this->render('showCccListChangesClosed', array('modelChangesClosed'=>$modelChangesClosed));
+	}
+	
+	/**
+	 * Muestra la ventana de informes
+	 */
+	public function actionReports(){
+		
+		$modelChanges = SolicitudDeCambio::model()->with(array('cambioDeEstados'=>array('alias'=>'cambioEstados'),))->findAll(array());
+		
+		$this->render('reports',  array('modelChanges'=>$modelChanges));
 	}
 	
 	/**

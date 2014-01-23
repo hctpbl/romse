@@ -35,7 +35,6 @@ define("ROL_USUARIO_FINAL", 4);
 
 	<div id="mainmenu">
 		<?php
-			//$admin = (isset(Yii::app()->user->name) and Yii::app()->user->name == 'Administrador') ? true : false ;
 			$admin = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == ROL_ADMINISTRADOR) ? true : false;
 			$developer = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == ROL_DESARROLLADOR) ? true : false;
 			$ccc = (!Yii::app()->user->isGuest and Yii::app()->user->rol_id == ROL_CCC) ? true : false;
@@ -58,6 +57,7 @@ define("ROL_USUARIO_FINAL", 4);
 				// Opciones para ccc
 				array('label'=>'Solicitudes pendientes', 'url'=>array('/site/showCccListChangesPending'), 'visible'=>$ccc),
 				array('label'=>'Solicitudes cerradas', 'url'=>array('/site/showCccListChangesClosed'), 'visible'=>$ccc),
+				array('label'=>'Informes', 'url'=>array('/site/reports'), 'visible'=>$ccc),
 				array('label'=>'Sobre nosotros', 'url'=>array('/site/page', 'view'=>'about'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Contacto', 'url'=>array('/site/contact'), 'visible'=>Yii::app()->user->isGuest),
 				//array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
