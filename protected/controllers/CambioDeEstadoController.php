@@ -1,4 +1,5 @@
 <?php
+
 class CambioDeEstadoController extends Controller
 {
 	/**
@@ -78,11 +79,65 @@ class CambioDeEstadoController extends Controller
 	}
 	
 	/**
+	 * Se comprueba si el usuario puede realizar algún cambio
+	 * según el estado en el que está
+	 */
+	public function checkUser($estadoId, $solicitudId){
+		switch ($estadoId){
+		case 1:
+			if (Yii::app()->user->rol_id == 2){
+				return true;
+			}
+		case 2:
+			if (Yii::app()->user->rol_id == 2){
+				return true;
+			}
+		case 3:
+			if (Yii::app()->user->rol_id == 3 && SolicitudDeCambioController::checkUserDeveloper($solicitudId)){
+				return true;
+			}
+		case 4:
+			if ((Yii::app()->user->rol_id == 3 || Yii::app()->user->rol_id == 4) && SolicitudDeCambioController::checkUserTester($solicitudId)){
+				return true;
+			}
+		case 5:
+			if (Yii::app()->user->rol_id == 2){
+				return true;
+			}
+		case 6:
+			if (Yii::app()->user->rol_id == 3 && SolicitudDeCambioController::checkUserDeveloper($solicitudId)){
+				return true;
+			}
+		case 7:
+			if (Yii::app()->user->rol_id == 2){
+				return true;
+			}
+		case 8:
+			if ((Yii::app()->user->rol_id == 3 || Yii::app()->user->rol_id == 4) && SolicitudDeCambioController::checkUserCreater($solicitudId)){
+				return true;
+			}
+		case 9:
+			if (Yii::app()->user->rol_id == 2){
+				return true;
+			}
+		case 10:
+			if (Yii::app()->user->rol_id == 2){
+				return true;
+			}
+		default:
+			if ((Yii::app()->user->rol_id == 3 || Yii::app()->user->rol_id == 4) && SolicitudDeCambioController::checkUserCreater($solicitudId)){
+				return true;
+			}
+		}
+		
+	}
+	
+	/**
 	 * Devuelve todos los estados hijos dado un padre
 	 * @param unknown $padre
 	 * @return unknown
 	 */
-	public function getChildren($padre) {
+	/*public function getChildren($padre) {
 		$crit = new CDbCriteria();
 		$crit->select = 'estado_hijo_id';
 		$crit->condition = 'estado_padre_id=:estId';
@@ -90,7 +145,7 @@ class CambioDeEstadoController extends Controller
 		$estadosHijo = this::model()->findAll($crit);
 		return $estadosHijos;
 		
-	}
+	}*/
 	
 	/**
 	 * Borra todos los cambios de estado que tienen que ver

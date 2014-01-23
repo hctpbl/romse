@@ -27,9 +27,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		// $this->render('index');
+
 		// La página inicial debe ser el login si no está registrado
 		if (!Yii::app()->user->isGuest)
 			$this->render('index');
@@ -116,9 +114,11 @@ class SiteController extends Controller
 										FROM cambio_de_estado, estado
 										WHERE estado_id = id
 										AND nombre = \'Cerrado\')
-										AND sc.creador='.Yii::app()->user->id));
+										AND sc.creador='.Yii::app()->user->id.' 
+										OR sc.probador='.Yii::app()->user->id.'
+										OR sc.desarrollador='.Yii::app()->user->id.''));
 		
-		$modelChangesPending = SolicitudDeCambio::model()->findAll(array(
+		$modelChangesCreator = SolicitudDeCambio::model()->findAll(array(
 				'select'=>'*',
 				'alias'=>'sc',
 				'with'=>'creador0',
@@ -127,8 +127,29 @@ class SiteController extends Controller
 										WHERE estado_id = id
 										AND nombre = \'Cerrado\')
 										AND sc.creador='.Yii::app()->user->id));
+		$modelChangesTester = SolicitudDeCambio::model()->findAll(array(
+				'select'=>'*',
+				'alias'=>'sc',
+				'with'=>'creador0',
+				'condition'=>'sc.id NOT IN (SELECT solicitud_de_cambio_id
+										FROM cambio_de_estado, estado
+										WHERE estado_id = id
+										AND nombre = \'Cerrado\')
+										AND sc.probador='.Yii::app()->user->id));
+		$modelChangesDeveloper = SolicitudDeCambio::model()->findAll(array(
+				'select'=>'*',
+				'alias'=>'sc',
+				'with'=>'creador0',
+				'condition'=>'sc.id NOT IN (SELECT solicitud_de_cambio_id
+										FROM cambio_de_estado, estado
+										WHERE estado_id = id
+										AND nombre = \'Cerrado\')
+										AND sc.desarrollador='.Yii::app()->user->id));
 		
-		$this->render('showUserListChanges', array('modelChangesClosed'=>$modelChangesClosed, 'modelChangesPending'=>$modelChangesPending));
+		$this->render('showUserListChanges', array('modelChangesClosed'=>$modelChangesClosed, 
+												   'modelChangesCreator'=>$modelChangesCreator, 
+												   'modelChangesTester'=>$modelChangesTester, 
+												   'modelChangesDeveloper'=>$modelChangesDeveloper));
 	}
 	
 	/**
