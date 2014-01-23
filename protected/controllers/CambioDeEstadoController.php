@@ -88,42 +88,52 @@ class CambioDeEstadoController extends Controller
 			if (Yii::app()->user->rol_id == 2){
 				return true;
 			}
+			break;
 		case 2:
 			if (Yii::app()->user->rol_id == 2){
 				return true;
 			}
+			break;
 		case 3:
 			if (Yii::app()->user->rol_id == 3 && SolicitudDeCambioController::checkUserDeveloper($solicitudId)){
 				return true;
 			}
+			break;
 		case 4:
 			if ((Yii::app()->user->rol_id == 3 || Yii::app()->user->rol_id == 4) && SolicitudDeCambioController::checkUserTester($solicitudId)){
 				return true;
 			}
+			break;
 		case 5:
 			if (Yii::app()->user->rol_id == 2){
 				return true;
 			}
+			break;
 		case 6:
 			if (Yii::app()->user->rol_id == 3 && SolicitudDeCambioController::checkUserDeveloper($solicitudId)){
 				return true;
 			}
+			break;
 		case 7:
 			if (Yii::app()->user->rol_id == 2){
 				return true;
 			}
+			break;
 		case 8:
 			if ((Yii::app()->user->rol_id == 3 || Yii::app()->user->rol_id == 4) && SolicitudDeCambioController::checkUserCreater($solicitudId)){
 				return true;
 			}
+			break;
 		case 9:
 			if (Yii::app()->user->rol_id == 2){
 				return true;
 			}
+			break;
 		case 10:
 			if (Yii::app()->user->rol_id == 2){
 				return true;
 			}
+			break;
 		default:
 			if ((Yii::app()->user->rol_id == 3 || Yii::app()->user->rol_id == 4) && SolicitudDeCambioController::checkUserCreater($solicitudId)){
 				return true;
