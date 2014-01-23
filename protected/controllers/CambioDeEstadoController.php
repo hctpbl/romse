@@ -87,54 +87,54 @@ class CambioDeEstadoController extends Controller
 	 * Se comprueba si el usuario puede realizar algún cambio
 	 * según el estado en el que está
 	 */
-	public function checkUser($estadoId, $solicitudId){
+	public static function checkUser($estadoId, $solicitudId){
 		switch ($estadoId){
-		case 1:
+		case 'Enviado':
 			if (Yii::app()->user->rol_id == 2){
 				return true;
 			}
 			break;
-		case 2:
+		case 'Abierto':
 			if (Yii::app()->user->rol_id == 2){
 				return true;
 			}
 			break;
-		case 3:
+		case 'Asignado':
 			if (Yii::app()->user->rol_id == 3 && SolicitudDeCambioController::checkUserDeveloper($solicitudId)){
 				return true;
 			}
 			break;
-		case 4:
+		case 'Resuelto':
 			if ((Yii::app()->user->rol_id == 3 || Yii::app()->user->rol_id == 4) && SolicitudDeCambioController::checkUserTester($solicitudId)){
 				return true;
 			}
 			break;
-		case 5:
+		case 'Verificado':
 			if (Yii::app()->user->rol_id == 2){
 				return true;
 			}
 			break;
-		case 6:
+		case 'Pruebas falladas':
 			if (Yii::app()->user->rol_id == 3 && SolicitudDeCambioController::checkUserDeveloper($solicitudId)){
 				return true;
 			}
 			break;
-		case 7:
+		case 'Duplicado/Rechazado':
 			if (Yii::app()->user->rol_id == 2){
 				return true;
 			}
 			break;
-		case 8:
+		case 'Más información':
 			if ((Yii::app()->user->rol_id == 3 || Yii::app()->user->rol_id == 4) && SolicitudDeCambioController::checkUserCreater($solicitudId)){
 				return true;
 			}
 			break;
-		case 9:
+		case 'Envío actualizado':
 			if (Yii::app()->user->rol_id == 2){
 				return true;
 			}
 			break;
-		case 10:
+		case 'Cerrado':
 			if (Yii::app()->user->rol_id == 2){
 				return true;
 			}
@@ -148,32 +148,21 @@ class CambioDeEstadoController extends Controller
 	}
 	
 	/**
-	 * Devuelve todos los estados hijos dado un padre
-	 * @param unknown $padre
-	 * @return unknown
-	 */
-	/*public function getChildren($padre) {
-		$crit = new CDbCriteria();
-		$crit->select = 'estado_hijo_id';
-		$crit->condition = 'estado_padre_id=:estId';
-		$crit->params = array(':estId'=>$padre->id,);
-		$estadosHijo = this::model()->findAll($crit);
-		return $estadosHijos;
-		
-	}*/
-	
-	/**
 	 * Borra todos los cambios de estado que tienen que ver
 	 * con una solicitud de cambio
-	 * @param IdSolicitud $id Identificador de la solicitud de cambio
+	 * @param int $id Identificador de la solicitud de cambio
 	 */
 	public static function actionDeleteAllCambiosFromIdSol($id){
 		
 		CambioDeEstado::model()->deleteAll(array('condition'=>'solicitud_de_cambio_id='.$id));
 	}
 	
+	/**
+	 * Se obtienen todos los cambios de una solicitud
+	 * @param int $id
+	 */
 	public static function getAllChangesFromIdSol($id){
-		return CambioDeEstado::model()->findAll(array('condition'=>'solicitud_de_cambio_id='.$id));
+		return CambioDeEstado::model()->findAll(array('condition'=>'solicitud_de_cambio_id='.$id, 'order'=>'fecha'));
 	}
 	
 	/**

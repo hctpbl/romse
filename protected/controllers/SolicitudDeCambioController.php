@@ -183,7 +183,6 @@ class SolicitudDeCambioController extends Controller
 		return $model;
 	}
 	
-	
 	public static function checkUserDeveloper($solicitudId){
 		
 		$model=SolicitudDeCambio::model()->find(array('condition'=>'id='.$solicitudId.' 

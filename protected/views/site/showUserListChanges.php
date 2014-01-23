@@ -4,6 +4,8 @@
 /* @var $modelChangesCreator SolicitudDeCambio */
 /* @var $modelChangesTester SolicitudDeCambio */
 /* @var $modelChangesDeveloper SolicitudDeCambio */
+/* @var $modelCheckChange CambioDeEstadoController */
+
 
 $this->pageTitle=Yii::app()->name. ' - Lista de solicitudes de cambio';
 $this->breadcrumbs=array(
@@ -29,9 +31,23 @@ $this->widget('zii.widgets.grid.CGridView', array(
 						(
 								'view' => array
 								(
-										'url' =>'Yii::app()->createUrl("/cambiodeestado/".$data->id)',
+										'url' =>'Yii::app()->createUrl("/solicitudDeCambio/".$data->id)',
 								),
 
+						),
+				),
+				array
+				(
+						'class'=>'CButtonColumn',
+						'template'=>'{update}',
+						'buttons'=>array
+						(
+								'update' => array
+								(
+										'visible'=>'CambioDeEstadoController::checkUser($data->nombre_estado, $data->id)',
+										'url' =>'Yii::app()->createUrl("/cambiodeestado/".$data->id)',
+								),
+				
 						),
 				)
 		),
@@ -56,11 +72,26 @@ $this->widget('zii.widgets.grid.CGridView', array(
 						(
 								'view' => array
 								(
-										'url' =>'Yii::app()->createUrl("/cambiodeestado/".$data->id)',
+										'url' =>'Yii::app()->createUrl("/solicitudDeCambio/".$data->id)',
 								),
 
 						),
+				),
+				array
+				(
+						'class'=>'CButtonColumn',
+						'template'=>'{update}',
+						'buttons'=>array
+						(
+							'update' => array
+							(
+									'visible'=>'CambioDeEstadoController::checkUser($data->nombre_estado, $data->id)',
+									'url' =>'Yii::app()->createUrl("/cambiodeestado/".$data->id)',
+							),
+
+						),
 				)
+
 		),
 ));
 ?>
@@ -83,12 +114,25 @@ $this->widget('zii.widgets.grid.CGridView', array(
 						(
 								'view' => array
 								(
-										'url' =>'Yii::app()->createUrl("/cambiodeestado/".$data->id)',
+										'url' =>'Yii::app()->createUrl("/solicitudDeCambio/".$data->id)',
 								),
 
 						),
-				)
-		),
+				),
+				array
+				(
+						'class'=>'CButtonColumn',
+						'template'=>'{update}',
+						'buttons'=>array
+						(
+								'update' => array
+								(
+									'visible'=>'CambioDeEstadoController::checkUser($data->nombre_estado, $data->id)',
+									'url' =>'Yii::app()->createUrl("/cambiodeestado/".$data->id)',
+								),
+						),
+				)		
+				),
 ));
 ?>
 
