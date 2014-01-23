@@ -31,6 +31,8 @@ $this->breadcrumbs=array(
 <br />
 <br />
 <br />
+<?php $estado_act=0; ?>
+<?php if (isset($cambio->estado)) :?>
 <h1>Estado actual: <?php echo $cambio->estado->nombre; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
@@ -40,6 +42,10 @@ $this->breadcrumbs=array(
 		'fecha',
 	),
 )); ?>
+<?php $estado_act=$cambio->estado-id; ?>
+<?php else: ?>
+<h1>Estado actual: Creado</h1>
+<?php endif; ?>
 <br />
 <br />
 <br />
@@ -58,7 +64,7 @@ $this->breadcrumbs=array(
 
 <?php
 	echo CHtml::dropDownList('nuevo_estado', '', CHtml::listData(
-    	$this->loadEstadosSiguientes($cambio->estado),
+    	$this->loadEstadosSiguientes($estado_act),
 		'estado_hijo_id', 'estadoHijo.nombre'),
 		array(
 			'empty'=>'',
