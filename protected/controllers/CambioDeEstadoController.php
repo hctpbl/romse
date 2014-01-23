@@ -64,15 +64,15 @@ class CambioDeEstadoController extends Controller
 	 * Para una solicitud de cambio dada, obtiene el último cambio de estado
 	 * @param Estado $id
 	 */
-	public function loadEstadosSiguientes($estado) {
+	public function loadEstadosSiguientes($estadoId) {
 		$crit = new CDbCriteria();
 		$crit->select = 'estado_hijo_id, estado_padre_id';
 		$crit->with = 'estadoHijo';
 		$crit->condition = 'estado_padre_id=:estId';
-		$crit->params = array(':estId'=>$estado->id,);
+		$crit->params = array(':estId'=>$estadoId,);
 		$estadosHijos = Precede::model()->findAll(
 				$crit,
-				array(':estID'=>$estado->id)
+				array(':estID'=>$estadoId)
 		);
 		return $estadosHijos;
 	}
