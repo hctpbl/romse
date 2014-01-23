@@ -29,24 +29,14 @@ class SolicitudDeCambioController extends Controller
 	public function accessRules()
 	{
 		return array(
-			/*array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),*/
-			/*array('allow',  // allow all users to perform 'index' and 'view' actions
-					'actions'=>array('index'),
-					'users'=>array('ccc'),
-			),*/
+
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create'),
 				'users'=>array(Yii::app()->user->name),
-               	//'expression' => '(Yii::app()->user->rol_id=\'ROL_DESARROLLADOR\' || Yii::app()->user->rol_id=\'ROL_USUARIO_FINAL\')'
 				'expression' => '(Yii::app()->user->rol_id!=\'ROL_ADMINISTRADOR\' || Yii::app()->user->rol_id!=\'ROL_CCC\')'
-			
 			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+			array('deny', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('index'),
-				'users'=>array('ccc'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('view'),
@@ -57,10 +47,6 @@ class SolicitudDeCambioController extends Controller
 				'users'=>array(Yii::app()->user->name),
 				'expression' => '(Yii::app()->user->rol_id!=\'ROL_ADMINISTRADOR\')'
 			),
-			/*array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('ccc'),
-			),*/
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('delete'),
 				'users'=>array('ccc'),
@@ -193,6 +179,40 @@ class SolicitudDeCambioController extends Controller
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
+	}
+	
+	
+	public static function checkUserDeveloper($solicitudId){
+		
+		$model=SolicitudDeCambio::model()->find(array('condition'=>'id='.$solicitudId.' 
+														AND desarrollador='.Yii::app()->user->id));
+		if (!isset($model))
+			return false;
+		else 
+			return true;
+		
+	}
+	
+	public static function checkUserCreater($solicitudId){
+	
+		$model=SolicitudDeCambio::model()->find(array('condition'=>'id='.$solicitudId.'
+														AND creador='.Yii::app()->user->id));
+		if (!isset($model))
+			return false;
+		else
+			return true;
+	
+	}
+	
+	public static function checkUserTester($solicitudId){
+	
+		$model=SolicitudDeCambio::model()->find(array('condition'=>'id='.$solicitudId.'
+														AND probador='.Yii::app()->user->id));
+		if (!isset($model))
+			return false;
+		else
+			return true;
+	
 	}
 
 	/**
