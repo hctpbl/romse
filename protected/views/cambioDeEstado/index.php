@@ -4,7 +4,7 @@
 /* @var $cambio CambioDeEstado */
 
 $this->breadcrumbs=array(
-	'Cambios de estado'=>array('index'),
+	'Lista de cambios'=>array('site/showUserListChanges'),
 	$model->id,
 );
 ?>
@@ -180,6 +180,22 @@ if ($this->checkUser($estado_act, $model->id)){
 			<span id="selectedArtifact">Ninguno</span>
 			<?php echo $form->hiddenField($model,'artefacto_id'); ?>
 			<?php echo $form->error($model,'artefacto_id'); ?>
+		</div>
+	
+	</div>
+
+	<div id="additional_form_9" class="additional_forms" hidden>
+
+		<div class="row">
+			<?php echo $form->labelEx($model,'descripcion_breve'); ?>
+			<?php echo $form->textField($model,'descripcion_breve',array('size'=>60,'maxlength'=>100)); ?>
+			<?php echo $form->error($model,'descripcion_breve'); ?>
+		</div>
+	
+		<div class="row">
+			<?php echo $form->labelEx($model,'descripcion_detallada'); ?>
+			<?php echo $form->textField($model,'descripcion_detallada',array('size'=>60,'maxlength'=>1000)); ?>
+			<?php echo $form->error($model,'descripcion_detallada'); ?>
 		</div>
 	
 	</div>
