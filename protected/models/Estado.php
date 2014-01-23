@@ -8,7 +8,9 @@
  * @property string $nombre
  *
  * The followings are the available model relations:
+ * @property CambioDeEstado[] $cambioDeEstados
  * @property Precede[] $precedes
+ * @property Precede[] $precedes1
  */
 class Estado extends CActiveRecord
 {
@@ -44,7 +46,9 @@ class Estado extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'precedes' => array(self::HAS_MANY, 'Precede', 'id_estado'),
+			'cambioDeEstados' => array(self::HAS_MANY, 'CambioDeEstado', 'estado_id'),
+			'precedes' => array(self::HAS_MANY, 'Precede', 'estado_padre_id'),
+			'precedes1' => array(self::HAS_MANY, 'Precede', 'estado_hijo_id'),
 		);
 	}
 

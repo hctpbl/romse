@@ -4,11 +4,12 @@
  * This is the model class for table "precede".
  *
  * The followings are the available columns in table 'precede':
- * @property integer $id_estado
- * @property integer $precede_a
+ * @property integer $estado_padre_id
+ * @property integer $estado_hijo_id
  *
  * The followings are the available model relations:
- * @property Estado $idEstado
+ * @property Estado $estadoPadre
+ * @property Estado $estadoHijo
  */
 class Precede extends CActiveRecord
 {
@@ -28,11 +29,11 @@ class Precede extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_estado, precede_a', 'required'),
-			array('id_estado, precede_a', 'numerical', 'integerOnly'=>true),
+			array('estado_padre_id, estado_hijo_id', 'required'),
+			array('estado_padre_id, estado_hijo_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_estado, precede_a', 'safe', 'on'=>'search'),
+			array('estado_padre_id, estado_hijo_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -44,7 +45,8 @@ class Precede extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idEstado' => array(self::BELONGS_TO, 'Estado', 'id_estado'),
+			'estadoPadre' => array(self::BELONGS_TO, 'Estado', 'estado_padre_id'),
+			'estadoHijo' => array(self::BELONGS_TO, 'Estado', 'estado_hijo_id'),
 		);
 	}
 
@@ -54,8 +56,8 @@ class Precede extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_estado' => 'Id Estado',
-			'precede_a' => 'Precede A',
+			'estado_padre_id' => 'Estado Padre',
+			'estado_hijo_id' => 'Estado Hijo',
 		);
 	}
 
@@ -77,8 +79,8 @@ class Precede extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_estado',$this->id_estado);
-		$criteria->compare('precede_a',$this->precede_a);
+		$criteria->compare('estado_padre_id',$this->estado_padre_id);
+		$criteria->compare('estado_hijo_id',$this->estado_hijo_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
