@@ -42,6 +42,8 @@ class SolicitudDeCambio extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('descripcion_breve, descripcion_detallada', 'required'),
+			array('prioridad, temporizacion, riesgos, impacto', 'required', 'on' => 'cambioAEstado2'),
+			array('probador, desarrollador, artefacto_id', 'required', 'on' => 'cambioAEstado3'),
 			array('artefacto_id, creador, probador, desarrollador', 'numerical', 'integerOnly'=>true),
 			array('descripcion_breve', 'length', 'max'=>100),
 			array('descripcion_detallada', 'length', 'max'=>1000),

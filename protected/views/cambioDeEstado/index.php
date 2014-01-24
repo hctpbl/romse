@@ -8,7 +8,6 @@ $this->breadcrumbs=array(
 	$model->id,
 );
 ?>
-<?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
 <h1>Cambiar el estado de la Solicitud de cambio <?php /*echo $model->id; */?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
@@ -86,6 +85,8 @@ $this->breadcrumbs=array(
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'solicitud-de-cambio-form',
+	/*'enableClientValidation'=>true,
+	'clientOptions' => array('validateOnSubmit'=>true),*/
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
@@ -102,15 +103,15 @@ $this->breadcrumbs=array(
 			'onChange'=>'js:$(".additional_forms").hide();$("#additional_form_"+this.value).show();
 						if(this.value=="") $("#btnCambioEstado").hide();
 							else  $("#btnCambioEstado").show();',
+			'options'=>array($estadoACambiar=>array('selected'=>true)),
 			/*'ajax' => array(
 					'type'=>'GET',
-					'url'=>Yii::app()->createUrl('cambiodeestado/additionalStateData'),
+					'url'=>Yii::app()->createUrl('cambiodeestado/setScenario'),
 					'data'=>array('estado_id'=>'js:this.value'),
-					'update'=>'#formulario',
 	)*/));
 ?>
 	<?php echo $form->errorSummary($model); ?>
-	<div id="additional_form_2" class="additional_forms" hidden>
+	<div id="additional_form_2" class="additional_forms" <?php if ($estadoACambiar != 2) : ?>hidden<?php endif;?>>
 	
 		<div class="row">
 			<?php echo $form->labelEx($model,'prioridad'); ?>
@@ -138,7 +139,7 @@ $this->breadcrumbs=array(
 	
 	</div>
 
-	<div id="additional_form_3" class="additional_forms" hidden>
+	<div id="additional_form_3" class="additional_forms" <?php if ($estadoACambiar != 3) : ?>hidden<?php endif; ?>>
 
 		<div class="row">
 			<?php echo $form->labelEx($model,'probador'); ?>
@@ -208,7 +209,7 @@ $this->breadcrumbs=array(
 	
 	</div>
 
-	<div id="additional_form_9" class="additional_forms" hidden>
+	<div id="additional_form_9" class="additional_forms" <?php if ($estadoACambiar != 9) : ?>hidden<?php endif; ?>>
 
 		<div class="row">
 			<?php echo $form->labelEx($model,'descripcion_breve'); ?>
@@ -233,15 +234,15 @@ $this->breadcrumbs=array(
 			<br/>
 			<span>Cuya versión actual es:  <?php echo $model->artefacto->version?></span>
 			<br />
-			<?php echo CHtml::label('Nueva versión del artefacto', 'artefacto_version'); ?>
-			<?php echo CHtml::textField('artefacto_version'); ?>
+			<?php echo CHtml::label('Nueva versión del artefacto', 'version'); ?>
+			<?php echo CHtml::activeTextField($model->artefacto, 'version'); ?>
 		</div>
 	
 	</div>
 	
 	<?php endif; ?>
 	
-	<div class="row buttons" id="btnCambioEstado" hidden>
+	<div class="row buttons" id="btnCambioEstado" <?php if (!isset($estadoACambiar)) : ?>hidden<?php endif; ?>>
 		<?php echo CHtml::submitButton('Cambiar estado'); ?>
 	</div>
 
