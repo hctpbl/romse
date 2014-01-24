@@ -42,25 +42,22 @@ define("ROL_USUARIO_FINAL", 4);
 			
 			$this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				//array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'Inicio', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Mi perfil', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
 				// Opciones para administrador
 				array('label'=>'Usuarios', 'url'=>array('/usuario'), 'visible'=>$admin),
 				array('label'=>'Artefactos', 'url'=>array('/artefacto'), 'visible'=>$admin),
 				array('label'=>'Proyectos', 'url'=>array('/proyecto'), 'visible'=>$admin),
-				// Opciones para usuarios desarrolladores
-				array('label'=>'Mis solicitudes de cambio', 'url'=>array('/site/showUserListChanges'), 'visible'=>$developer),
-				//array('label'=>'Mis proyectos con cambios', 'url'=>array('/site/showUserListProjects'), 'visible'=>$developer),
-				// Opciones para usuarios finales
-				array('label'=>'Mis solicitudes de cambio', 'url'=>array('/site/showUserListChanges'), 'visible'=>$finalUser),
+				// Opciones para usuarios desarrolladores y finales
+				array('label'=>'Mis solicitudes de cambio', 'url'=>array('/site/showUserListChanges'), 'visible'=>($developer || $finalUser)),
+				//array('label'=>'Mi perfil', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Mi perfil', 'url'=>array('/site/profile'), 'visible'=>($developer || $finalUser)),
 				// Opciones para ccc
 				array('label'=>'Solicitudes pendientes', 'url'=>array('/site/showCccListChangesPending'), 'visible'=>$ccc),
 				array('label'=>'Solicitudes cerradas', 'url'=>array('/site/showCccListChangesClosed'), 'visible'=>$ccc),
 				array('label'=>'Informes', 'url'=>array('/site/reports'), 'visible'=>$ccc),
+				// Opciones comunes
+				array('label'=>'Inicio', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Sobre nosotros', 'url'=>array('/site/page', 'view'=>'about'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Contacto', 'url'=>array('/site/contact'), 'visible'=>Yii::app()->user->isGuest),
-				//array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>

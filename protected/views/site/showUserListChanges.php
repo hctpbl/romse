@@ -7,9 +7,9 @@
 /* @var $modelCheckChange CambioDeEstadoController */
 
 
-$this->pageTitle=Yii::app()->name. ' - Lista de solicitudes de cambio';
+$this->pageTitle=Yii::app()->name. ' - Mis solicitudes de cambio';
 $this->breadcrumbs=array(
-	'Lista de solicitudes de cambio',
+	'Mis solicitudes de cambio',
 );
 ?>
 
