@@ -32,8 +32,12 @@ class ArtefactoController extends Controller
 				'users'=>array('admin'),
 			),
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-					'actions'=>array('view'),
-					'users'=>array('*'),
+				'actions'=>array('view'),
+				'users'=>array('*'),
+			),
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('viewReport'),
+				'users'=>array('ccc'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
@@ -57,6 +61,17 @@ class ArtefactoController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+		));
+	}
+	
+	/**
+	 * Muestra la vista especial del informe
+	 * @param int $id
+	 */
+	public function actionViewReport($id)
+	{
+		$this->render('viewReport',array(
+				'model'=>$this->loadModel($id),
 		));
 	}
 
@@ -160,6 +175,17 @@ class ArtefactoController extends Controller
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
+	}
+	
+	/**
+	 * Devuelve todos los artefactos que dependen de un artefacto
+	 * @param int $id
+	 */
+	public function getAllDependencies($id)
+	{
+		$modelArtefacts = Artefacto::model()->findAll(array('condition'=>'depende_de='.$id));
+		
+		return $modelArtefacts;
 	}
 	
 	/**

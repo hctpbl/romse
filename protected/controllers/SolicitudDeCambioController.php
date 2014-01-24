@@ -186,6 +186,11 @@ class SolicitudDeCambioController extends Controller
 		return $model;
 	}
 	
+	/**
+	 * Comprueba si un usuario es desarrollador en una solicitud
+	 * @param int $solicitudId
+	 * @return boolean
+	 */
 	public static function checkUserDeveloper($solicitudId){
 		
 		$model=SolicitudDeCambio::model()->find(array('condition'=>'id='.$solicitudId.' 
@@ -194,9 +199,13 @@ class SolicitudDeCambioController extends Controller
 			return false;
 		else 
 			return true;
-		
 	}
 	
+	/**
+	 * Comprueba si un usuario es creador en una solicitud
+	 * @param int $solicitudId
+	 * @return boolean
+	 */
 	public static function checkUserCreater($solicitudId){
 	
 		$model=SolicitudDeCambio::model()->find(array('condition'=>'id='.$solicitudId.'
@@ -205,9 +214,13 @@ class SolicitudDeCambioController extends Controller
 			return false;
 		else
 			return true;
-	
 	}
 	
+	/**
+	 * Comprueba si un usuario es probador en una solicitud
+	 * @param int $solicitudId
+	 * @return boolean
+	 */
 	public static function checkUserTester($solicitudId){
 	
 		$model=SolicitudDeCambio::model()->find(array('condition'=>'id='.$solicitudId.'
@@ -216,7 +229,16 @@ class SolicitudDeCambioController extends Controller
 			return false;
 		else
 			return true;
+	}
 	
+	/**
+	 * Devuelve todas las solicitudes de cambio asociadas a un artefacto
+	 * @param int $id
+	 */
+	public static function getAllChangesRequestFromArtifact($id)
+	{
+		$model = SolicitudDeCambio::model()->findAll(array('condition'=>'artefacto_id='.$id));
+		return $model;
 	}
 
 	/**
