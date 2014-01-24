@@ -31,6 +31,10 @@ class UsuarioController extends Controller
 				'actions'=>array('index','view'),
 				'users'=>array('admin'),
 			),
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('viewResumen'),
+				'users'=>array('*'),
+			),
 			/*array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
 				'users'=>array('@'),
@@ -61,6 +65,18 @@ class UsuarioController extends Controller
 	public function actionView($id)
 	{
 		$this->render('view',array(
+			'model'=>$this->loadModel($id),
+		));
+	}
+
+	/**
+	 * Displays a particular model. Resumido para mostrar sólo
+	 * información relevante para otro miembro de la organización
+	 * @param integer $id the ID of the model to be displayed
+	 */
+	public function actionViewResumen($id)
+	{
+		$this->render('viewResumen',array(
 			'model'=>$this->loadModel($id),
 		));
 	}
