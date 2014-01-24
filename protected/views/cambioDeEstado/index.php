@@ -56,7 +56,6 @@ $this->breadcrumbs=array(
 
 <?php if ($this->checkUser($cambio->estado->nombre, $model->id)) :?>
 <h2>Seleccione nuevo estado:</h2>
-<?php endif; ?>
 
 <div class="form">
 
@@ -69,27 +68,7 @@ $this->breadcrumbs=array(
 	'enableAjaxValidation'=>false,
 )); ?>
 
-<?php
-if ($this->checkUser($cambio->estado->nombre, $model->id)) {
-	if ($estado_act == 8) :
-?>
-	 <div id="additional_form_8" class="additional_forms" >
-
-		<div class="row">
-			<?php echo $form->labelEx($model,'descripcion_breve'); ?>
-			<?php echo $form->textField($model,'descripcion_breve',array('size'=>60,'maxlength'=>100)); ?>
-			<?php echo $form->error($model,'descripcion_breve'); ?>
-		</div>
-	
-		<div class="row">
-			<?php echo $form->labelEx($model,'descripcion_detallada'); ?>
-			<?php echo $form->textField($model,'descripcion_detallada',array('size'=>60,'maxlength'=>1000)); ?>
-			<?php echo $form->error($model,'descripcion_detallada'); ?>
-		</div>
-	
-	</div>
 <?php 
-	endif;
 	echo CHtml::dropDownList('nuevo_estado', '', CHtml::listData(
     	$this->loadEstadosSiguientes($estado_act),
 		'estado_hijo_id', 'estadoHijo.nombre'),
@@ -104,7 +83,6 @@ if ($this->checkUser($cambio->estado->nombre, $model->id)) {
 					'data'=>array('estado_id'=>'js:this.value'),
 					'update'=>'#formulario',
 	)*/));
-}
 ?>
 	<?php echo $form->errorSummary($model); ?>
 	<div id="additional_form_2" class="additional_forms" hidden>
@@ -205,10 +183,10 @@ if ($this->checkUser($cambio->estado->nombre, $model->id)) {
 	
 	</div>
 
-	<!-- <div id="additional_form_8" class="additional_forms" hidden>
+	<div id="additional_form_9" class="additional_forms" hidden>
 
 		<div class="row">
-			<?php /*echo $form->labelEx($model,'descripcion_breve'); ?>
+			<?php echo $form->labelEx($model,'descripcion_breve'); ?>
 			<?php echo $form->textField($model,'descripcion_breve',array('size'=>60,'maxlength'=>100)); ?>
 			<?php echo $form->error($model,'descripcion_breve'); ?>
 		</div>
@@ -216,10 +194,10 @@ if ($this->checkUser($cambio->estado->nombre, $model->id)) {
 		<div class="row">
 			<?php echo $form->labelEx($model,'descripcion_detallada'); ?>
 			<?php echo $form->textField($model,'descripcion_detallada',array('size'=>60,'maxlength'=>1000)); ?>
-			<?php echo $form->error($model,'descripcion_detallada');*/ ?>
+			<?php echo $form->error($model,'descripcion_detallada'); ?>
 		</div>
 	
-	</div>-->
+	</div>
 	
 	<?php if(isset($model->artefacto)) :?>
 
@@ -243,5 +221,6 @@ if ($this->checkUser($cambio->estado->nombre, $model->id)) {
 	</div>
 
 <?php $this->endWidget(); ?>
+<?php endif; ?>
 
 </div><!-- form -->

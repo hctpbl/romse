@@ -26,15 +26,14 @@ if (Yii::app()->user->rol_id == 'ROL_CCC'){
 		'id',
 		'descripcion_breve',
 		'descripcion_detallada',
-		'fecha_creacion',
 		'impacto',
 		'prioridad',
 		'temporizacion',
 		'riesgos',
-		'artefacto_id',
-		'creador',
-		'probador',
-		'desarrollador',
+		'artefacto.nombre:text:Artefacto',
+		'creador0.username:text:Creador',
+		'probador0.username:text:Probador',
+		'desarrollador0.username:text:Desarrollador',
 	),
 )); 
 
@@ -57,9 +56,9 @@ $this->widget('zii.widgets.grid.CGridView', array(
 				'estado_id:text:Estado'
 		),*/
 		'columns' => array(
-				'usuario_id:text:Cambio realizado por', 
+				'usuario.username:text:Cambio realizado por', 
 				'fecha:text:Fecha del cambio',
-				'estado_id:text:Estado',
+				'estado.nombre:text:Estado',
 				/*array(
 					'header'=>'prueba',
 					'type'=>'raw',

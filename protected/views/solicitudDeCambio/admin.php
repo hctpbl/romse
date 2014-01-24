@@ -48,11 +48,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'descripcion_breve',
 		'descripcion_detallada',
-		'fecha_creacion',
 		'impacto',
 		'prioridad',
-		/*
 		'temporizacion',
+		/*
 		'riesgos',
 		'artefacto_id',
 		'creador',
