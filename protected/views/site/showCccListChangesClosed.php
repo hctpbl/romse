@@ -16,11 +16,11 @@ $this->breadcrumbs=array(
 $this->widget('zii.widgets.grid.CGridView', array(
         'dataProvider' => new CArrayDataProvider($modelChangesClosed),
         'columns' => array(
-				'id', 'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
-				'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
+				/*'id', */'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
+				/*'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
 				'riesgos:text:Riesgos',
 				'artefacto:text:artefacto', 'creador:text:Creador',
-				'probador:text:Probador', 'desarrollador:text:Desarrollador', 'nombre_estado:text:Estado',
+				'probador:text:Probador', 'desarrollador:text:Desarrollador', 'nombre_estado:text:Estado',*/
 				array
 				(
 						'class'=>'CButtonColumn',

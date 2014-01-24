@@ -18,11 +18,11 @@ $this->breadcrumbs=array(
 $this->widget('zii.widgets.grid.CGridView', array(
 		'dataProvider' => new CArrayDataProvider($modelChangesCreator),
 		'columns' => array(
-				'id', 'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
-				'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
+				/*'id',*/ 'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
+				/*'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
 				'riesgos:text:Riesgos',
 				'artefacto:text:artefacto', 'creador:text:Creador',
-				'probador:text:Probador', 'desarrollador:text:Desarrollador', 'nombre_estado:text:Estado',
+				'probador:text:Probador', 'desarrollador:text:Desarrollador',*/ 'nombre_estado:text:Estado',
 				array
 				(
 						'class'=>'CButtonColumn',
@@ -74,11 +74,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
 $this->widget('zii.widgets.grid.CGridView', array(
 		'dataProvider' => new CArrayDataProvider($modelChangesTester),
 		'columns' => array(
-				'id', 'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
-				'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
+				/*'id',*/ 'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
+				/*'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
 				'riesgos:text:Riesgos',
 				'artefacto:text:artefacto', 'creador:text:Creador',
-				'probador:text:Probador', 'desarrollador:text:Desarrollador', 'nombre_estado:text:Estado',
+				'probador:text:Probador', 'desarrollador:text:Desarrollador',*/ 'nombre_estado:text:Estado',
 				array
 				(
 						'class'=>'CButtonColumn',
@@ -116,11 +116,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
 $this->widget('zii.widgets.grid.CGridView', array(
 		'dataProvider' => new CArrayDataProvider($modelChangesDeveloper),
 		'columns' => array(
-				'id', 'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
-				'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
+				/*'id',*/ 'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
+				/*'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
 				'riesgos:text:Riesgos',
 				'artefacto:text:artefacto', 'creador:text:Creador',
-				'probador:text:Probador', 'desarrollador:text:Desarrollador', 'nombre_estado:text:Estado',
+				'probador:text:Probador', 'desarrollador:text:Desarrollador',*/ 'nombre_estado:text:Estado',
 				array
 				(
 						'class'=>'CButtonColumn',
@@ -151,17 +151,17 @@ $this->widget('zii.widgets.grid.CGridView', array(
 ));
 ?>
 
-<h3>Solicitudes de cambio cerradas</h3>
+<h3>Solicitudes de cambio cerradas (SE QUITARÁ EN PRINCIPIO)</h3>
 <?php 
 
 $this->widget('zii.widgets.grid.CGridView', array(
 		'dataProvider' => new CArrayDataProvider($modelChangesClosed),
 		'columns' => array(
-				'id', 'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
-				'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
+				/*'id',*/ 'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
+				/*'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
 				'riesgos:text:Riesgos',
 				'artefacto:text:artefacto', 'creador:text:Creador',
-				'probador:text:Probador', 'desarrollador:text:Desarrollador', 'nombre_estado:text:Estado',
+				'probador:text:Probador', 'desarrollador:text:Desarrollador', 'nombre_estado:text:Estado',*/
 				array
 				(
 						'class'=>'CButtonColumn',

@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Artefactos'=>array('index'),
-	$model->id,
+	$model->nombre,
 );
 
 $this->menu=array(
@@ -16,18 +16,29 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Artefacto #<?php echo $model->id; ?></h1>
+<h1>View Artefacto: <?php echo $model->nombre; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
+		//'id',
 		'nombre',
 		'uri',
 		'rol',
 		'descripcion',
 		'version',
-		'proyecto_id',
-		'depende_de',
+		array(
+			'label' => 'Proyecto',
+			'value' => CHtml::link(CHtml::encode(
+				$model->proyecto->nombre),
+				array('proyecto/view','id'=>$model->proyecto_id)), 'type' => 'raw'
+		),
+		array(
+			'label' => 'Depende del artefacto',
+			'visible' => isset($model->dependeDe->nombre),
+			'value' => isset($model->dependeDe->nombre) ? CHtml::link(CHtml::encode(
+				$model->dependeDe->nombre),
+				array('artefacto/view','id'=>$model->depende_de)) : '', 'type' => 'raw'
+		),
 	),
 )); ?>

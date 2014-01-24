@@ -5,17 +5,17 @@
 
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
-	<br />
+	<!-- <b><?php /*echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
+	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); */?>
+	<br />-->
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('nombre')); ?>:</b>
-	<?php echo CHtml::encode($data->nombre); ?>
+	<?php echo CHtml::link(CHtml::encode($data->nombre), array('view', 'id'=>$data->id)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('uri')); ?>:</b>
-	<?php echo CHtml::encode($data->uri); ?>
-	<br />
+	<!-- <b><?php /*echo CHtml::encode($data->getAttributeLabel('uri')); ?>:</b>
+	<?php echo CHtml::encode($data->uri); */?>
+	<br />-->
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('rol')); ?>:</b>
 	<?php echo CHtml::encode($data->rol); ?>
@@ -29,8 +29,8 @@
 	<?php echo CHtml::encode($data->version); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('proyecto_id')); ?>:</b>
-	<?php echo CHtml::encode($data->proyecto_id); ?>
+	<b><?php /*echo CHtml::encode($data->getAttributeLabel('proyecto_id')); ?>:</b>
+	<?php echo CHtml::encode($data->proyecto);*/ ?>
 	<br />
 
 	<?php /*
