@@ -42,6 +42,11 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'email'); ?>
+		<?php echo $form->textField($model,'email',array('size'=>50,'maxlength'=>50)); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'numero_telefono'); ?>
 		<?php echo $form->textField($model,'numero_telefono',array('size'=>13,'maxlength'=>13)); ?>
 	</div>

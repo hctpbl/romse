@@ -29,11 +29,15 @@
 	<?php echo CHtml::encode($data->fecha_nacimiento); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('email')); ?>:</b>
+	<?php echo CHtml::encode($data->email); ?>
+	<br />
+
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('numero_telefono')); ?>:</b>
 	<?php echo CHtml::encode($data->numero_telefono); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('salario')); ?>:</b>
 	<?php echo CHtml::encode($data->salario); ?>
 	<br />

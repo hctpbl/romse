@@ -58,6 +58,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'email'); ?>
+		<?php echo $form->textField($model,'email',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->error($model,'email'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'numero_telefono'); ?>
 		<?php echo $form->textField($model,'numero_telefono',array('size'=>13,'maxlength'=>13)); ?>
 		<?php echo $form->error($model,'numero_telefono'); ?>
