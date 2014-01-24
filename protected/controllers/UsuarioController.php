@@ -90,7 +90,7 @@ class UsuarioController extends Controller
 		$model=new Usuario;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		 $this->performAjaxValidation($model);
 
 		if(isset($_POST['Usuario']))
 		{
@@ -115,7 +115,7 @@ class UsuarioController extends Controller
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		 $this->performAjaxValidation($model);
 
 		if(isset($_POST['Usuario']))
 		{
