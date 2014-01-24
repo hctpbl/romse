@@ -71,7 +71,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'salario'); ?>
-		<?php echo $form->textField($model,'salario',array('size'=>8,'maxlength'=>8)); ?>
+		<?php echo $form->numberField($model,'salario',array('size'=>8,'maxlength'=>8)); ?>
 		<?php echo $form->error($model,'salario'); ?>
 	</div>
 
@@ -111,7 +111,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->passwordField($model,'password',array('size'=>60, 'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'password'); ?>
 	</div>
 

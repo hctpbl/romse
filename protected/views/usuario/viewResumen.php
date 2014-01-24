@@ -6,14 +6,15 @@ $this->breadcrumbs=array(
 	'Usuarios'=>array('index'),
 	$model->username,
 );
-
-$this->menu=array(
-	array('label'=>'List Usuario', 'url'=>array('index')),
-	array('label'=>'Create Usuario', 'url'=>array('create')),
-	array('label'=>'Update Usuario', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Usuario', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Usuario', 'url'=>array('admin')),
-);
+if (Yii::app()->user->rol_id == 1):
+	$this->menu=array(
+		array('label'=>'List Usuario', 'url'=>array('index')),
+		array('label'=>'Create Usuario', 'url'=>array('create')),
+		array('label'=>'Update Usuario', 'url'=>array('update', 'id'=>$model->id)),
+		array('label'=>'Delete Usuario', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+		array('label'=>'Manage Usuario', 'url'=>array('admin')),
+	);
+endif;
 ?>
 
 <h1>View Usuario: <?php echo $model->username; ?></h1>

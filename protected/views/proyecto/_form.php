@@ -55,7 +55,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'costes'); ?>
-		<?php echo $form->textField($model,'costes',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->numberField($model,'costes',array('size'=>10,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'costes'); ?>
 	</div>
 

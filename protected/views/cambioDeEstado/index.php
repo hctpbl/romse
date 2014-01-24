@@ -9,23 +9,43 @@ $this->breadcrumbs=array(
 );
 ?>
 <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
-<h1>Cambiar el estado de la Solicitud de cambio #<?php echo $model->id; ?></h1>
+<h1>Cambiar el estado de la Solicitud de cambio <?php /*echo $model->id; */?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
+		//'id',
 		'descripcion_breve',
 		'descripcion_detallada',
-		'fecha_creacion',
+		//'fecha_creacion',
 		'impacto',
 		'prioridad',
 		'temporizacion',
 		'riesgos',
-		'artefacto.nombre:text:Artefacto',
-		'creador0.username:text:Creador',
-		'probador0.username:text:Probador',
-		'desarrollador0.username:text:Desarrollador',
+		array(
+			'label' => 'Artefacto',
+			'value' => CHtml::link(CHtml::encode(
+				$model->artefacto->nombre),
+				array('artefacto/view','id'=>$model->artefacto_id)), 'type' => 'raw'
+		),
+		array(
+			'label' => 'Creador',
+			'value' => CHtml::link(CHtml::encode(
+				$model->creador0->username),
+				array('usuario/viewResumen','id'=>$model->creador)), 'type' => 'raw'
+		),
+		array(
+			'label' => 'Probador',
+			'value' => CHtml::link(CHtml::encode(
+				$model->probador0->username),
+				array('usuario/viewResumen','id'=>$model->probador)), 'type' => 'raw'
+		),
+		array(
+			'label' => 'Desarrollador',
+			'value' => CHtml::link(CHtml::encode(
+				$model->desarrollador0->username),
+				array('usuario/viewResumen','id'=>$model->desarrollador)), 'type' => 'raw'
+		),
 	),
 )); ?>
 <br />
@@ -38,7 +58,12 @@ $this->breadcrumbs=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$cambio,
 	'attributes'=>array(
-		'usuario.username:text:Cambio hecho por',
+		array(
+			'label' => 'Cambio hecho por',
+			'value' => CHtml::link(CHtml::encode(
+				$model->creador0->username),
+				array('usuario/viewResumen','id'=>$model->creador)), 'type' => 'raw'
+		),
 		'fecha',
 	),
 )); ?>
