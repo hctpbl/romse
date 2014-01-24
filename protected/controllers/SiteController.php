@@ -131,14 +131,6 @@ class SiteController extends Controller
 	}
 	
 	/**
-	 * Muestra la lista de proyectos del usuario
-	 */
-	public function actionShowUserListProjects()
-	{
-		$this->render('showUserListProjects');
-	}
-	
-	/**
 	 * Muestra la lista de solicitudes de cambio pendientes al ccc
 	 */
 	public function actionShowCccListChangesPending()
