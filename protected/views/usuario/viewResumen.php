@@ -21,18 +21,13 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
-		'nss',
-		'dni',
 		'nombre',
 		'apellidos',
 		'fecha_nacimiento',
 		'numero_telefono',
-		'salario',
 		'fecha_incorporacion',
 		'fecha_baja',
 		'username',
-		//'password',
 		'rol.nombre:text:Rol',
 	),
 )); ?>

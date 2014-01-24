@@ -30,10 +30,30 @@ if (Yii::app()->user->rol_id == 'ROL_CCC'){
 		'prioridad',
 		'temporizacion',
 		'riesgos',
-		'artefacto.nombre:text:Artefacto',
-		'creador0.username:text:Creador',
-		'probador0.username:text:Probador',
-		'desarrollador0.username:text:Desarrollador',
+		array(
+			'label' => 'Artefacto',
+			'value' => CHtml::link(CHtml::encode(
+				$model->artefacto->nombre),
+				array('artefacto/view','id'=>$model->artefacto->id)), 'type' => 'raw'
+		),
+		array(
+			'label' => 'Creador',
+			'value' => CHtml::link(CHtml::encode(
+				$model->creador0->username),
+				array('usuario/viewResumen','id'=>$model->creador0->id)), 'type' => 'raw'
+		),
+		array(
+			'label' => 'Probador',
+			'value' => CHtml::link(CHtml::encode(
+				$model->probador0->username),
+				array('usuario/viewResumen','id'=>$model->probador0->id)), 'type' => 'raw'
+		),
+		array(
+			'label' => 'Desarrollador',
+			'value' => CHtml::link(CHtml::encode(
+				$model->desarrollador0->username),
+				array('usuario/viewResumen','id'=>$model->desarrollador0->id)), 'type' => 'raw'
+		),
 	),
 )); 
 
