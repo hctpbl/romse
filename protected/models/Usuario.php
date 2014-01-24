@@ -10,6 +10,7 @@
  * @property string $nombre
  * @property string $apellidos
  * @property string $fecha_nacimiento
+ * @property string $email
  * @property string $numero_telefono
  * @property string $salario
  * @property string $fecha_incorporacion
@@ -43,21 +44,23 @@ class Usuario extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nss, dni, nombre, apellidos, fecha_nacimiento, numero_telefono, salario, fecha_incorporacion, username, password, rol_id', 'required'),
+			array('nss, dni, nombre, apellidos, fecha_nacimiento, email, numero_telefono, salario, fecha_incorporacion, username, password, rol_id', 'required'),
 			array('rol_id', 'numerical', 'integerOnly'=>true),
 			array('nss', 'length', 'max'=>10),
 			array('dni', 'length', 'max'=>9),
 			array('nombre', 'length', 'max'=>30),
 			array('apellidos', 'length', 'max'=>60),
+			array('email', 'length', 'max'=>50),
 			array('numero_telefono', 'length', 'max'=>13),
 			array('salario', 'length', 'max'=>8),
 			array('username', 'length', 'max'=>15),
 			array('password', 'length', 'max'=>100),
 			array('fecha_baja', 'safe'),
 			array('username', 'unique'),
+			array('email', 'email'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, nss, dni, nombre, apellidos, fecha_nacimiento, numero_telefono, salario, fecha_incorporacion, fecha_baja, username, password, rol_id', 'safe', 'on'=>'search'),
+			array('id, nss, dni, nombre, apellidos, fecha_nacimiento, email, numero_telefono, salario, fecha_incorporacion, fecha_baja, username, password, rol_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -89,6 +92,7 @@ class Usuario extends CActiveRecord
 			'nombre' => 'Nombre',
 			'apellidos' => 'Apellidos',
 			'fecha_nacimiento' => 'Fecha Nacimiento',
+			'email' => 'Email',
 			'numero_telefono' => 'Numero Telefono',
 			'salario' => 'Salario',
 			'fecha_incorporacion' => 'Fecha Incorporacion',
@@ -123,6 +127,7 @@ class Usuario extends CActiveRecord
 		$criteria->compare('nombre',$this->nombre,true);
 		$criteria->compare('apellidos',$this->apellidos,true);
 		$criteria->compare('fecha_nacimiento',$this->fecha_nacimiento,true);
+		$criteria->compare('email',$this->email,true);
 		$criteria->compare('numero_telefono',$this->numero_telefono,true);
 		$criteria->compare('salario',$this->salario,true);
 		$criteria->compare('fecha_incorporacion',$this->fecha_incorporacion,true);
@@ -150,7 +155,7 @@ class Usuario extends CActiveRecord
 	/**
 	 * Se encripta el password antes de almacenarle en la base de datos
 	 * @return true
-	 * 
+	 *
 	 */
 	public function beforeSave() {
 		if (! empty ( $this->password ))
@@ -162,6 +167,6 @@ class Usuario extends CActiveRecord
 	 * Se valida el password del Login @return Verificación del password
 	 */
 	public function validatePassword($password) {
-			return CPasswordHelper::verifyPassword ( $password, $this->password );
-		}
+		return CPasswordHelper::verifyPassword ( $password, $this->password );
+	}
 }

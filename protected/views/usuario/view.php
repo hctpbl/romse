@@ -27,6 +27,7 @@ $this->menu=array(
 		'nombre',
 		'apellidos',
 		'fecha_nacimiento',
+		'email',
 		'numero_telefono',
 		'salario',
 		'fecha_incorporacion',
