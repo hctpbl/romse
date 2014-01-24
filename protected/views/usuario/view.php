@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Usuarios'=>array('index'),
-	$model->id,
+	$model->username,
 );
 
 $this->menu=array(
@@ -16,12 +16,12 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Usuario #<?php echo $model->id; ?></h1>
+<h1>View Usuario: <?php echo $model->username; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
+		//'id',
 		'nss',
 		'dni',
 		'nombre',
@@ -31,7 +31,12 @@ $this->menu=array(
 		'numero_telefono',
 		'salario',
 		'fecha_incorporacion',
-		'fecha_baja',
+		//'fecha_baja',
+		array(
+			'label' => 'Fecha Baja',
+			'visible'=> isset($model->fecha_baja),
+			'value' => $model->fecha_baja, 'type' => 'raw'
+		),
 		'username',
 		//'password',
 		'rol.nombre:text:Rol',

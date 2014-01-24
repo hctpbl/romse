@@ -2,9 +2,9 @@
 /* @var $this SiteController */
 /* @var $modelChangesPending SolicitudDeCambio */
 
-$this->pageTitle=Yii::app()->name. ' - Lista de solicitudes de cambio pendientes';
+$this->pageTitle=Yii::app()->name. ' - Solicitudes de cambio pendientes';
 $this->breadcrumbs=array(
-	'Lista de solicitudes de cambio pendientes',
+	'Solicitudes de cambio pendientes',
 );
 ?>
 

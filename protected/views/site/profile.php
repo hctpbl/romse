@@ -2,9 +2,9 @@
 /* @var $this UsuarioController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->pageTitle=Yii::app()->name. ' - Perfil';
+$this->pageTitle=Yii::app()->name. ' - Mi Perfil';
 $this->breadcrumbs=array(
-	'Perfil',
+	'Mi Perfil',
 );
 ?>
 

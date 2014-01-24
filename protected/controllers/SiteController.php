@@ -29,10 +29,17 @@ class SiteController extends Controller
 	{
 
 		// La página inicial debe ser el login si no está registrado
-		if (!Yii::app()->user->isGuest)
-			$this->render('index');
-		else
+		if (!Yii::app()->user->isGuest){
+			//$this->render('index');
+			if(isset(Yii::app()->user->rol_id) && Yii::app()->user->rol_id == 2)
+				$this->actionShowCccListChangesPending();
+			if(isset(Yii::app()->user->rol_id) && (Yii::app()->user->rol_id == 3 || Yii::app()->user->rol_id == 4))
+				$this->actionShowUserListChanges();
+			if(isset(Yii::app()->user->rol_id) && Yii::app()->user->rol_id == 1)
+				$this->render('usuario');
+		} else {
 			$this->actionLogin();
+		}
 	}
 
 	/**
@@ -131,12 +138,20 @@ class SiteController extends Controller
 	}
 	
 	/**
+	 * Muestra el perfil de los usuarios
+	 */
+	public function actionProfile()
+	{
+		$this->render('profile');
+	}
+	
+	/**
 	 * Muestra la lista de solicitudes de cambio pendientes al ccc
 	 */
 	public function actionShowCccListChangesPending()
 	{
 		$modelChangesPending = SolicitudEstado::model()->findAll(array(
-				'condition'=>'nombre_estado != \'Cerrado\''));
+				'condition'=>'nombre_estado != \'Cerrado\' AND nombre_estado != \'Creado\''));
 		$this->render('showCccListChangesPending', array('modelChangesPending'=>$modelChangesPending));
 	}
 	

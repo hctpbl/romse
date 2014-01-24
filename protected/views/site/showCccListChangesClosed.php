@@ -2,9 +2,9 @@
 /* @var $this SiteController */
 /* @var $modelChangesClosed SolicitudDeCambio */
 
-$this->pageTitle=Yii::app()->name. ' - Lista de solicitudes de cambio cerradas';
+$this->pageTitle=Yii::app()->name. ' - Solicitudes de cambio cerradas';
 $this->breadcrumbs=array(
-	'Lista de solicitudes de cambio cerradas',
+	'Solicitudes de cambio cerradas',
 );
 ?>
 
