@@ -47,6 +47,10 @@ class ProyectoController extends Controller
 				'actions'=>array('admin','delete'),
 				'users'=>array('admin'),
 			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('adminCCC'),
+				'users'=>array('ccc'),
+			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -160,6 +164,21 @@ class ProyectoController extends Controller
 
 		$this->render('admin',array(
 			'model'=>$model,
+		));
+	}
+	
+	/**
+	 * Manages all models for the CCC
+	 */
+	public function actionAdminCCC()
+	{
+		$model=new Proyecto('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Proyecto']))
+			$model->attributes=$_GET['Proyecto'];
+	
+		$this->render('adminCCC',array(
+				'model'=>$model,
 		));
 	}
 
