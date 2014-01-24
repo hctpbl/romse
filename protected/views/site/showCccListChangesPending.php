@@ -41,7 +41,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         						'update' => array
         						(
         								'visible'=>'CambioDeEstadoController::checkUser($data->nombre_estado, $data->id)',
-        								'url' =>'Yii::app()->createUrl("cambiodeestado/view",array("id"=>$data->id))',
+        								'url' =>'Yii::app()->createUrl("cambioDeEstado/view",array("id"=>$data->id))',
         						),
         		
         				),
