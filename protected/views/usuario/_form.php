@@ -18,18 +18,24 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
+	
+	<?php // Hay cambios que sólo el administrador puede cambiar al hacer
+		  // updates, así que sólo se los mostramos a él ?>
+	<?php if (Yii::app()->user->rol_id == 1) :?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'nss'); ?>
-		<?php echo $form->textField($model,'nss',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'nss'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'dni'); ?>
-		<?php echo $form->textField($model,'dni',array('size'=>9,'maxlength'=>9)); ?>
-		<?php echo $form->error($model,'dni'); ?>
-	</div>
+		<div class="row">
+			<?php echo $form->labelEx($model,'nss'); ?>
+			<?php echo $form->textField($model,'nss',array('size'=>10,'maxlength'=>10)); ?>
+			<?php echo $form->error($model,'nss'); ?>
+		</div>
+	
+		<div class="row">
+			<?php echo $form->labelEx($model,'dni'); ?>
+			<?php echo $form->textField($model,'dni',array('size'=>9,'maxlength'=>9)); ?>
+			<?php echo $form->error($model,'dni'); ?>
+		</div>
+	
+	<?php endif; ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'nombre'); ?>
@@ -68,53 +74,65 @@
 		<?php echo $form->textField($model,'numero_telefono',array('size'=>13,'maxlength'=>13)); ?>
 		<?php echo $form->error($model,'numero_telefono'); ?>
 	</div>
+	
+	<?php if (Yii::app()->user->rol_id == 1) :?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'salario'); ?>
-		<?php echo $form->numberField($model,'salario',array('size'=>8,'maxlength'=>8)); ?>
-		<?php echo $form->error($model,'salario'); ?>
-	</div>
+		<div class="row">
+			<?php echo $form->labelEx($model,'salario'); ?>
+			<?php echo $form->numberField($model,'salario',array('size'=>8,'maxlength'=>8)); ?>
+			<?php echo $form->error($model,'salario'); ?>
+		</div>
+	
+		<div class="row">
+			<?php echo $form->labelEx($model,'fecha_incorporacion'); ?>
+			<?php
+			$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+							'attribute'=>'fecha_incorporacion',
+							'model' => $model,
+							'options'=>array(
+								'dateFormat'=>'yy-mm-dd',
+							)
+			));
+			?>
+			<?php echo $form->error($model,'fecha_incorporacion'); ?>
+		</div>
+	
+		<div class="row">
+			<?php echo $form->labelEx($model,'fecha_baja'); ?>
+			<?php
+			$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+							'attribute'=>'fecha_baja',
+							'model' => $model,
+							'options'=>array(
+								'dateFormat'=>'yy-mm-dd',
+							)
+			));
+			?>
+			<?php echo $form->error($model,'fecha_baja'); ?>
+		</div>
+	
+		<div class="row">
+			<?php echo $form->labelEx($model,'username'); ?>
+			<?php echo $form->textField($model,'username',array('size'=>15,'maxlength'=>15)); ?>
+			<?php echo $form->error($model,'username'); ?>
+		</div>
+	
+	<?php endif; ?>
+	
+	<?php //El password sólo se pone en este formulario si se está creando el usuario ?>
+	<?php if ($model->isNewRecord) :?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'fecha_incorporacion'); ?>
-		<?php
-		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
-						'attribute'=>'fecha_incorporacion',
-						'model' => $model,
-						'options'=>array(
-							'dateFormat'=>'yy-mm-dd',
-						)
-		));
-		?>
-		<?php echo $form->error($model,'fecha_incorporacion'); ?>
-	</div>
+		<div class="row">
+			<?php echo $form->labelEx($model,'password'); ?>
+			<?php echo $form->passwordField($model,'password',array('size'=>60, 'maxlength'=>100)); ?>
+			<?php echo $form->error($model,'password'); ?>
+		</div>
+	
+	<?php endif; ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'fecha_baja'); ?>
-		<?php
-		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
-						'attribute'=>'fecha_baja',
-						'model' => $model,
-						'options'=>array(
-							'dateFormat'=>'yy-mm-dd',
-						)
-		));
-		?>
-		<?php echo $form->error($model,'fecha_baja'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username',array('size'=>15,'maxlength'=>15)); ?>
-		<?php echo $form->error($model,'username'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password',array('size'=>60, 'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'password'); ?>
-	</div>
-
+	
+	<?php if (Yii::app()->user->rol_id == 1) :?>
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'rol_id'); ?>
 		<?php 
@@ -126,6 +144,8 @@
 		?>
 		<?php echo $form->error($model,'rol_id'); ?>
 	</div>
+	
+	<?php endif; ?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
