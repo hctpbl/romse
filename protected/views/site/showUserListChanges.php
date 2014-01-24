@@ -31,7 +31,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 						(
 								'view' => array
 								(
-										'url' =>'Yii::app()->createUrl("/solicitudDeCambio/".$data->id)',
+										'url' =>'Yii::app()->createUrl("/solicitudDeCambio/view",array("id"=>$data->id))',
 								),
 
 						),
@@ -45,7 +45,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 								'update' => array
 								(
 										'visible'=>'CambioDeEstadoController::checkUser($data->nombre_estado, $data->id)',
-										'url' =>'Yii::app()->createUrl("/cambiodeestado/".$data->id)',
+										'url' =>'Yii::app()->createUrl("/cambiodeestado/view",array("id"=>$data->id))',
 								),
 				
 						),
@@ -72,7 +72,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 						(
 								'view' => array
 								(
-										'url' =>'Yii::app()->createUrl("/solicitudDeCambio/".$data->id)',
+									'url' =>'Yii::app()->createUrl("solicitudDeCambio/view",array("id"=>$data->id))',
 								),
 
 						),
@@ -86,7 +86,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 							'update' => array
 							(
 									'visible'=>'CambioDeEstadoController::checkUser($data->nombre_estado, $data->id)',
-									'url' =>'Yii::app()->createUrl("/cambiodeestado/".$data->id)',
+									'url' =>'Yii::app()->createUrl("/cambiodeestado/view/",array("id"=>$data->id))',
 							),
 
 						),

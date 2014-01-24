@@ -29,7 +29,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 						(
 								'delete' => array
 								(
-										'url' =>'Yii::app()->createUrl("/solicitudDeCambio/delete/".$data->id)',
+										'url' =>'Yii::app()->createUrl("solicitudDeCambio/delete", array("id"=>$data->id))',
 								),
 
 						),
