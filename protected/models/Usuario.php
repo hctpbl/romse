@@ -54,6 +54,7 @@ class Usuario extends CActiveRecord
 			array('username', 'length', 'max'=>15),
 			array('password', 'length', 'max'=>100),
 			array('fecha_baja', 'safe'),
+			array('username', 'unique'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, nss, dni, nombre, apellidos, fecha_nacimiento, numero_telefono, salario, fecha_incorporacion, fecha_baja, username, password, rol_id', 'safe', 'on'=>'search'),
