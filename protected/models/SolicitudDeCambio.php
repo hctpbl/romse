@@ -41,7 +41,7 @@ class SolicitudDeCambio extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('descripcion_breve, descripcion_detallada, creador', 'required'),
+			array('descripcion_breve, descripcion_detallada', 'required'),
 			array('artefacto_id, creador, probador, desarrollador', 'numerical', 'integerOnly'=>true),
 			array('descripcion_breve', 'length', 'max'=>100),
 			array('descripcion_detallada', 'length', 'max'=>1000),
