@@ -49,6 +49,10 @@ class SolicitudDeCambioController extends Controller
 				'actions'=>array('delete'),
 				'users'=>array('*'),
 			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('adminCCC'),
+				'users'=>array('ccc'),
+			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -168,6 +172,21 @@ class SolicitudDeCambioController extends Controller
 
 		$this->render('admin',array(
 			'model'=>$model,
+		));
+	}
+	
+	/**
+	 * Manages all models for the CCC
+	 */
+	public function actionAdminCCC()
+	{
+		$model=new SolicitudDeCambio('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['SolicitudDeCambio']))
+			$model->attributes=$_GET['SolicitudDeCambio'];
+	
+		$this->render('adminCCC',array(
+				'model'=>$model,
 		));
 	}
 

@@ -12,8 +12,8 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
+		<?php /*echo $form->label($model,'id'); ?>
+		<?php echo $form->textField($model,'id');*/ ?>
 	</div>
 
 	<div class="row">
@@ -24,11 +24,13 @@
 	<div class="row">
 		<?php echo $form->label($model,'fecha_inicio'); ?>
 		<?php echo $form->textField($model,'fecha_inicio'); ?>
+		<hint>aaaa-mm-dd</hint>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'fecha_fin'); ?>
 		<?php echo $form->textField($model,'fecha_fin'); ?>
+		<hint>aaaa-mm-dd</hint>
 	</div>
 
 	<div class="row">
