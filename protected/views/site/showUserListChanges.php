@@ -56,9 +56,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
 						'template'=>'{delete}',
 						'buttons'=>array
 						(
-								'update' => array
+								'delete' => array
 								(
-										'visible'=>'SolicitudDeCambioController::checkUserCreater($data->id)',
+										'visible'=>'SolicitudDeCambioController::checkUserCreater($data->id) && $data->nombre_estado==\'Creado\'',
+										//'visible'=>'($data->nombre_estado=="Creado")',
 										'url' =>'Yii::app()->createUrl("solicitudDeCambio/delete", array("id"=>$data->id))',
 								),
 				
