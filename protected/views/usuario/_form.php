@@ -12,7 +12,7 @@
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
+	'enableAjaxValidation'=>true,
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -45,7 +45,15 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'fecha_nacimiento'); ?>
-		<?php echo $form->textField($model,'fecha_nacimiento'); ?>
+		<?php
+		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+						'attribute'=>'fecha_nacimiento',
+						'model' => $model,
+						'options'=>array(
+							'dateFormat'=>'yy-mm-dd',
+						)
+		));
+		?>
 		<?php echo $form->error($model,'fecha_nacimiento'); ?>
 	</div>
 
@@ -63,13 +71,29 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'fecha_incorporacion'); ?>
-		<?php echo $form->textField($model,'fecha_incorporacion'); ?>
+		<?php
+		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+						'attribute'=>'fecha_incorporacion',
+						'model' => $model,
+						'options'=>array(
+							'dateFormat'=>'yy-mm-dd',
+						)
+		));
+		?>
 		<?php echo $form->error($model,'fecha_incorporacion'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'fecha_baja'); ?>
-		<?php echo $form->textField($model,'fecha_baja'); ?>
+		<?php
+		$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+						'attribute'=>'fecha_baja',
+						'model' => $model,
+						'options'=>array(
+							'dateFormat'=>'yy-mm-dd',
+						)
+		));
+		?>
 		<?php echo $form->error($model,'fecha_baja'); ?>
 	</div>
 
@@ -87,7 +111,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'rol_id'); ?>
-		<?php echo $form->textField($model,'rol_id'); ?>
+		<?php 
+			echo $form->dropDownList($model, 'rol_id', CHtml::listData(
+		    	Rol::model()->findAll(array('select'=>'id, nombre')), 'id', 'nombre'),
+				array(
+					'default'=>'3',
+			));
+		?>
 		<?php echo $form->error($model,'rol_id'); ?>
 	</div>
 
