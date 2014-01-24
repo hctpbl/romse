@@ -43,6 +43,7 @@ define("ROL_USUARIO_FINAL", 4);
 			$this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				// Opciones para administrador
+				array('label'=>'Inicio', 'url'=>array('/site/profileAdmin'), 'visible'=>$admin),
 				array('label'=>'Usuarios', 'url'=>array('/usuario'), 'visible'=>$admin),
 				array('label'=>'Artefactos', 'url'=>array('/artefacto'), 'visible'=>$admin),
 				array('label'=>'Proyectos', 'url'=>array('/proyecto'), 'visible'=>$admin),

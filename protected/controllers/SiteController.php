@@ -27,16 +27,13 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-
-		// La página inicial debe ser el login si no está registrado
 		if (!Yii::app()->user->isGuest){
-			//$this->render('index');
 			if(isset(Yii::app()->user->rol_id) && Yii::app()->user->rol_id == 2)
 				$this->actionShowCccListChangesPending();
 			if(isset(Yii::app()->user->rol_id) && (Yii::app()->user->rol_id == 3 || Yii::app()->user->rol_id == 4))
 				$this->actionShowUserListChanges();
 			if(isset(Yii::app()->user->rol_id) && Yii::app()->user->rol_id == 1)
-				$this->render('usuario');
+				$this->actionProfileAdmin();
 		} else {
 			$this->actionLogin();
 		}
@@ -164,6 +161,14 @@ class SiteController extends Controller
 		$modelChangesClosed = SolicitudEstado::model()->findAll(array(
 				'condition'=>'nombre_estado = \'Cerrado\''));
 		$this->render('showCccListChangesClosed', array('modelChangesClosed'=>$modelChangesClosed));
+	}
+	
+	/**
+	 * Muestra la página inicial del administrador
+	 */
+	public function actionProfileAdmin()
+	{
+		$this->render('profileAdmin');
 	}
 	
 	/**
