@@ -37,7 +37,7 @@ should you have any questions.</p>-->
 $this->widget('zii.widgets.CDetailView', array(
 		'data'=>Yii::app()->user,
 		'attributes'=>array(
-				'id',
+				//'id',
 				'nss',
 				'dni',
 				'nombre',
