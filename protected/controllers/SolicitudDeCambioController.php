@@ -259,6 +259,60 @@ class SolicitudDeCambioController extends Controller
 		$model = SolicitudDeCambio::model()->findAll(array('condition'=>'artefacto_id='.$id));
 		return $model;
 	}
+	
+	/**
+	 * Devuelve el número de solicitudes de cambio enviadas
+	 */
+	public static function getChangesRequestEnviado(){
+		$enviado = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Enviado\''));
+		$countEnviado = count($enviado);
+		return $countEnviado;
+	}
+	
+	/**
+	 * Devuelve el número de solicitudes de cambio abiertas
+	 */
+	public static function getChangesRequestAbierto(){
+		$abierto = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Abierto\''));
+		$countAbierto = count($abierto);
+		return $countAbierto;
+	}
+	
+	/**
+	 * Devuelve el número de solicitudes de cambio verificadas
+	 */
+	public static function getChangesRequestVerificado(){
+		$verificado = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Verificado\''));
+		$countVerificado = count($verificado);
+		return $countVerificado;
+	}
+	
+	/**
+	 * Devuelve el número de solicitudes de cambio duplicadas/rechazadas
+	 */
+	public static function getChangesRequestDupRech(){
+		$dup_rech = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Duplicado/Rechazado\''));
+		$countDup_rech = count($dup_rech);
+		return $countDup_rech;
+	}
+	
+	/**
+	 * Devuelve el número de solicitudes de cambio actualizadas
+	 */
+	public static function getChangesRequestActualizada(){
+		$actualizada = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Envío actualizado\''));
+		$countActualizada = count($actualizada);
+		return $countActualizada;
+	}
+	
+	/**
+	 * Devuelve el número de solicitudes de cambio cerradas
+	 */
+	public static function getChangesRequestCerrado(){
+		$cerrado = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Cerrado\''));
+		$countCerrado = count($cerrado);
+		return $countCerrado;
+	}
 
 	/**
 	 * Performs the AJAX validation.
