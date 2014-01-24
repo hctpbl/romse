@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Proyectos'=>array('index'),
-	$model->id,
+	$model->nombre,
 );
 
 $this->menu=array(
@@ -16,12 +16,12 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Proyecto #<?php echo $model->id; ?></h1>
+<h1>View Proyecto: <?php echo $model->nombre; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
+		//'id',
 		'nombre',
 		'fecha_inicio',
 		'fecha_fin',
