@@ -35,6 +35,10 @@ class ProyectoController extends Controller
 				'actions'=>array('view'),
 				'users'=>array('*'),
 			),
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('viewReport'),
+				'users'=>array('ccc'),
+			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
 				'users'=>array('admin'),
@@ -57,6 +61,18 @@ class ProyectoController extends Controller
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+		));
+	}
+	
+	/**
+	 * Muestra la vista particulas de un proyecto en informes
+	 * @param int $id
+	 */
+	public function actionViewReport($id)
+	{
+		$modelArtefacts = Artefacto::model()->findAll(array('condition'=>'proyecto_id='.$id));
+		$this->render('viewReport',array(
+				'model'=>$this->loadModel($id), 'modelArtefacts'=>$modelArtefacts,
 		));
 	}
 
