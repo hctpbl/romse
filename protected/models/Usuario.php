@@ -158,7 +158,7 @@ class Usuario extends CActiveRecord
 	 *
 	 */
 	public function beforeSave() {
-		if (! empty ( $this->password ))
+		if (!empty($this->password) && $this->isNewRecord)
 			$this->password = CPasswordHelper::hashPassword ( $this->password );
 		return true;
 	}

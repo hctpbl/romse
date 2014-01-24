@@ -21,7 +21,5 @@ if (Yii::app()->user->rol_id == 'ROL_ADMINISTRADOR'){
 <h1>Update Usuario <?php echo $model->id; ?></h1>
 
 <?php 
-if (Yii::app()->user->name == 'admin')
-	$this->renderPartial('_form', array('model'=>$model));
-else 
-	$this->renderPartial('_formUser', array('model'=>$model));?>
+$this->renderPartial('_form', array('model'=>$model));
+?>
