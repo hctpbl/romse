@@ -12,17 +12,19 @@ $this->breadcrumbs=array(
 ?>
 
 <h1>Lista de informes disponibles</h1>
-<h3>Solicitudes de cambio</h3>
+<!-- <h3><a href='/romse/site/reportSolicitudDeCambio' >Solicitudes de cambio</a></h3>-->
+<h3><a href='../solicitudDeCambio/adminCCC' >Solicitudes de cambio</a></h3>
+
 <?php
-$this->widget('zii.widgets.grid.CGridView', array(
+/*$this->widget('zii.widgets.grid.CGridView', array(
 		'dataProvider' => new CArrayDataProvider($modelChanges),
 		'columns' => array(
-				/*'id',*/ 'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
-				/*'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
+				'id', 'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
+				'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
 				'riesgos:text:Riesgos',
 				'artefacto.nombre:text:artefacto', 'creador0.username:text:Creador',
 				'probador0.username:text:Probador',
-				'desarrollador0.username:text:Desarrollador',*/ 'nombre_estado:text:Estado',
+				'desarrollador0.username:text:Desarrollador', 'nombre_estado:text:Estado',
 				array
 				(
 						'class'=>'CButtonColumn',
@@ -37,13 +39,14 @@ $this->widget('zii.widgets.grid.CGridView', array(
 						),
 				)
 		),
-)); 
+)); */
 ?>
+<h3><a href='../proyecto/adminCCC' >Proyectos</a></h3>
 
-<h3>Proyectos</h3>
+<!-- <h3>Proyectos</h3>-->
 
 <?php 
-
+/*
 $this->widget('zii.widgets.grid.CGridView', array(
 		'dataProvider' => new CArrayDataProvider($modelProjects),
 		'columns' => array(
@@ -63,13 +66,14 @@ $this->widget('zii.widgets.grid.CGridView', array(
 				)
 		),
 ));
-
+*/
 ?>
+<h3><a href='../artefacto/adminCCC' >Artefactos</a></h3>
 
-<h3>Artefactos</h3>
+<!-- <h3>Artefactos</h3>-->
 
 <?php 
-
+/*
 $this->widget('zii.widgets.grid.CGridView', array(
 		'dataProvider' => new CArrayDataProvider($modelArtifacts),
 		'columns' => array(
@@ -89,7 +93,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 				)
 		),
 ));
-
+*/
 ?>
 
 
