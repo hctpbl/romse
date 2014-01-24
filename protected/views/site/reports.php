@@ -12,11 +12,11 @@ $this->breadcrumbs=array(
 ?>
 
 <h1>Lista de informes disponibles</h1>
-<h3><a href='../solicitudDeCambio/adminCCC' >Solicitudes de cambio</a></h3>
+<!-- <h3><a href='../solicitudDeCambio/adminCCC' >Solicitudes de cambio</a></h3>
 
 <h3><a href='../proyecto/adminCCC' >Proyectos</a></h3>
 
-<h3><a href='../artefacto/adminCCC' >Artefactos</a></h3>
+<h3><a href='../artefacto/adminCCC' >Artefactos</a></h3> -->
 
 <h3>Gráficas</h3>
 <?php
