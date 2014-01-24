@@ -16,9 +16,14 @@ class CambioDeEstadoController extends Controller
 	{
 		$solicitud = $this->loadSolicitudDeCambio($id);
 		$cambioDeEstado = $this->loadCambioDeEstadoActual($solicitud);
+		$estadoACambiar = "";
 
 		if(isset($_POST['SolicitudDeCambio']))
 		{
+			// Establecemos como escenario el apropiado para el estado, así
+			// se aplicarán las reglas de validación pertinentes
+			// (ver rules en la clase SolicitudDeCambio)
+			$solicitud->scenario = 'cambioAEstado'.$_POST['nuevo_estado'];
 			$solicitud->attributes=$_POST['SolicitudDeCambio'];
 			if($solicitud->save()) {
 				$cambio = new CambioDeEstado();
@@ -26,19 +31,26 @@ class CambioDeEstadoController extends Controller
 				$cambio->usuario_id = Yii::app()->user->id;
 				$cambio->estado_id = $_POST['nuevo_estado'];
 				$cambio->save();
-				if (isset($_POST['artefacto_version'])) {
+				if (isset($_POST['version'])) {
 					$artefacto = $solicitud->artefacto;
-					$artefacto->version = $_POST['artefacto_version'];
+					$artefacto->version = $_POST['version'];
 					$artefacto->save();
 				}
 				$this->redirect(array('view','id'=>$solicitud->id));
+			} else {
+				// Si no se ha podido guardar la solicitud es que no ha pasado
+				// la validación. En ese caso, volveremos a la página de cambio
+				// de estado pero estará seleccionado el estado que hemos elegido
+				// y serán visibles los campos del formulario, es la única forma de
+				// informar al usuari de qué errores ha cometido y dónde.
+				$estadoACambiar = $_POST['nuevo_estado'];
 			}
 		}
 		
 		$this->render('index',array(
 			'model'=>$solicitud,
 			'cambio'=>$cambioDeEstado,
-			'form'=>"",
+			'estadoACambiar'=>$estadoACambiar
 		));
 	}
 	
@@ -135,11 +147,6 @@ class CambioDeEstadoController extends Controller
 			}
 			break;
 		case 'Envío actualizado':
-			if (Yii::app()->user->rol_id == 2){
-				return true;
-			}
-			break;
-		case 'Cerrado':
 			if (Yii::app()->user->rol_id == 2){
 				return true;
 			}
