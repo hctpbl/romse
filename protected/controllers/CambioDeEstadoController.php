@@ -89,6 +89,11 @@ class CambioDeEstadoController extends Controller
 	 */
 	public static function checkUser($estadoId, $solicitudId){
 		switch ($estadoId){
+		case 'Creado':
+			if ((Yii::app()->user->rol_id == 3 || Yii::app()->user->rol_id == 4) && SolicitudDeCambioController::checkUserCreater($solicitudId)){
+				return true;
+			}
+			break; 
 		case 'Enviado':
 			if (Yii::app()->user->rol_id == 2){
 				return true;
@@ -140,9 +145,7 @@ class CambioDeEstadoController extends Controller
 			}
 			break;
 		default:
-			if ((Yii::app()->user->rol_id == 3 || Yii::app()->user->rol_id == 4) && SolicitudDeCambioController::checkUserCreater($solicitudId)){
-				return true;
-			}
+				return false;
 		}
 		
 	}
