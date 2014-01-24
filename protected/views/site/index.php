@@ -48,6 +48,6 @@ $this->widget('zii.widgets.CDetailView', array(
 ));
 ?>
 <p><?php
-$url= '/romse/usuario/update/'.Yii::app()->user->id;
+$url=Yii::app()->createUrl('usuario/update', array('id'=>Yii::app()->user->id));
 echo "<a href='".$url."' >Modificar datos</a>" ?></p>
 
