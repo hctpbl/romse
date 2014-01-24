@@ -22,8 +22,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'descripcion_detallada'); ?>
-		<?php echo $form->textField($model,'descripcion_detallada',array('size'=>60,'maxlength'=>1000)); ?>
+		<?php /*echo $form->label($model,'descripcion_detallada'); ?>
+		<?php echo $form->textField($model,'descripcion_detallada',array('size'=>60,'maxlength'=>1000)); */?>
 	</div>
 
 	<div class="row">

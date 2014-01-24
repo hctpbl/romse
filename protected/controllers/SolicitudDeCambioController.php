@@ -313,6 +313,26 @@ class SolicitudDeCambioController extends Controller
 		$countCerrado = count($cerrado);
 		return $countCerrado;
 	}
+	
+	/**
+	 * Se obtienen las solicitudes de cambio del mes hasta la fecha
+	 * @return number
+	 */
+	public static function getChangesRequestByMonth(){
+		// Se establece la zona horaria
+		$timezone = date_default_timezone_get();
+		date_default_timezone_set($timezone);
+		// Se obtiene la hora actual y los dias hasta el día 1
+		$actualDate = date('Y-m-d h:i:s', time());
+		$restaDias = date('d', strtotime($actualDate)) - 1 ;
+		// Se obtiene la fecha del día 1 del mes
+		$startMonth = strtotime('-'.$restaDias.' day', strtotime($actualDate));
+		$startMonth = date('Y-m-d h:i:s', $startMonth);
+		$changesByMonth = SolicitudEstado::model()->findAll(array('condition'=>'fecha_estado<=NOW() 
+																			AND fecha_estado>=\''.$startMonth.'\''));
+		$countChangesByMonth = count($changesByMonth);
+		return $countChangesByMonth;
+	}
 
 	/**
 	 * Performs the AJAX validation.

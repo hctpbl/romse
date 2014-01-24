@@ -47,17 +47,17 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		//'id',
 		'descripcion_breve',
-		'descripcion_detallada',
-		/*'impacto',
+		//'descripcion_detallada',
+		'impacto',
 		'prioridad',
-		'temporizacion',*/
-		/*
-		'riesgos',
-		'artefacto_id',
-		'creador',
-		'probador',
-		'desarrollador',
-		*/
+		//'temporizacion',
+		
+		//'riesgos',
+		/*'artefacto.nombre:text:Artefacto',
+		'creador0.username:text:Creador',
+		'probador0.username:text:Probador',
+		'desarrollador0.username:text:Desarrollador',*/
+		
 		array
 				(
 						'class'=>'CButtonColumn',

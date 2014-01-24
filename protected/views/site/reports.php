@@ -12,13 +12,14 @@ $this->breadcrumbs=array(
 ?>
 
 <h1>Lista de informes disponibles</h1>
-<h3><a href='../solicitudDeCambio/adminCCC' >Solicitudes de cambio</a></h3>
+<h2><a href='../solicitudDeCambio/adminCCC' >Solicitudes de cambio</a></h2>
 
-<h3><a href='../proyecto/adminCCC' >Proyectos</a></h3>
+<h2><a href='../proyecto/adminCCC' >Proyectos</a></h2>
 
-<h3><a href='../artefacto/adminCCC' >Artefactos</a></h3>
+<h2><a href='../artefacto/adminCCC' >Artefactos</a></h2>
 
-<h3>Gráficas</h3>
+<h2>Gráficas</h2>
+<h3>Número de solicitudes este mes hasta el momento: <?php echo SolicitudDeCambioController::getChangesRequestByMonth()?></h3>
 <?php
 $changesRequestEnviado = SolicitudDeCambioController::getChangesRequestEnviado();
 $changesRequestAbierto = SolicitudDeCambioController::getChangesRequestAbierto();
@@ -28,6 +29,7 @@ $changesRequestActualizada = SolicitudDeCambioController::getChangesRequestActua
 $changesRequestCerrado = SolicitudDeCambioController::getChangesRequestCerrado();
 
 ?>
+
 <html>
   <head>
     <!--Load the AJAX API-->
@@ -67,11 +69,30 @@ $changesRequestCerrado = SolicitudDeCambioController::getChangesRequestCerrado()
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
         chart.draw(data, options);
       }
+
+      function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['Year', 'Sales', 'Expenses'],
+            ['2004',  1000,      400],
+            ['2005',  1170,      460],
+            ['2006',  660,       1120],
+            ['2007',  1030,      540]
+          ]);
+
+          var options = {
+            title: 'Company Performance',
+            hAxis: {title: 'Year', titleTextStyle: {color: 'red'}}
+          };
+
+          var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+          chart.draw(data, options);
+        }
     </script>
   </head>
 
   <body>
     <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
     <div id="chart_div"></div>
   </body>
 </html>
