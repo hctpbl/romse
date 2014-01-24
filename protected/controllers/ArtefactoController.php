@@ -47,6 +47,10 @@ class ArtefactoController extends Controller
 				'actions'=>array('admin','delete'),
 				'users'=>array('admin'),
 			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('adminCCC'),
+				'users'=>array('ccc'),
+			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -159,6 +163,21 @@ class ArtefactoController extends Controller
 
 		$this->render('admin',array(
 			'model'=>$model,
+		));
+	}
+	
+	/**
+	 * Manages all models for the CCC
+	 */
+	public function actionAdminCCC()
+	{
+		$model=new Artefacto('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Artefacto']))
+			$model->attributes=$_GET['Artefacto'];
+	
+		$this->render('adminCCC',array(
+				'model'=>$model,
 		));
 	}
 

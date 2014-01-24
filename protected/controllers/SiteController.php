@@ -176,12 +176,12 @@ class SiteController extends Controller
 	 */
 	public function actionReports(){
 		
-		$modelChanges = SolicitudEstado::model()->findAll();
-		$modelProjects = Proyecto::model()->findAll();
-		$modelArtifacts = Artefacto::model()->findAll();
+		//$modelChanges = SolicitudEstado::model()->findAll();
+		//$modelProjects = Proyecto::model()->findAll();
+		//$modelArtifacts = Artefacto::model()->findAll();
 		//$modelChanges = SolicitudDeCambio::model()->findAll();
 		
-		$this->render('reports', array('modelChanges'=>$modelChanges, 'modelProjects'=>$modelProjects, 'modelArtifacts'=>$modelArtifacts));
+		$this->render('reports' /*array('modelChanges'=>$modelChanges, 'modelProjects'=>$modelProjects, 'modelArtifacts'=>$modelArtifacts)*/);
 	}
 	
 	/**
