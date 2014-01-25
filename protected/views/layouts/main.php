@@ -72,27 +72,28 @@ define("ROL_USUARIO_FINAL", 4);
 	$this->widget('application.extensions.eflatmenu.EFlatMenu', array(
 			'items' => array(
 				// Opciones para administrador
-				array('label'=>'Inicio', 'url'=>array('/site/profileAdmin'), 'visible'=>$admin),
-				array('label'=>'Usuarios', 'url'=>array('/usuario'), 'visible'=>$admin),
-				array('label'=>'Artefactos', 'url'=>array('/artefacto'), 'visible'=>$admin),
-				array('label'=>'Proyectos', 'url'=>array('/proyecto'), 'visible'=>$admin),
+				array('label'=>'Inicio', 'url'=>array('site/profileAdmin'), 'visible'=>$admin),
+				array('label'=>'Usuarios', 'url'=>array('usuario/index'), 'visible'=>$admin),
+				array('label'=>'Artefactos', 'url'=>array('artefacto/index'), 'visible'=>$admin),
+				array('label'=>'Proyectos', 'url'=>array('proyecto/index'), 'visible'=>$admin),
 				// Opciones para usuarios desarrolladores y finales
-				array('label'=>'Mis solicitudes de cambio', 'url'=>array('/site/showUserListChanges'), 'visible'=>($developer || $finalUser)),
+				array('label'=>'Mis solicitudes de cambio', 'url'=>array('site/showUserListChanges'), 'visible'=>($developer || $finalUser)),
 				//array('label'=>'Mi perfil', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Mi perfil', 'url'=>array('/site/profile'), 'visible'=>($developer || $finalUser)),
+				array('label'=>'Mi perfil', 'url'=>array('site/profile'), 'visible'=>($developer || $finalUser)),
 				// Opciones para ccc
-				array('label'=>'Solicitudes pendientes', 'url'=>array('/site/showCccListChangesPending'), 'visible'=>$ccc),
-				array('label'=>'Solicitudes cerradas', 'url'=>array('/site/showCccListChangesClosed'), 'visible'=>$ccc),
-				array('label'=>'Informes', 'url'=>array('/site/reports'), 'visible'=>$ccc, 'items'=>array(
-				array('label'=>'Solicitudes de cambio', 'url'=>array('solicitudDeCambio/adminCCC'), 'visible'=>$ccc),
-				array('label'=>'Proyectos', 'url'=>array('proyecto/adminCCC'), 'visible'=>$ccc),
-				array('label'=>'Artefactos', 'url'=>array('artefacto/adminCCC'), 'visible'=>$ccc),
+				array('label'=>'Solicitudes pendientes', 'url'=>array('site/showCccListChangesPending'), 'visible'=>$ccc),
+				array('label'=>'Solicitudes cerradas', 'url'=>array('site/showCccListChangesClosed'), 'visible'=>$ccc),
+				array('label'=>'Informes', 'url'=>array('site/reports'), 'visible'=>$ccc, 'items'=>array(
+					array('label'=>'Información estadística', 'url'=>array('site/reports'), 'visible'=>$ccc),
+					array('label'=>'Solicitudes de cambio', 'url'=>array('solicitudDeCambio/adminCCC'), 'visible'=>$ccc),
+					array('label'=>'Proyectos', 'url'=>array('proyecto/adminCCC'), 'visible'=>$ccc),
+					array('label'=>'Artefactos', 'url'=>array('artefacto/adminCCC'), 'visible'=>$ccc),
 				)),
 				// Opciones comunes
-				array('label'=>'Inicio', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Sobre nosotros', 'url'=>array('/site/page', 'view'=>'about'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Contacto', 'url'=>array('/site/contact'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>'Inicio', 'url'=>array('site/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Sobre nosotros', 'url'=>array('site/page', 'view'=>'about'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Contacto', 'url'=>array('site/contact'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			)
 	));
 	?>
