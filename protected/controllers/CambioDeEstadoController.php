@@ -176,6 +176,64 @@ class CambioDeEstadoController extends Controller
 	}
 	
 	/**
+	 * Devuelve el número de solicitudes que han sido abiertas en el mes y año dado
+	 * @return int
+	 */
+	public static function getChangesRequestAbiertoMonth($date){
+		$month = date('m', strtotime($date));
+		$year = date('Y', strtotime($date));
+	
+		$changesAbiertoMonth = CambioDeEstado::model()->findAll(array('condition'=>'estado_id = 2 AND
+																MONTH(fecha)='.$month.' AND YEAR(fecha)='.$year));
+		return count($changesAbiertoMonth);
+	}
+	
+	/**
+	 * Devuelve el número de solicitudes que han sido cerradas en el mes y año dado
+	 * @return int
+	 */
+	public static function getChangesRequestCerradoMonth($date){
+		$month = date('m', strtotime($date));
+		$year = date('Y', strtotime($date));
+	
+		$changesCerradoMonth = CambioDeEstado::model()->findAll(array('condition'=>'estado_id = 10 AND
+																MONTH(fecha)='.$month.' AND YEAR(fecha)='.$year));
+		return count($changesCerradoMonth);
+	}
+	
+	/**
+	 * Devuelve el número de solicitudes cerradas en un día concreto
+	 * @return int
+	 */
+	public static function getChangesRequestAbiertoByDay($date){
+		$day = date('d', strtotime($date));
+		$month = date('m', strtotime($date));
+		$year = date('Y', strtotime($date));
+		/*$changesCerradoByDay = CambioDeEstado::model()->findAll(array('condition'=>'estado_id = 10 AND
+		 fecha='.$date));*/
+		$changesAbiertoByDay = CambioDeEstado::model()->findAll(array('condition'=>'estado_id = 2 AND
+																YEAR(fecha)='.$year.' AND MONTH(fecha)='.$month.'
+																AND DAY(fecha)='.$day));
+		return count($changesAbiertoByDay);
+	}
+	
+	/**
+	 * Devuelve el número de solicitudes cerradas en un día concreto
+	 * @return int
+	 */
+	public static function getChangesRequestCerradoByDay($date){
+		$day = date('d', strtotime($date));
+		$month = date('m', strtotime($date));
+		$year = date('Y', strtotime($date));
+		/*$changesCerradoByDay = CambioDeEstado::model()->findAll(array('condition'=>'estado_id = 10 AND
+																fecha='.$date));*/
+		$changesCerradoByDay = CambioDeEstado::model()->findAll(array('condition'=>'estado_id = 10 AND
+																YEAR(fecha)='.$year.' AND MONTH(fecha)='.$month.'
+																AND DAY(fecha)='.$day));
+		return count($changesCerradoByDay);
+	}
+	
+	/**
 	 * Dado un estado, genera el formulario que pide los datos
 	 * adicionales para pasar a él (si es que fueran necesarios)
 	 */
