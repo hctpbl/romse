@@ -33,7 +33,9 @@ class UsuarioController extends Controller
 			),
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('view'),
-				'users'=>array('*'),
+				'users'=>array(Yii::app()->user->name),
+                'expression' => '(Yii::app()->user->id == ($_GET[\'id\'])) || Yii::app()->user->name==\'admin\''
+			
 			),
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('viewResumen'),
