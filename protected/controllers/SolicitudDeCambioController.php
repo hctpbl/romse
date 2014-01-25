@@ -262,92 +262,80 @@ class SolicitudDeCambioController extends Controller
 	
 	/**
 	 * Devuelve el número de solicitudes de cambio enviadas
+	 * @return int
 	 */
 	public static function getChangesRequestEnviado(){
-		$enviado = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Enviado\''));
+		$enviado = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Enviado\' AND (MONTH(fecha_estado)=(MONTH(NOW())))'));
 		$countEnviado = count($enviado);
 		return $countEnviado;
 	}
 	
 	/**
 	 * Devuelve el número de solicitudes de cambio abiertas
+	 * @return int
 	 */
 	public static function getChangesRequestAbierto(){
-		$abierto = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Abierto\''));
+		$abierto = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Abierto\' AND (MONTH(fecha_estado)=(MONTH(NOW())))'));
 		$countAbierto = count($abierto);
 		return $countAbierto;
 	}
 	
 	/**
 	 * Devuelve el número de solicitudes de cambio verificadas
+	 * @return int
 	 */
 	public static function getChangesRequestVerificado(){
-		$verificado = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Verificado\''));
+		$verificado = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Verificado\' AND (MONTH(fecha_estado)=(MONTH(NOW())))'));
 		$countVerificado = count($verificado);
 		return $countVerificado;
 	}
 	
 	/**
 	 * Devuelve el número de solicitudes de cambio duplicadas/rechazadas
+	 * @return int
 	 */
 	public static function getChangesRequestDupRech(){
-		$dup_rech = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Duplicado/Rechazado\''));
+		$dup_rech = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Duplicado/Rechazado\' AND (MONTH(fecha_estado)=(MONTH(NOW())))'));
 		$countDup_rech = count($dup_rech);
 		return $countDup_rech;
 	}
 	
 	/**
 	 * Devuelve el número de solicitudes de cambio actualizadas
+ 	 * @return int
 	 */
 	public static function getChangesRequestActualizada(){
-		$actualizada = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Envío actualizado\''));
+		$actualizada = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Envío actualizado\' AND (MONTH(fecha_estado)=(MONTH(NOW())))'));
 		$countActualizada = count($actualizada);
 		return $countActualizada;
 	}
 	
 	/**
 	 * Devuelve el número de solicitudes de cambio cerradas
+	 * @return int
 	 */
 	public static function getChangesRequestCerrado(){
-		$cerrado = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Cerrado\''));
+		$cerrado = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado=\'Cerrado\' AND (MONTH(fecha_estado)=(MONTH(NOW())))'));
 		$countCerrado = count($cerrado);
 		return $countCerrado;
 	}
 	
 	/**
-	 * Se obtienen las solicitudes de cambio del mes hasta la fecha
+	 * Se obtiene el número de solicitudes de cambio del mes hasta la fecha
 	 * @return number
 	 */
-	public static function getChangesRequestByMonth(){
+	public static function getChangesRequestThisMonth(){
 		// Se establece la zona horaria
-		$timezone = date_default_timezone_get();
-		date_default_timezone_set($timezone);
+		//$timezone = date_default_timezone_get();
+		//date_default_timezone_set($timezone);
 		// Se obtiene la hora actual y los dias hasta el día 1
-		$actualDate = date('Y-m-d h:i:s', time());
+		//$actualDate = date('Y-m-d h:i:s', time());
 		
-		$restaDias = date('d', strtotime($actualDate)) - 1 ;
-		// Se obtiene la fecha del día 1 del mes
-		$startMonth = strtotime('-'.$restaDias.' day', strtotime($actualDate));
-		$startMonth = date('Y-m-d h:i:s', $startMonth);
-		$changesByMonth = SolicitudEstado::model()->findAll(array('condition'=>'fecha_estado<=NOW() 
-																			AND fecha_estado>=\''.$startMonth.'\''));
+		$changesByMonth = SolicitudEstado::model()->findAll(array('condition'=>'(MONTH(fecha_estado)=(MONTH(NOW())) AND YEAR(fecha_estado) = YEAR (NOW()))'));
 		$countChangesByMonth = count($changesByMonth);
 		return $countChangesByMonth;
 	}
 	
-	/**
-	 * Se obtienen las solicitudes de cambio enviadas
-	 */
-	public static function getChangesRequestEnviadoFourMonthsAgo(){
-		// Se establece la zona horaria
-		$timezone = date_default_timezone_get();
-		date_default_timezone_set($timezone);
-		// Se obtiene la hora actual y los dias hasta el día 1
-		$actualDate = date('Y-m-d h:i:s', time());
-		
-		$newDate = strtotime('-4 months', strtotime($actualDate));
-		return $newDate;
-	}
 	/**
 	 * Performs the AJAX validation.
 	 * @param SolicitudDeCambio $model the model to be validated
@@ -361,13 +349,4 @@ class SolicitudDeCambioController extends Controller
 		}
 	}
 	
-	protected function getActualDate(){
-		// Se establece la zona horaria
-		$timezone = date_default_timezone_get();
-		date_default_timezone_set($timezone);
-		// Se obtiene la hora actual y los dias hasta el día 1
-		$actualDate = date('Y-m-d h:i:s', time());
-		
-		return $actualDate;
-	}
 }
