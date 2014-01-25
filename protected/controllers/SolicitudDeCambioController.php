@@ -319,7 +319,12 @@ class SolicitudDeCambioController extends Controller
 	 * @return number
 	 */
 	public static function getChangesRequestByMonth(){
-		$actualDate = getActualDate();
+		// Se establece la zona horaria
+		$timezone = date_default_timezone_get();
+		date_default_timezone_set($timezone);
+		// Se obtiene la hora actual y los dias hasta el día 1
+		$actualDate = date('Y-m-d h:i:s', time());
+		
 		$restaDias = date('d', strtotime($actualDate)) - 1 ;
 		// Se obtiene la fecha del día 1 del mes
 		$startMonth = strtotime('-'.$restaDias.' day', strtotime($actualDate));
@@ -334,9 +339,14 @@ class SolicitudDeCambioController extends Controller
 	 * Se obtienen las solicitudes de cambio enviadas
 	 */
 	public static function getChangesRequestEnviadoFourMonthsAgo(){
-		$actualDate = $this->getActualDate();
+		// Se establece la zona horaria
+		$timezone = date_default_timezone_get();
+		date_default_timezone_set($timezone);
+		// Se obtiene la hora actual y los dias hasta el día 1
+		$actualDate = date('Y-m-d h:i:s', time());
+		
 		$newDate = strtotime('-4 months', strtotime($actualDate));
-		echo CHtml::encode('Fecha: '.$newDate);
+		return $newDate;
 	}
 	/**
 	 * Performs the AJAX validation.

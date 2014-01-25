@@ -73,7 +73,10 @@ $this->breadcrumbs=array(
     </script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-    <?php SolicitudDeCambioController::getChangesRequestEnviadoFourMonthsAgo();?>
+    <?php $newDate = SolicitudDeCambioController::getChangesRequestEnviadoFourMonthsAgo();
+    echo CHtml::encode('Fecha: '.$newDate);
+    
+    ?>
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
