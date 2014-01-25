@@ -1,6 +1,10 @@
 <?php
 /* @var $this SiteController */
-
+/* @var $modelChangesClosed SolicitudDeCambio */
+/* @var $modelChangesCreator SolicitudDeCambio */
+/* @var $modelChangesTester SolicitudDeCambio */
+/* @var $modelChangesDeveloper SolicitudDeCambio */
+/* @var $modelCheckChange CambioDeEstadoController */
 
 $this->pageTitle=Yii::app()->name. ' - Mis solicitudes de cambio';
 $this->breadcrumbs=array(
