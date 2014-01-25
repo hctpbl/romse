@@ -13,37 +13,35 @@ $this->breadcrumbs=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		//'id',
 		'descripcion_breve',
 		'descripcion_detallada',
-		//'fecha_creacion',
 		'impacto',
 		'prioridad',
 		'temporizacion',
 		'riesgos',
 		array(
 			'label' => 'Artefacto',
-			'value' => CHtml::link(CHtml::encode(
+			'value' => isset($model->artefacto->nombre) ? CHtml::link(CHtml::encode(
 				$model->artefacto->nombre),
-				array('artefacto/view','id'=>$model->artefacto_id)), 'type' => 'raw'
+				array('artefacto/view','id'=>$model->artefacto_id)) : '', 'type' => 'raw'
 		),
 		array(
 			'label' => 'Creador',
-			'value' => CHtml::link(CHtml::encode(
+			'value' => isset($model->creador0->username) ? CHtml::link(CHtml::encode(
 				$model->creador0->username),
-				array('usuario/viewResumen','id'=>$model->creador)), 'type' => 'raw'
+				array('usuario/viewResumen','id'=>$model->creador)) : '', 'type' => 'raw'
 		),
 		array(
 			'label' => 'Probador',
-			'value' => CHtml::link(CHtml::encode(
+			'value' => isset($model->probador0->username) ? CHtml::link(CHtml::encode(
 				$model->probador0->username),
-				array('usuario/viewResumen','id'=>$model->probador)), 'type' => 'raw'
+				array('usuario/viewResumen','id'=>$model->probador)) : '', 'type' => 'raw'
 		),
 		array(
 			'label' => 'Desarrollador',
-			'value' => CHtml::link(CHtml::encode(
+			'value' => isset($model->desarrollador0->username) ? CHtml::link(CHtml::encode(
 				$model->desarrollador0->username),
-				array('usuario/viewResumen','id'=>$model->desarrollador)), 'type' => 'raw'
+				array('usuario/viewResumen','id'=>$model->desarrollador)) : '', 'type' => 'raw'
 		),
 	),
 )); ?>
@@ -143,7 +141,6 @@ $this->breadcrumbs=array(
 
 		<div class="row">
 			<?php echo $form->labelEx($model,'probador'); ?>
-			<?php //echo $form->textField($model,'depende_de'); ?>
 			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
 				    'name'=>'probador_name',
 					'value'=> '',
@@ -165,7 +162,6 @@ $this->breadcrumbs=array(
 
 		<div class="row">
 			<?php echo $form->labelEx($model,'desarrollador'); ?>
-			<?php //echo $form->textField($model,'depende_de'); ?>
 			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
 				    'name'=>'desarrollador_name',
 					'value'=> '',
@@ -187,7 +183,6 @@ $this->breadcrumbs=array(
 
 		<div class="row">
 			<?php echo $form->labelEx($model,'artefacto_id'); ?>
-			<?php //echo $form->textField($model,'depende_de'); ?>
 			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
 				    'name'=>'artefacto_name',
 					'value'=> '',

@@ -14,11 +14,9 @@ $this->breadcrumbs=array(
 $this->widget('zii.widgets.grid.CGridView', array(
         'dataProvider' => new CArrayDataProvider($modelChangesPending),
         'columns' => array(
-				/*'id',*/ 'descripcion_breve:text:Desc. Breve', 'descripcion_detallada:text:Desc. Detalle',
-				/*'impacto:text:Impacto', 'prioridad:text:Prioridad', 'temporizacion:text:Temporizacion',
-				'riesgos:text:Riesgos',
-				'artefacto:text:artefacto', 'creador:text:Creador',
-				'probador:text:Probador', 'desarrollador:text:Desarrollador', */'nombre_estado:text:Estado',
+				'descripcion_breve:text:Desc. Breve', 
+        		'descripcion_detallada:text:Desc. Detalle',
+				'nombre_estado:text:Estado',
 				array
 				(
 						'class'=>'CButtonColumn',
@@ -29,7 +27,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
 								(
 										'url' =>'Yii::app()->createUrl("solicitudDeCambio/view",array("id"=>$data->id))',
 								),
-
 						),
 				),
         		array

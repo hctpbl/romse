@@ -23,7 +23,6 @@ endif;
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		//'id',
 		'nss',
 		'dni',
 		'nombre',
@@ -33,14 +32,12 @@ endif;
 		'numero_telefono',
 		'salario',
 		'fecha_incorporacion',
-		//'fecha_baja',
 		array(
 			'label' => 'Fecha Baja',
 			'visible'=> isset($model->fecha_baja),
 			'value' => $model->fecha_baja, 'type' => 'raw'
 		),
 		'username',
-		//'password',
 		'rol.nombre:text:Rol',
 	),
 )); ?>
