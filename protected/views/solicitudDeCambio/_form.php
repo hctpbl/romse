@@ -37,8 +37,8 @@
 	casilla correspondiente o más adelante, accediendo a sus solicitudes y cambiando el estado a enviada.</p>
 	
 	<label for="SolicitudDeCambio_enviar">¿Enviar?</label>
-	￼<input type="hidden" name="enviar" value="0" checked>
-	￼<input type="checkbox" name="enviar" value="1" checked>
+	<input type="hidden" name="enviar" value="0" checked>
+	<input type="checkbox" name="enviar" value="1" checked>
 	<?php endif; ?>
 	
 	<div class="row buttons">
