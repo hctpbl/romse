@@ -97,6 +97,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		),
 ));
 ?>
+<?php if (Yii::app()->user->rol_id != 4):?>
 <h3>Solicitudes en las que soy desarrollador</h3>
 <?php 
 
@@ -133,6 +134,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 				)		
 				),
 ));
+endif;
 ?>
 
 <p><?php echo CHtml::button('Crear nueva solicitud de cambio', array('submit' => '?r=solicitudDeCambio/create')); ?></p>
