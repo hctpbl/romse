@@ -121,19 +121,12 @@ $changesRequestCerrado = SolicitudDeCambioController::getChangesRequestCerrado()
 		$arrayCerrado[$i] = CambioDeEstadoController::getChangesRequestCerradoByDay($actualDate);
 		$arrayAbierto[$i] = CambioDeEstadoController::getChangesRequestAbiertoByDay($actualDate);
 		$actualDate = strtotime('-1 day', strtotime($actualDate));
+		$actualDate = date('Y-m-d h:i:s', $actualDate);
 	}  
     ?>
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
-    	  /*var data = google.visualization.arrayToDataTable([
-    	  ['Day', 'Sales', 'Expenses'],
-    	  ['2004',  1000,      400],
-    	  ['2005',  1170,      460],
-    	  ['2006',  660,       1120],
-    	  ['2007',  1030,      540]
-    	  ]);*/
-    	  
     	  var data = google.visualization.arrayToDataTable([
     	  ['Day', 'Abiertas' , 'Cerradas' ],
     	  <?php 
@@ -163,6 +156,5 @@ $changesRequestCerrado = SolicitudDeCambioController::getChangesRequestCerrado()
     <div id="bar_chart"></div>
     <br/>
     <div id="line_chart"></div>
-   
   </body>
 </html>
