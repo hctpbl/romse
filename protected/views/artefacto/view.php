@@ -20,7 +20,7 @@ if (Yii::app()->user->rol_id == 1):
 endif;
 ?>
 
-<h1>View Artefacto: <?php echo $model->nombre; ?></h1>
+<h1>Ver Artefacto: <?php echo $model->nombre; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

@@ -17,7 +17,7 @@ if (Yii::app()->user->rol_id == 1):
 endif;
 ?>
 
-<h1>View Usuario: <?php echo $model->username; ?></h1>
+<h1>Ver Usuario: <?php echo $model->username; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

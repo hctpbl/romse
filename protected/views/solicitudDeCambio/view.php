@@ -3,7 +3,7 @@
 /* @var $model SolicitudDeCambio */
 
 $this->breadcrumbs=array(
-	'Solicitud De Cambios'=>Yii::app()->request->urlReferrer,
+	'Solicitudes de Cambio'=>Yii::app()->request->urlReferrer,
 	$model->id,
 );
 
@@ -17,7 +17,7 @@ $this->breadcrumbs=array(
 */
 ?>
 
-<h1>View SolicitudDeCambio <?php /* echo $model->id; */?></h1>
+<h1>Ver Solicitud de cambio <?php /* echo $model->id; */?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
