@@ -55,8 +55,8 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=pgpi_grupo01',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
+			'username' => 'user',
+			'password' => 'password',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(
