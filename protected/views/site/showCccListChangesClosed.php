@@ -19,12 +19,12 @@ $this->widget('zii.widgets.grid.CGridView', array(
 				array
 				(
 						'class'=>'CButtonColumn',
-						'template'=>'{delete}',
+						'template'=>'{view}',
 						'buttons'=>array
 						(
-								'delete' => array
+								'view' => array
 								(
-										'url' =>'Yii::app()->createUrl("solicitudDeCambio/delete", array("id"=>$data->id))',
+										'url' =>'Yii::app()->createUrl("solicitudDeCambio/view", array("id"=>$data->id))',
 								),
 						),
 				)
