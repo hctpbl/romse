@@ -20,7 +20,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		'dataProvider' => new CArrayDataProvider($modelChangesCreator),
 		'columns' => array(
 				'descripcion_breve:text:Desc. Breve', 
-				'descripcion_detallada:text:Desc. Detalle',
+				//'descripcion_detallada:text:Desc. Detalle',
 				'nombre_estado:text:Estado',
 				array
 				(
@@ -70,7 +70,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		'dataProvider' => new CArrayDataProvider($modelChangesTester),
 		'columns' => array(
 				'descripcion_breve:text:Desc. Breve', 
-				'descripcion_detallada:text:Desc. Detalle',
+				//'descripcion_detallada:text:Desc. Detalle',
 				'nombre_estado:text:Estado',
 				array
 				(
@@ -109,7 +109,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		'dataProvider' => new CArrayDataProvider($modelChangesDeveloper),
 		'columns' => array(
 				'descripcion_breve:text:Desc. Breve', 
-				'descripcion_detallada:text:Desc. Detalle',
+				//'descripcion_detallada:text:Desc. Detalle',
 				'nombre_estado:text:Estado',
 				array
 				(

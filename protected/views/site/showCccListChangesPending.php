@@ -15,7 +15,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
         'dataProvider' => new CArrayDataProvider($modelChangesPending),
         'columns' => array(
 				'descripcion_breve:text:Desc. Breve', 
-        		'descripcion_detallada:text:Desc. Detalle',
+        		//'descripcion_detallada:text:Desc. Detalle',
 				'nombre_estado:text:Estado',
 				array
 				(
