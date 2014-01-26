@@ -91,8 +91,8 @@ $changesRequestCerrado = SolicitudDeCambioController::getChangesRequestCerrado()
     $twoMonthsAgo = strtotime('-2 months', strtotime($actualDate));
     $twoMonthsAgo = date('Y-m-d h:i:s', $twoMonthsAgo);
     $twoMonthLast = date('M', strtotime($twoMonthsAgo));
-    $twoMonthAbierto = CambioDeEstadoController::getChangesRequestAbiertoMonth($lastMonth);
-    $twoMonthCerrado = CambioDeEstadoController::getChangesRequestCerradoMonth($lastMonth);
+    $twoMonthAbierto = CambioDeEstadoController::getChangesRequestAbiertoMonth($twoMonthsAgo);
+    $twoMonthCerrado = CambioDeEstadoController::getChangesRequestCerradoMonth($twoMonthsAgo);
     
     ?>
       google.load("visualization", "1", {packages:["corechart"]});
