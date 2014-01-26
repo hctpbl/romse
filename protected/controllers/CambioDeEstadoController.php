@@ -72,7 +72,7 @@ class CambioDeEstadoController extends Controller
 		$criteria->select = 'usuario_id, fecha, estado_id';
 		$criteria->condition = 'solicitud_de_cambio_id=:solId';
 		$criteria->params = array(':solId'=>$solicitudDeCambio->id,);
-		$criteria->order = 'fecha DESC';
+		$criteria->order = 'fecha DESC, estado_id DESC';
 		$criteria->limit = 1;
 		$cambioEstado = CambioDeEstado::model()->find($criteria);
 		return $cambioEstado;
