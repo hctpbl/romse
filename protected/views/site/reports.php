@@ -140,7 +140,7 @@ $changesRequestCerrado = SolicitudDeCambioController::getChangesRequestCerrado()
     	  
     	  ]);
         var options = {
-          title: 'Solicitudes cerradas en los últimos 30 días',
+          title: 'Solicitudes abiertas y cerradas en los últimos 30 días',
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
