@@ -331,7 +331,9 @@ class SolicitudDeCambioController extends Controller
 		// Se obtiene la hora actual y los dias hasta el día 1
 		//$actualDate = date('Y-m-d h:i:s', time());
 		
-		$changesByMonth = SolicitudEstado::model()->findAll(array('condition'=>'(MONTH(fecha_estado)=(MONTH(NOW())) AND YEAR(fecha_estado) = YEAR (NOW()))'));
+		$changesByMonth = SolicitudEstado::model()->findAll(array('condition'=>'nombre_estado!=\'Creado\' 
+																				AND (MONTH(fecha_estado)=(MONTH(NOW())) 
+																				AND YEAR(fecha_estado) = YEAR (NOW()))'));
 		$countChangesByMonth = count($changesByMonth);
 		return $countChangesByMonth;
 	}
