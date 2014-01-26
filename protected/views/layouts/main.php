@@ -26,6 +26,7 @@ define("ROL_USUARIO_FINAL", 4);
 </head>
 
 <body>
+<?php include_once("protected/analytics/analyticstracking.php") ?>
 
 <div class="container" id="page">
 
