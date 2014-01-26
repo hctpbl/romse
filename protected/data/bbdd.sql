@@ -63,6 +63,10 @@ CREATE TABLE IF NOT EXISTS `PGPI_grupo01`.`rol` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+INSERT INTO `rol` (`id`, `nombre`) VALUES(1, 'Administrador');
+INSERT INTO `rol` (`id`, `nombre`) VALUES(2, 'CCC');
+INSERT INTO `rol` (`id`, `nombre`) VALUES(3, 'Desarrollador');
+INSERT INTO `rol` (`id`, `nombre`) VALUES(4, 'Usuario final');
 
 -- -----------------------------------------------------
 -- Table `PGPI_grupo01`.`usuario`
@@ -95,6 +99,9 @@ CREATE TABLE IF NOT EXISTS `PGPI_grupo01`.`usuario` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+INSERT INTO `usuario` (`id`, `nss`, `dni`, `nombre`, `apellidos`, `fecha_nacimiento`, `email`, `numero_telefono`, `salario`, `fecha_incorporacion`, `fecha_baja`, `username`, `password`, `rol_id`) VALUES(1, '9874359172', '50381857K', 'CCC', 'ccc', '2010-02-10', '654377493', 'ccc@romse.com', '2500.00', '2010-02-10', NULL, 'ccc', '$2a$13$Eot4kioFeG9Il5PcDEPA/eedPSmdKtQf1lwaO8SgfAMifay9UO74y', 2);
+INSERT INTO `usuario` (`id`, `nss`, `dni`, `nombre`, `apellidos`, `fecha_nacimiento`, `email`, `numero_telefono`, `salario`, `fecha_incorporacion`, `fecha_baja`, `username`, `password`, `rol_id`) VALUES(2, '0000000000', '00000000K', 'Administrador', 'Administrador', '1900-01-01', 'admin@romse.com', '000000000', '0.00', '1900-01-01', NULL, 'admin', '$2a$13$Eot4kioFeG9Il5PcDEPA/eedPSmdKtQf1lwaO8SgfAMifay9UO74y', 1);
 
 -- -----------------------------------------------------
 -- Table `PGPI_grupo01`.`solicitud_de_cambio`
@@ -147,10 +154,22 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `PGPI_grupo01`.`estado` ;
 
 CREATE TABLE IF NOT EXISTS `PGPI_grupo01`.`estado` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
+
+INSERT INTO `estado` (`id`, `nombre`) VALUES(0, 'Creado');
+INSERT INTO `estado` (`id`, `nombre`) VALUES(1, 'Enviado');
+INSERT INTO `estado` (`id`, `nombre`) VALUES(2, 'Abierto');
+INSERT INTO `estado` (`id`, `nombre`) VALUES(3, 'Asignado');
+INSERT INTO `estado` (`id`, `nombre`) VALUES(4, 'Resuelto');
+INSERT INTO `estado` (`id`, `nombre`) VALUES(5, 'Verificado');
+INSERT INTO `estado` (`id`, `nombre`) VALUES(6, 'Pruebas falladas');
+INSERT INTO `estado` (`id`, `nombre`) VALUES(7, 'Duplicado/Rechazado');
+INSERT INTO `estado` (`id`, `nombre`) VALUES(8, 'Más información');
+INSERT INTO `estado` (`id`, `nombre`) VALUES(9, 'Envío actualizado');
+INSERT INTO `estado` (`id`, `nombre`) VALUES(10, 'Cerrado');
 
 
 -- -----------------------------------------------------
@@ -166,8 +185,8 @@ CREATE TABLE IF NOT EXISTS `PGPI_grupo01`.`precede` (
   CONSTRAINT `fk_estado_precede_a`
     FOREIGN KEY (`estado_padre_id`)
     REFERENCES `PGPI_grupo01`.`estado` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_precede_estado1`
     FOREIGN KEY (`estado_hijo_id`)
     REFERENCES `PGPI_grupo01`.`estado` (`id`)
@@ -175,6 +194,21 @@ CREATE TABLE IF NOT EXISTS `PGPI_grupo01`.`precede` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO `precede` (`estado_padre_id`, `estado_hijo_id`) VALUES(0, 1);
+INSERT INTO `precede` (`estado_padre_id`, `estado_hijo_id`) VALUES(1, 2);
+INSERT INTO `precede` (`estado_padre_id`, `estado_hijo_id`) VALUES(9, 2);
+INSERT INTO `precede` (`estado_padre_id`, `estado_hijo_id`) VALUES(2, 3);
+INSERT INTO `precede` (`estado_padre_id`, `estado_hijo_id`) VALUES(3, 4);
+INSERT INTO `precede` (`estado_padre_id`, `estado_hijo_id`) VALUES(6, 4);
+INSERT INTO `precede` (`estado_padre_id`, `estado_hijo_id`) VALUES(4, 5);
+INSERT INTO `precede` (`estado_padre_id`, `estado_hijo_id`) VALUES(4, 6);
+INSERT INTO `precede` (`estado_padre_id`, `estado_hijo_id`) VALUES(5, 6);
+INSERT INTO `precede` (`estado_padre_id`, `estado_hijo_id`) VALUES(1, 7);
+INSERT INTO `precede` (`estado_padre_id`, `estado_hijo_id`) VALUES(9, 7);
+INSERT INTO `precede` (`estado_padre_id`, `estado_hijo_id`) VALUES(7, 8);
+INSERT INTO `precede` (`estado_padre_id`, `estado_hijo_id`) VALUES(8, 9);
+INSERT INTO `precede` (`estado_padre_id`, `estado_hijo_id`) VALUES(5, 10);
+INSERT INTO `precede` (`estado_padre_id`, `estado_hijo_id`) VALUES(7, 10);
 
 -- -----------------------------------------------------
 -- Table `PGPI_grupo01`.`cambio_de_estado`
@@ -194,7 +228,7 @@ CREATE TABLE IF NOT EXISTS `PGPI_grupo01`.`cambio_de_estado` (
     FOREIGN KEY (`solicitud_de_cambio_id`)
     REFERENCES `PGPI_grupo01`.`solicitud_de_cambio` (`id`)
     ON DELETE CASCADE
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_solicitud_de_cambio_has_usuario_usuario1`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `PGPI_grupo01`.`usuario` (`id`)
@@ -207,20 +241,59 @@ CREATE TABLE IF NOT EXISTS `PGPI_grupo01`.`cambio_de_estado` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-USE `PGPI_grupo01` ;
-
--- -----------------------------------------------------
--- Placeholder table for view `PGPI_grupo01`.`solicitud_estado`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `PGPI_grupo01`.`solicitud_estado` (`id` INT, `descripcion_breve` INT, `descripcion_detallada` INT, `impacto` INT, `prioridad` INT, `temporizacion` INT, `riesgos` INT, `artefacto` INT, `id_artefacto` INT, `creador` INT, `id_creador` INT, `probador` INT, `id_probador` INT, `desarrollador` INT, `id_desarrollador` INT, `nombre_estado` INT, `id_estado` INT, `fecha_estado` INT, `usuario_estado` INT, `id_usuario_estado` INT);
-
--- -----------------------------------------------------
--- View `PGPI_grupo01`.`solicitud_estado`
--- -----------------------------------------------------
-DROP VIEW IF EXISTS `PGPI_grupo01`.`solicitud_estado` ;
-DROP TABLE IF EXISTS `PGPI_grupo01`.`solicitud_estado`;
-USE `PGPI_grupo01`;
-CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`PGPI_grupo01`@`localhost` SQL SECURITY DEFINER VIEW `PGPI_grupo01`.`solicitud_estado` AS select `sc`.`id` AS `id`,`sc`.`descripcion_breve` AS `descripcion_breve`,`sc`.`descripcion_detallada` AS `descripcion_detallada`,`sc`.`impacto` AS `impacto`,`sc`.`prioridad` AS `prioridad`,`sc`.`temporizacion` AS `temporizacion`,`sc`.`riesgos` AS `riesgos`,`PGPI_grupo01`.`artefacto`.`nombre` AS `artefacto`,`PGPI_grupo01`.`artefacto`.`id` AS `id_artefacto`,`creador`.`username` AS `creador`,`creador`.`id` AS `id_creador`,`probador`.`username` AS `probador`,`probador`.`id` AS `id_probador`,`desarrollador`.`username` AS `desarrollador`,`desarrollador`.`id` AS `id_desarrollador`,`e`.`nombre` AS `nombre_estado`,`e`.`id` AS `id_estado`,`ce`.`fecha` AS `fecha_estado`,`ceusr`.`username` AS `usuario_estado`,`ceusr`.`id` AS `id_usuario_estado` from (((((((`PGPI_grupo01`.`solicitud_de_cambio` `sc` left join `PGPI_grupo01`.`usuario` `desarrollador` on((`desarrollador`.`id` = `sc`.`desarrollador`))) left join `PGPI_grupo01`.`usuario` `probador` on((`probador`.`id` = `sc`.`probador`))) left join `PGPI_grupo01`.`artefacto` on((`PGPI_grupo01`.`artefacto`.`id` = `sc`.`artefacto_id`))) join `PGPI_grupo01`.`usuario` `creador`) join `PGPI_grupo01`.`cambio_de_estado` `ce`) join `PGPI_grupo01`.`estado` `e`) join `PGPI_grupo01`.`usuario` `ceusr`) where ((`creador`.`id` = `sc`.`creador`) and (`ce`.`solicitud_de_cambio_id` = `sc`.`id`) and (`ce`.`estado_id` = `e`.`id`) and (`ce`.`usuario_id` = `ceusr`.`id`) and (`ce`.`fecha` = (select max(`ce2`.`fecha`) from `PGPI_grupo01`.`cambio_de_estado` `ce2` where (`ce`.`solicitud_de_cambio_id` = `ce2`.`solicitud_de_cambio_id`) group by `ce2`.`solicitud_de_cambio_id`)));
+create or replace view solicitud_estado as
+    select 
+        sc.id,
+        sc.descripcion_breve,
+        sc.descripcion_detallada,
+        sc.impacto,
+        sc.prioridad,
+        sc.temporizacion,
+        sc.riesgos,
+        artefacto.nombre as artefacto,
+        artefacto.id as id_artefacto,
+        creador.username as creador,
+        creador.id as id_creador,
+        probador.username as probador,
+        probador.id as id_probador,
+        desarrollador.username as desarrollador,
+        desarrollador.id as id_desarrollador,
+        e.nombre as nombre_estado,
+        e.id as id_estado,
+        ce.fecha as fecha_estado,
+        ceusr.username as usuario_estado,
+        ceusr.id as id_usuario_estado
+    from
+        solicitud_de_cambio as sc
+            left join
+        usuario as desarrollador ON desarrollador.id = desarrollador
+            left join
+        usuario as probador ON probador.id = probador
+            left join
+        artefacto ON artefacto.id = artefacto_id,
+        usuario as creador,
+        cambio_de_estado ce,
+        estado e,
+        usuario as ceusr
+    where
+        creador.id = creador
+            and ce.solicitud_de_cambio_id = sc.id
+            and ce.estado_id = e.id
+            and ce.usuario_id = ceusr.id
+            and ce.fecha = (select 
+					max(fecha)
+				from
+					cambio_de_estado ce2
+				where
+					ce.solicitud_de_cambio_id = ce2.solicitud_de_cambio_id
+				group by solicitud_de_cambio_id)
+            and ce.estado_id = (select 
+					max(ce3.estado_id)
+				from
+					cambio_de_estado ce3
+				where
+					ce.solicitud_de_cambio_id = ce3.solicitud_de_cambio_id
+				group by solicitud_de_cambio_id);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
