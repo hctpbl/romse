@@ -13,7 +13,7 @@ $this->breadcrumbs=array(
 ?>
 
 <h3>Solicitudes creadas por mi en trámite</h3>
-<p><?php echo CHtml::button('Crear nueva solicitud de cambio', array('submit' => 'solicitudDeCambio/create')); ?></p>
+<p><?php echo CHtml::button('Crear nueva solicitud de cambio', array('submit' => Yii::app()->createUrl("/solicitudDeCambio/create"))); ?></p>
 
 <?php 
 $this->widget('zii.widgets.grid.CGridView', array(
@@ -141,4 +141,4 @@ $this->widget('zii.widgets.grid.CGridView', array(
 endif;
 ?>
 
-<p><?php echo CHtml::button('Crear nueva solicitud de cambio', array('submit' => 'solicitudDeCambio/create')); ?></p>
+<p><p><?php echo CHtml::button('Crear nueva solicitud de cambio', array('submit' => Yii::app()->createUrl("/solicitudDeCambio/create"))); ?></p></p>
