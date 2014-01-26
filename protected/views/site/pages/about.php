@@ -3,10 +3,16 @@
 
 $this->pageTitle=Yii::app()->name . ' - About';
 $this->breadcrumbs=array(
-	'About',
+	'Sobre nosotros',
 );
 ?>
-<h1>About</h1>
+<h1>Sobre nosotros</h1>
 
-<p>This is a "static" page. You may change the content of this page
-by updating the file <code><?php echo __FILE__; ?></code>.</p>
+<p>Aplicación web para gestión de cambios realizada por el grupo 01 de Planificación y Gestión de Plataformas Informáticas
+(PyGPI), curso 2013-2014. Integrantes del equipo:
+<ul>
+	<li>José Martín Gago</li>
+	<li>Héctor Pablos López</li>
+	<li>David Polvorosa Hoyos</li>
+	<li>Natalia Román Seneque</ulil>
+</ul></p>

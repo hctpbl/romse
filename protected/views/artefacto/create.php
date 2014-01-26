@@ -4,15 +4,15 @@
 
 $this->breadcrumbs=array(
 	'Artefactos'=>array('index'),
-	'Create',
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List Artefacto', 'url'=>array('index')),
-	array('label'=>'Manage Artefacto', 'url'=>array('admin')),
+	array('label'=>'Listar Artefactos', 'url'=>array('index')),
+	array('label'=>'Gestionar Artefactos', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Artefacto</h1>
+<h1>Crear Artefacto</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

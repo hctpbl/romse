@@ -7,8 +7,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create Artefacto', 'url'=>array('create')),
-	array('label'=>'Manage Artefacto', 'url'=>array('admin')),
+	array('label'=>'Crear Artefacto', 'url'=>array('create')),
+	array('label'=>'Gestionar Artefactos', 'url'=>array('admin')),
 );
 ?>
 
