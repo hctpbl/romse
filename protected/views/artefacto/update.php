@@ -5,17 +5,17 @@
 $this->breadcrumbs=array(
 	'Artefactos'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'List Artefacto', 'url'=>array('index')),
-	array('label'=>'Create Artefacto', 'url'=>array('create')),
-	array('label'=>'View Artefacto', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Artefacto', 'url'=>array('admin')),
+	array('label'=>'Listar Artefactos', 'url'=>array('index')),
+	array('label'=>'Crear Artefacto', 'url'=>array('create')),
+	array('label'=>'Ver Artefacto', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Gestionar Artefactos', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Artefacto <?php echo $model->id; ?></h1>
+<h1>Actualizar Artefacto <?php echo $model->id; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

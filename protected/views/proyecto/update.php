@@ -5,14 +5,14 @@
 $this->breadcrumbs=array(
 	'Proyectos'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'List Proyecto', 'url'=>array('index')),
-	array('label'=>'Create Proyecto', 'url'=>array('create')),
-	array('label'=>'View Proyecto', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Proyecto', 'url'=>array('admin')),
+	array('label'=>'Listar Proyectos', 'url'=>array('index')),
+	array('label'=>'Crear Proyecto', 'url'=>array('create')),
+	array('label'=>'Ver Proyecto', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Gestionar Proyectos', 'url'=>array('admin')),
 );
 ?>
 

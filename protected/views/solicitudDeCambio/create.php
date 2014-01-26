@@ -3,18 +3,18 @@
 /* @var $model SolicitudDeCambio */
 
 $this->breadcrumbs=array(
-	'Solicitud De Cambios'=>array('index'),
+	'Solicitudes de cambio'=>array('index'),
 	'Create',
 );
 
 if (Yii::app()->user->rol_id == 'ROL_CCC'){
 	$this->menu=array(
-		array('label'=>'List SolicitudDeCambio', 'url'=>array('index')),
-		array('label'=>'Manage SolicitudDeCambio', 'url'=>array('admin')),
+		array('label'=>'Listar Solicitudes de cambio', 'url'=>array('index')),
+		array('label'=>'Gestionar Solicitudes de cambio', 'url'=>array('admin')),
 	);
 }
 ?>
 
-<h1>Create SolicitudDeCambio</h1>
+<h1>Crear Solicitud de cambio</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

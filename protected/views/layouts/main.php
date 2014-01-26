@@ -110,8 +110,8 @@ define("ROL_USUARIO_FINAL", 4);
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
+		Copyright &copy; <?php echo date('Y'); ?> José Martín Gago, Hector Pablos López, David Polvorosa Hoyos y Natalia Román Seneque.<br/>
+		Grupo 01.<br/>
 		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
 
