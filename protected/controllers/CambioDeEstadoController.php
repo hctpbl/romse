@@ -209,8 +209,6 @@ class CambioDeEstadoController extends Controller
 		$day = date('d', strtotime($date));
 		$month = date('m', strtotime($date));
 		$year = date('Y', strtotime($date));
-		/*$changesCerradoByDay = CambioDeEstado::model()->findAll(array('condition'=>'estado_id = 10 AND
-		 fecha='.$date));*/
 		$changesAbiertoByDay = CambioDeEstado::model()->findAll(array('condition'=>'estado_id = 2 AND
 																YEAR(fecha)='.$year.' AND MONTH(fecha)='.$month.'
 																AND DAY(fecha)='.$day));
@@ -225,8 +223,6 @@ class CambioDeEstadoController extends Controller
 		$day = date('d', strtotime($date));
 		$month = date('m', strtotime($date));
 		$year = date('Y', strtotime($date));
-		/*$changesCerradoByDay = CambioDeEstado::model()->findAll(array('condition'=>'estado_id = 10 AND
-																fecha='.$date));*/
 		$changesCerradoByDay = CambioDeEstado::model()->findAll(array('condition'=>'estado_id = 10 AND
 																YEAR(fecha)='.$year.' AND MONTH(fecha)='.$month.'
 																AND DAY(fecha)='.$day));
