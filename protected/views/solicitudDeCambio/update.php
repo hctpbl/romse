@@ -3,9 +3,9 @@
 /* @var $model SolicitudDeCambio */
 
 $this->breadcrumbs=array(
-	'Solicitud De Cambios'=>array('index'),
+	'Solicitudes de cambio'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	'Actualizar',
 );
 
 
@@ -19,6 +19,6 @@ if (Yii::app()->user->rol_id == 'ROL_CCC'){
 }
 ?>
 
-<h1>Update SolicitudDeCambio <?php echo $model->id; ?></h1>
+<h1>Actualizar Solicitud de cambio <?php echo $model->id; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
