@@ -144,7 +144,7 @@ $this->breadcrumbs=array(
 			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
 				    'name'=>'probador_name',
 					'value'=> '',
-				    'sourceUrl'=>Yii::app()->createUrl('ajax/getDevUsers'),
+				    'sourceUrl'=>Yii::app()->createUrl('ajax/getTesUsers'),
 				    'options'=>array(
 				        'minLength'=>'2',
 				        'type'=>'get',
