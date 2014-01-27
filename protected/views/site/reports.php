@@ -12,13 +12,7 @@ $this->breadcrumbs=array(
 ?>
 
 <h1>Información estadística</h1>
-<!-- <h3><a href='../solicitudDeCambio/adminCCC' >Solicitudes de cambio</a></h3>
 
-<h3><a href='../proyecto/adminCCC' >Proyectos</a></h3>
-
-<h3><a href='../artefacto/adminCCC' >Artefactos</a></h3> -->
-
-<h3>Gráficas</h3>
 <h3>Número de solicitudes este mes hasta el momento: <?php echo SolicitudDeCambioController::getChangesRequestThisMonth() ?></h3>
 
 <?php
@@ -29,7 +23,6 @@ $changesRequestDupRech = SolicitudDeCambioController::getChangesRequestDupRech()
 $changesRequestActualizada = SolicitudDeCambioController::getChangesRequestActualizada();
 $changesRequestCerrado = SolicitudDeCambioController::getChangesRequestCerrado();
 
-/*echo CHtml::encode('fecha -'.SolicitudDeCambioController::getChangesRequestEnviadoFourMonthsAgo());*/
 ?>
 <html>
   <head>
