@@ -103,6 +103,7 @@ define("ROL_USUARIO_FINAL", 4);
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'homeLink' =>CHtml::link('ROMSE', array('/site/index')),
 			'links'=>$this->breadcrumbs,
+			'links'=>false,
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
 
