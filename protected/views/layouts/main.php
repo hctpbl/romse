@@ -106,6 +106,7 @@ $this->widget('ext.google-analytics.EGoogleAnalytics', array(
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'homeLink' =>CHtml::link('ROMSE', array('/site/index')),
 			'links'=>$this->breadcrumbs,
+			'links'=>false,
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
 
