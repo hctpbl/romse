@@ -26,8 +26,11 @@ define("ROL_USUARIO_FINAL", 4);
 </head>
 
 <body>
-<?php include_once("protected/analytics/analyticstracking.php") ?>
-
+<?php
+$this->widget('ext.google-analytics.EGoogleAnalytics', array(
+   'account' => 'UA-47499522-1',
+));
+?>
 <div class="container" id="page">
 
 	<div id="header">
