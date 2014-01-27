@@ -28,7 +28,10 @@ define("ROL_USUARIO_FINAL", 4);
 <body>
 <?php
 $this->widget('ext.google-analytics.EGoogleAnalytics', array(
-   'account' => 'UA-47499522-1',
+	'account' => 'UA-47499522-1',
+	'clientInfo' => true,
+	'detectFlash' => true,
+	'detectTitle' => true,
 ));
 ?>
 <div class="container" id="page">
