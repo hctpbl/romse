@@ -52,7 +52,12 @@
 		<?php echo $form->textField($model,'artefacto_id');*/ ?>
 	</div>-->
 	<div class="row">
-			<?php echo $form->labelEx($model,'artefacto_id'); ?>
+			<?php 
+				$campoArtefacto = '';
+				if ($model instanceof SolicitudDeCambio) $campoArtefacto = 'artefacto_id';
+				else $campoArtefacto = 'artefacto';
+			?>
+			<?php echo $form->labelEx($model,$campoArtefacto); ?>
 			<?php //echo $form->textField($model,'depende_de'); ?>
 			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
 				    'name'=>'artefacto_name',
@@ -69,8 +74,8 @@
 			?>
 			<span> Artefacto seleccionado: </span>
 			<span id="selectedArtifact">Ninguno</span>
-			<?php echo $form->hiddenField($model,'artefacto_id'); ?>
-			<?php echo $form->error($model,'artefacto_id'); ?>
+			<?php echo $form->hiddenField($model,$campoArtefacto); ?>
+			<?php echo $form->error($model,$campoArtefacto); ?>
 	</div>
 
 	<!-- <div class="row">

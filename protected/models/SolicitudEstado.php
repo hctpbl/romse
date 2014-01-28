@@ -7,7 +7,6 @@
  * @property integer $id
  * @property string $descripcion_breve
  * @property string $descripcion_detallada
- * @property string $fecha_creacion
  * @property string $impacto
  * @property string $prioridad
  * @property string $temporizacion
@@ -44,7 +43,7 @@ class SolicitudEstado extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('descripcion_breve, descripcion_detallada, creador, nombre_estado, usuario_estado', 'required'),
+			array('descripcion_breve, descripcion_detallada, creador, nombre_estado, id_estado, usuario_estado', 'required'),
 			array('id, id_artefacto, id_creador, id_probador, id_desarrollador, id_estado, id_usuario_estado', 'numerical', 'integerOnly'=>true),
 			array('descripcion_breve', 'length', 'max'=>100),
 			array('descripcion_detallada', 'length', 'max'=>1000),
@@ -52,10 +51,10 @@ class SolicitudEstado extends CActiveRecord
 			array('riesgos', 'length', 'max'=>50),
 			array('artefacto, nombre_estado', 'length', 'max'=>45),
 			array('creador, probador, desarrollador, usuario_estado', 'length', 'max'=>15),
-			array('fecha_creacion, fecha_estado', 'safe'),
+			array('fecha_estado', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, descripcion_breve, descripcion_detallada, fecha_creacion, impacto, prioridad, temporizacion, riesgos, artefacto, id_artefacto, creador, id_creador, probador, id_probador, desarrollador, id_desarrollador, nombre_estado, id_estado, fecha_estado, usuario_estado, id_usuario_estado', 'safe', 'on'=>'search'),
+			array('id, descripcion_breve, descripcion_detallada, impacto, prioridad, temporizacion, riesgos, artefacto, id_artefacto, creador, id_creador, probador, id_probador, desarrollador, id_desarrollador, nombre_estado, id_estado, fecha_estado, usuario_estado, id_usuario_estado', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -79,7 +78,6 @@ class SolicitudEstado extends CActiveRecord
 			'id' => 'ID',
 			'descripcion_breve' => 'Descripcion Breve',
 			'descripcion_detallada' => 'Descripcion Detallada',
-			'fecha_creacion' => 'Fecha Creacion',
 			'impacto' => 'Impacto',
 			'prioridad' => 'Prioridad',
 			'temporizacion' => 'Temporizacion',
@@ -121,7 +119,6 @@ class SolicitudEstado extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('descripcion_breve',$this->descripcion_breve,true);
 		$criteria->compare('descripcion_detallada',$this->descripcion_detallada,true);
-		$criteria->compare('fecha_creacion',$this->fecha_creacion,true);
 		$criteria->compare('impacto',$this->impacto,true);
 		$criteria->compare('prioridad',$this->prioridad,true);
 		$criteria->compare('temporizacion',$this->temporizacion,true);
@@ -139,6 +136,41 @@ class SolicitudEstado extends CActiveRecord
 		$criteria->compare('fecha_estado',$this->fecha_estado,true);
 		$criteria->compare('usuario_estado',$this->usuario_estado,true);
 		$criteria->compare('id_usuario_estado',$this->id_usuario_estado);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+
+	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 *
+	 * Typical usecase:
+	 * - Initialize the model fields with values from filter form.
+	 * - Execute this method to get CActiveDataProvider instance which will filter
+	 * models according to data in model fields.
+	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 *
+	 * @return CActiveDataProvider the data provider that can return the models
+	 * based on the search/filter conditions.
+	 */
+	public function searchUser()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('descripcion_breve',$this->descripcion_breve,true);
+		$criteria->compare('descripcion_detallada',$this->descripcion_detallada,true);
+		$criteria->compare('impacto',$this->impacto,true);
+		$criteria->compare('prioridad',$this->prioridad,true);
+		$criteria->compare('temporizacion',$this->temporizacion,true);
+		$criteria->compare('riesgos',$this->riesgos,true);
+		$criteria->compare('id_artefacto',$this->id_artefacto);
+		$criteria->compare('nombre_estado',$this->nombre_estado,true);
+		$criteria->compare('id_creador',Yii::app()->user->id);
+		$criteria->addCondition('id_probador = '.Yii::app()->user->id, 'OR');
+		$criteria->addCondition('id_desarrollador = '.Yii::app()->user->id, 'OR');
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
