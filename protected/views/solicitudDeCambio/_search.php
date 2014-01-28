@@ -103,7 +103,7 @@
 			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
 				    'name'=>'creador_name',
 					'value'=> '',
-				    'sourceUrl'=>Yii::app()->createUrl('ajax/getDevUsers'),
+				    'sourceUrl'=>Yii::app()->createUrl('ajax/getTesUsers'),
 				    'options'=>array(
 				        'minLength'=>'2',
 				        'type'=>'get',
@@ -129,7 +129,7 @@
 			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
 				    'name'=>'probador_name',
 					'value'=> '',
-				    'sourceUrl'=>Yii::app()->createUrl('ajax/getDevUsers'),
+				    'sourceUrl'=>Yii::app()->createUrl('ajax/getTesUsers'),
 				    'options'=>array(
 				        'minLength'=>'2',
 				        'type'=>'get',
