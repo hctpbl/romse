@@ -241,6 +241,10 @@ CREATE TABLE IF NOT EXISTS `PGPI_grupo01`.`cambio_de_estado` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- View `PGPI_grupo01`.`solicitud_estado`
+-- -----------------------------------------------------
+
 create or replace view solicitud_estado as
     select 
         sc.id,
@@ -287,13 +291,6 @@ create or replace view solicitud_estado as
 				where
 					ce.solicitud_de_cambio_id = ce2.solicitud_de_cambio_id
 				group by solicitud_de_cambio_id)
-            and ce.estado_id = (select 
-					max(ce3.estado_id)
-				from
-					cambio_de_estado ce3
-				where
-					ce.solicitud_de_cambio_id = ce3.solicitud_de_cambio_id
-				group by solicitud_de_cambio_id);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
