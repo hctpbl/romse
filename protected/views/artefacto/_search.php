@@ -53,12 +53,15 @@
 				        'type'=>'get',
 				        'select'=>'js:function(event, ui) {
 				            $("#selectedProyecto").text(ui.item.value);
-				            $("#Artefacto_proyecto_id").val(ui.item.id);}'
+				            $("#Artefacto_proyecto_id").val(ui.item.id);
+							$("#proyecto_delete").show();}'
 					),
 				));
 			?>
 			<span> Proyecto seleccionado: </span>
 			<span id="selectedProyecto">Ninguno</span>
+			<img alt="proyecto_delete" id="proyecto_delete" 
+				src="<?php echo Yii::app()->request->baseUrl; ?>/images/delete.png" hidden />
 			<?php echo $form->hiddenField($model,'proyecto_id'); ?>
 			<?php echo $form->error($model,'proyecto_id'); ?>
 	</div>
@@ -94,5 +97,14 @@
 	</div>
 
 <?php $this->endWidget(); ?>
+
+<script>
+	$('#proyecto_delete').click(function(event, ui) {
+        $("#selectedProyecto").text('Ninguno');
+        $("#proyecto_name").val('');
+        $("#Artefacto_proyecto_id").val('');
+        $("#proyecto_delete").hide();
+	});
+</script>
 
 </div><!-- search-form -->
