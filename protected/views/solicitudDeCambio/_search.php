@@ -51,12 +51,27 @@
 		<?php /*echo $form->label($model,'artefacto_id'); ?>
 		<?php echo $form->textField($model,'artefacto_id');*/ ?>
 	</div>-->
+	<?php 
+		// Podemos tener modelo instancia de SolicitudDeCambio (para las búsquedas del CCC)
+		// o instancia de SolicitudEstado (para las búsquedas de los usuarios).
+		// Adaptamos los campos del formulario de búsqueda avanzada a esta circusntancia
+		$campoArtefacto = '';
+		$modeloForm = '';
+		if ($model instanceof SolicitudDeCambio) {
+			$campoArtefacto = 'artefacto_id';
+			$campoCreador = 'creador';
+			$campoDesarrollador = 'desarrollador';
+			$campoProbador = 'probador';
+			$modeloForm = 'SolicitudDeCambio';
+		} else {
+			$campoArtefacto = 'id_artefacto';
+			$campoCreador = 'id_creador';
+			$campoDesarrollador = 'id_desarrollador';
+			$campoProbador = 'id_probador';
+			$modeloForm = 'SolicitudEstado';
+		}
+	?>
 	<div class="row">
-			<?php 
-				$campoArtefacto = '';
-				if ($model instanceof SolicitudDeCambio) $campoArtefacto = 'artefacto_id';
-				else $campoArtefacto = 'artefacto';
-			?>
 			<?php echo $form->labelEx($model,$campoArtefacto); ?>
 			<?php //echo $form->textField($model,'depende_de'); ?>
 			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
@@ -68,7 +83,7 @@
 				        'type'=>'get',
 				        'select'=>'js:function(event, ui) {
 				            $("#selectedArtifact").text(ui.item.value);
-				            $("#SolicitudDeCambio_artefacto_id").val(ui.item.id);}'
+				            $("#'.$modeloForm.'_'.$campoArtefacto.'").val(ui.item.id);}'
 					),
 				));
 			?>
@@ -83,7 +98,7 @@
 		<?php echo $form->textField($model,'creador');*/ ?>
 	</div>-->
 	<div class="row">
-			<?php echo $form->labelEx($model,'creador'); ?>
+			<?php echo $form->labelEx($model,$campoCreador); ?>
 			<?php //echo $form->textField($model,'depende_de'); ?>
 			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
 				    'name'=>'creador_name',
@@ -94,14 +109,14 @@
 				        'type'=>'get',
 				        'select'=>'js:function(event, ui) {
 				            $("#selectedCreador").text(ui.item.value);
-				            $("#SolicitudDeCambio_creador").val(ui.item.id);}'
+				            $("#'.$modeloForm.'_'.$campoCreador.'").val(ui.item.id);}'
 					),
 				));
 			?>
 			<span> Creador seleccionado: </span>
 			<span id="selectedCreador">Ninguno</span>
-			<?php echo $form->hiddenField($model,'creador'); ?>
-			<?php echo $form->error($model,'creador'); ?>
+			<?php echo $form->hiddenField($model,$campoCreador); ?>
+			<?php echo $form->error($model,$campoCreador); ?>
 		</div>
 
 	<div class="row">
@@ -109,7 +124,7 @@
 		<?php echo $form->textField($model,'probador'); */?>
 	</div>
 	<div class="row">
-			<?php echo $form->labelEx($model,'probador'); ?>
+			<?php echo $form->labelEx($model,$campoProbador); ?>
 			<?php //echo $form->textField($model,'depende_de'); ?>
 			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
 				    'name'=>'probador_name',
@@ -120,14 +135,14 @@
 				        'type'=>'get',
 				        'select'=>'js:function(event, ui) {
 				            $("#selectedProbador").text(ui.item.value);
-				            $("#SolicitudDeCambio_probador").val(ui.item.id);}'
+				            $("#'.$modeloForm.'_'.$campoProbador.'").val(ui.item.id);}'
 					),
 				));
 			?>
 			<span> Probador seleccionado: </span>
 			<span id="selectedProbador">Ninguno</span>
-			<?php echo $form->hiddenField($model,'probador'); ?>
-			<?php echo $form->error($model,'probador'); ?>
+			<?php echo $form->hiddenField($model,$campoProbador); ?>
+			<?php echo $form->error($model,$campoProbador); ?>
 		</div>
 
 	<!-- <div class="row">
@@ -135,7 +150,7 @@
 		<?php echo $form->textField($model,'desarrollador');*/ ?>
 	</div>-->
 	<div class="row">
-			<?php echo $form->labelEx($model,'desarrollador'); ?>
+			<?php echo $form->labelEx($model,$campoDesarrollador); ?>
 			<?php //echo $form->textField($model,'depende_de'); ?>
 			<?php $this->widget('zii.widgets.jui.CJuiAutoComplete',array(
 				    'name'=>'desarrollador_name',
@@ -146,14 +161,14 @@
 				        'type'=>'get',
 				        'select'=>'js:function(event, ui) {
 				            $("#selectedDesarrollador").text(ui.item.value);
-				            $("#SolicitudDeCambio_desarrollador").val(ui.item.id);}'
+				            $("#'.$modeloForm.'_'.$campoDesarrollador.'").val(ui.item.id);}'
 					),
 				));
 			?>
 			<span> Desarrollador seleccionado: </span>
 			<span id="selectedDesarrollador">Ninguno</span>
-			<?php echo $form->hiddenField($model,'desarrollador'); ?>
-			<?php echo $form->error($model,'desarrollador'); ?>
+			<?php echo $form->hiddenField($model,$campoDesarrollador); ?>
+			<?php echo $form->error($model,$campoDesarrollador); ?>
 	</div>
 
 	<div class="row buttons">

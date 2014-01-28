@@ -168,6 +168,9 @@ class SolicitudEstado extends CActiveRecord
 		$criteria->compare('temporizacion',$this->temporizacion,true);
 		$criteria->compare('riesgos',$this->riesgos,true);
 		$criteria->compare('nombre_estado',$this->nombre_estado,true);
+		$criteria->compare('id_creador',$this->id_creador);
+		$criteria->compare('id_probador',$this->id_probador);
+		$criteria->compare('id_desarrollador',$this->id_desarrollador);
 		
 		$criteriaUsers = new CDbCriteria;
 		$criteriaUsers->compare('id_creador',Yii::app()->user->id);
