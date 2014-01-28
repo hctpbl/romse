@@ -90,6 +90,7 @@ class SolicitudDeCambioController extends Controller
 				$creacion = new CambioDeEstado();
 				$creacion->solicitud_de_cambio_id = $model->id;
 				$creacion->usuario_id = $model->creador;
+				$creacion->fecha = new CDbExpression('NOW()');
 				$creacion->estado_id = 0;
 				$creacion->save();
 				// Comprobamos si también hay que realizar el envío
@@ -97,6 +98,11 @@ class SolicitudDeCambioController extends Controller
 					$envio = new CambioDeEstado();
 					$envio->solicitud_de_cambio_id = $model->id;
 					$envio->usuario_id = $model->creador;
+					// Si creamos y enviamos a la vez, y como MySQL no tiene precisión
+					// de milisegundos en jair, se crearán los dos cambios de estado
+					// con la misma fecha y eso nos dará problemas. Como solución, añadimos
+					// un segundo al cambio de estado de envío
+					$envio->fecha = new CDbExpression('NOW()+1');
 					$envio->estado_id = 1;
 					$envio->save();
 				}
