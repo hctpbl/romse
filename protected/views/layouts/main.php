@@ -84,7 +84,10 @@ $this->widget('ext.google-analytics.EGoogleAnalytics', array(
 				array('label'=>'Artefactos', 'url'=>array('artefacto/index'), 'visible'=>$admin),
 				array('label'=>'Proyectos', 'url'=>array('proyecto/index'), 'visible'=>$admin),
 				// Opciones para usuarios desarrolladores y finales
-				array('label'=>'Mis solicitudes de cambio', 'url'=>array('site/showUserListChanges'), 'visible'=>($developer || $finalUser)),
+				array('label'=>'Mis solicitudes de cambio', 'url'=>array('site/showUserListChanges'), 'visible'=>($developer || $finalUser), 'items'=>array(
+					array('label'=>'Resúmen de pendientes', 'url'=>array('site/showUserListChanges'), 'visible'=>($developer || $finalUser)),
+					array('label'=>'Búsqueda de solicitudes', 'url'=>array('solicitudDeCambio/searchForUsers'), 'visible'=>($developer || $finalUser)),
+				)),
 				//array('label'=>'Mi perfil', 'url'=>array('/site/index'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Mi perfil', 'url'=>array('site/profile'), 'visible'=>($developer || $finalUser)),
 				// Opciones para ccc
