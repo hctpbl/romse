@@ -83,12 +83,15 @@
 				        'type'=>'get',
 				        'select'=>'js:function(event, ui) {
 				            $("#selectedArtifact").text(ui.item.value);
-				            $("#'.$modeloForm.'_'.$campoArtefacto.'").val(ui.item.id);}'
+				            $("#'.$modeloForm.'_'.$campoArtefacto.'").val(ui.item.id);
+							$("#artefacto_delete").show();}'
 					),
 				));
 			?>
 			<span> Artefacto seleccionado: </span>
 			<span id="selectedArtifact">Ninguno</span>
+			<img alt="artefacto_delete" id="artefacto_delete" 
+				src="<?php echo Yii::app()->request->baseUrl; ?>/images/delete.png" hidden />
 			<?php echo $form->hiddenField($model,$campoArtefacto); ?>
 			<?php echo $form->error($model,$campoArtefacto); ?>
 	</div>
@@ -109,12 +112,15 @@
 				        'type'=>'get',
 				        'select'=>'js:function(event, ui) {
 				            $("#selectedCreador").text(ui.item.value);
-				            $("#'.$modeloForm.'_'.$campoCreador.'").val(ui.item.id);}'
+				            $("#'.$modeloForm.'_'.$campoCreador.'").val(ui.item.id);
+							$("#creador_delete").show();}'
 					),
 				));
 			?>
 			<span> Creador seleccionado: </span>
 			<span id="selectedCreador">Ninguno</span>
+			<img alt="creador_delete" id="creador_delete" 
+				src="<?php echo Yii::app()->request->baseUrl; ?>/images/delete.png" hidden />
 			<?php echo $form->hiddenField($model,$campoCreador); ?>
 			<?php echo $form->error($model,$campoCreador); ?>
 		</div>
@@ -135,12 +141,15 @@
 				        'type'=>'get',
 				        'select'=>'js:function(event, ui) {
 				            $("#selectedProbador").text(ui.item.value);
-				            $("#'.$modeloForm.'_'.$campoProbador.'").val(ui.item.id);}'
+				            $("#'.$modeloForm.'_'.$campoProbador.'").val(ui.item.id);
+							$("#probador_delete").show();}'
 					),
 				));
 			?>
 			<span> Probador seleccionado: </span>
 			<span id="selectedProbador">Ninguno</span>
+			<img alt="probador_delete" id="probador_delete" 
+				src="<?php echo Yii::app()->request->baseUrl; ?>/images/delete.png" hidden />
 			<?php echo $form->hiddenField($model,$campoProbador); ?>
 			<?php echo $form->error($model,$campoProbador); ?>
 		</div>
@@ -161,12 +170,15 @@
 				        'type'=>'get',
 				        'select'=>'js:function(event, ui) {
 				            $("#selectedDesarrollador").text(ui.item.value);
-				            $("#'.$modeloForm.'_'.$campoDesarrollador.'").val(ui.item.id);}'
+				            $("#'.$modeloForm.'_'.$campoDesarrollador.'").val(ui.item.id);
+							$("#desarrollador_delete").show();}'
 					),
 				));
 			?>
 			<span> Desarrollador seleccionado: </span>
 			<span id="selectedDesarrollador">Ninguno</span>
+			<img alt="desarrollador_delete" id="desarrollador_delete" 
+				src="<?php echo Yii::app()->request->baseUrl; ?>/images/delete.png" hidden/>
 			<?php echo $form->hiddenField($model,$campoDesarrollador); ?>
 			<?php echo $form->error($model,$campoDesarrollador); ?>
 	</div>
@@ -176,5 +188,33 @@
 	</div>
 
 <?php $this->endWidget(); ?>
+
+
+<script type="text/javascript">
+	$('#artefacto_delete').click(function(event, ui) {
+	    $("#selectedArtifact").text('Ninguno');
+	    $("#artefacto_name").val('');
+	    $("#<?php echo $modeloForm ?>_<?php echo $campoArtefacto ?>").val('');
+        $("#artefacto_delete").hide();
+	});
+	$('#creador_delete').click(function(event, ui) {
+        $("#selectedCreador").text('Ninguno');
+        $("#creador_name").val('');
+        $("#<?php echo $modeloForm ?>_<?php echo $campoCreador ?>").val('');
+        $("#creador_delete").hide();
+	});
+	$('#probador_delete').click(function(event, ui) {
+        $("#selectedProbador").text('Ninguno');
+        $("#probador_name").val('');
+        $("#<?php echo $modeloForm ?>_<?php echo $campoProbador ?>").val('');
+        $("#probador_delete").hide();
+	});
+	$('#desarrollador_delete').click(function(event, ui) {
+        $("#selectedDesarrollador").text('Ninguno');
+        $("#desarrollador_name").val('');
+        $("#<?php echo $modeloForm ?>_<?php echo $campoDesarrollador ?>").val('');
+        $("#desarrollador_delete").hide();
+	});
+</script>
 
 </div><!-- search-form -->
