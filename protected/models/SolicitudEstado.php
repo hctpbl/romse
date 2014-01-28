@@ -166,11 +166,14 @@ class SolicitudEstado extends CActiveRecord
 		$criteria->compare('prioridad',$this->prioridad,true);
 		$criteria->compare('temporizacion',$this->temporizacion,true);
 		$criteria->compare('riesgos',$this->riesgos,true);
-		$criteria->compare('id_artefacto',$this->id_artefacto);
 		$criteria->compare('nombre_estado',$this->nombre_estado,true);
-		$criteria->compare('id_creador',Yii::app()->user->id);
-		$criteria->addCondition('id_probador = '.Yii::app()->user->id, 'OR');
-		$criteria->addCondition('id_desarrollador = '.Yii::app()->user->id, 'OR');
+		
+		$criteriaUsers = new CDbCriteria;
+		$criteriaUsers->compare('id_creador',Yii::app()->user->id);
+		$criteriaUsers->addCondition('id_probador = '.Yii::app()->user->id, 'OR');
+		$criteriaUsers->addCondition('id_desarrollador = '.Yii::app()->user->id, 'OR');
+		
+		$criteria->mergeWith($criteriaUsers, 'AND');
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
